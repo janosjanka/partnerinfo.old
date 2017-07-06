@@ -1,0 +1,53 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.portal-tree-modified-present {
+    background-color: #cc0000 !important;
+}
+
+.portal-tree-modified-recently {
+    background-color: #ff8080 !important;
+}
+
+.portal-tree-modified-earlier {
+    background-color: #ffeeee !important;
+}
+
+.portal-tree-col-index {
+    color: #777;
+    text-align: left;
+    font-family: Consolas, 'Courier New';
+    font-size: 0.9em;
+    font-style: italic;
+    overflow: hidden;
+}
+
+.portal-tree-col-master {
+    background-color: transparent;
+    overflow: hidden;
+}
+
+    .portal-tree-col-master.portal-tree-dragenter {
+        background-color: #009900 !important;
+        color: #fff !important;
+    }
+
+.portal-tree-col-date {
+    color: #009a9a;
+    font-size: 0.9em;
+    text-align: right;
+    overflow: hidden;
+}
+
+.portal-tree-homepage {
+    background-color: #bbf5f5;
+}
+
+.portal-tree-masterpage {
+    color: #009900;
+    font-style: italic;
+}
+
+.portal-tree-masterpage-modified {
+    background-color: #009900;
+    color: #fff;
+}

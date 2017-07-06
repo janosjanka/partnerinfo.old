@@ -1,0 +1,46 @@
+﻿<script defer="defer" type="text/html" id="koProjectMenuListContactCell">
+    <button class="ui-btn ui-btn-flat ui-btn-xs ui-type-number" type="button" data-command='/admin/projects/{id}/#/contacts'>
+        <i class="i contact"></i>
+    </button>
+    <span data-bind="text: contactCount"></span>
+</script>
+
+<script defer="defer" type="text/html" id="koProjectMenuList">
+    <li role="menuitem" class="ui-scroll-vl-lg" data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    columns: [
+        { binding: "text: name", width: "*" },
+        { binding: "text: sender.name || sender.address", width: "125px" },
+        { cellTemplate: "#koProjectMenuListContactCell", width: "75px" },
+        { binding: "elapsed: modifiedDate", cellClass: "ui-text-right ui-type-time", width: "100px" }
+    ],
+    onselectionchanged: function (event) { event.detail.list.command("selection.open")(); }
+}'></li>
+    <!-- ko if: !busy() && !items().length -->
+    <li role="menuitem" class="ui-type-note ui-text-center">
+        Nincsenek projektek
+    </li>
+    <!-- /ko -->
+    <li role="menuitem" class="ui-footer ui-clearfix">
+        <div class="ui-pull-left">
+            <a class="ui-btn ui-btn-flat" href="/admin/projects">
+                <span>Mutass minden projektet...</span>
+            </a>
+        </div>
+        <div class="ui-pull-right">
+            <span class="progress ui-pull-left" data-bind='visible: busy'></span>
+            <span class="conHor2XS ui-pull-left" data-bind='component: { name: "ui-searchbox",
+    params: {
+        value: filter.name,
+        attr: {
+            placeholder: "Projekt keresése..."
+        },
+        submit: filter.submit.bind(filter),
+        cancel: filter.cancel.bind(filter)
+    }
+}'></span>
+            <span class="ui-pull-left" data-bind='component: { name: "ui-datapager", params: { list: $data, ctrls: "prev next" } }'></span>
+        </div>
+    </li>
+</script>

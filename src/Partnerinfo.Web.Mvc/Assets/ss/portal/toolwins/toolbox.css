@@ -1,0 +1,14 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-portal-toolwin-toolbox .ui-btn-group-vl {
+    width: 38px;
+    padding: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    background-color: #f8f8f8;
+    border: 1px solid #e8e8e8;
+}
+
+.ui-portal-toolwin-toolbox .ui-btn.pi-device-hidden {
+    color: #ccc;
+}

@@ -1,0 +1,37 @@
+﻿@model LoginBindingModel
+<form class="ui-box ui-box-bordered" method="post" action="@Url.Action("login", "account")">
+    <div class="ui-box-header">
+        <h2 class="ui-font-sm">@IdentityAppResources.Account_LogIn</h2>
+    </div>
+    <div class="ui-box-group">
+        <div class="ui-form-hl">
+            <div class="ui-form-group">
+                <div class="ui-col-sm-3">
+                    @Html.LabelFor(m => m.Email, new { @for = "pi-login-email" })
+                </div>
+                <div class="ui-col-sm-9">
+                    @Html.TextBoxFor(m => m.Email, new { id = "pi-login-email", @class = "ui-form-control", name = "email", type = "email" })
+                </div>
+            </div>
+            <div class="ui-form-group">
+                <div class="ui-col-sm-3">
+                    @Html.LabelFor(m => m.Password, new { @for = "pi-login-password" })
+                </div>
+                <div class="ui-col-sm-9">
+                    @Html.PasswordFor(m => m.Password, new { id = "pi-login-password", @class = "ui-form-control", name = "password" })
+                </div>
+            </div>
+            @Html.ValidationSummary()
+        </div>
+    </div>
+    <div class="ui-box-footer ui-text-center">
+        <div class="ui-btn-group">
+            <button class="ui-btn ui-btn-success" type="submit">
+                @IdentityAppResources.Account_LogIn
+            </button>
+            <a role="button" class="ui-btn" href="@Url.Action("resetpassword", "account")">
+                Elfelejtettem a jelszavamat
+            </a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,2 @@
+﻿
+})(window, jQuery, ko, WinJS);

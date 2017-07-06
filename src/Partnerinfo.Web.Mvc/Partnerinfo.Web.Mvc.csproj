@@ -1,0 +1,1014 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <ImportGroup Label="Settings">
+    <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.Settings.targets" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F51BB298-56B4-465E-9154-8AC0C350BC9A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Partnerinfo</RootNamespace>
+    <AssemblyName>Partnerinfo.Web.Mvc</AssemblyName>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <UseGlobalApplicationHostFile />
+    <IISExpressSSLPort />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.6.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Hangfire.Core.1.6.8\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Dashboard.Authorization, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Hangfire.Dashboard.Authorization.2.1.0\lib\net45\Hangfire.Dashboard.Authorization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.6.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Hangfire.SqlServer.1.6.8\lib\net45\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.3\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\GuidUtility.cs">
+      <Link>Common\GuidUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\LocalizationSettings.cs">
+      <Link>Common\LocalizationSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\LocalizationSettingsSection.cs">
+      <Link>Common\LocalizationSettingsSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\LocalizedAttribute.cs">
+      <Link>Common\LocalizedAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\StringUtility.cs">
+      <Link>Common\StringUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\UriUtility.cs">
+      <Link>Common\UriUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\LoggingExtensions.cs">
+      <Link>Common\LoggingExtensions.cs</Link>
+    </Compile>
+    <Compile Include="App_Start\Startup.BundleConfig.cs" />
+    <Compile Include="App_Start\Startup.ApiConfig.cs" />
+    <Compile Include="App_Start\Startup.AuthConfig.cs" />
+    <Compile Include="App_Start\Startup.DbConfig.cs" />
+    <Compile Include="App_Start\Startup.DepiConfig.cs" />
+    <Compile Include="App_Start\Startup.HangFireConfig.cs" />
+    <Compile Include="App_Start\Startup.MvcConfig.cs" />
+    <Compile Include="Analytics\Controllers\AnalyticsController.cs" />
+    <Content Include="Assets\js\base\knockout\sortable.js" />
+    <Content Include="Assets\js\facebook.js" />
+    <Content Include="Assets\js\portal\toolwins\reference.js" />
+    <Content Include="Assets\js\portal\viewmodels\reference.js" />
+    <Content Include="Assets\js\search\modules\logging.js" />
+    <Content Include="Assets\ss\drive\index.css" />
+    <Content Include="Assets\static\portal\templates\default\confirm.html" />
+    <Content Include="Assets\static\portal\templates\default\picture-1.jpg" />
+    <Content Include="Assets\static\portal\templates\default\picture-2.jpg" />
+    <Content Include="Assets\static\portal\templates\default\picture-3.jpg" />
+    <Content Include="Assets\static\portal\themes\default\portal.css" />
+    <Content Include="Assets\static\portal\themes\default\portal.js" />
+    <Content Include="Assets\js\base\codemirror\addon\comment\comment.js" />
+    <Content Include="Assets\js\base\codemirror\addon\comment\continuecomment.js" />
+    <Content Include="Assets\js\base\codemirror\addon\dialog\dialog.css" />
+    <Content Include="Assets\js\base\codemirror\addon\dialog\dialog.js" />
+    <Content Include="Assets\js\base\codemirror\addon\display\autorefresh.js" />
+    <Content Include="Assets\js\base\codemirror\addon\display\fullscreen.css" />
+    <Content Include="Assets\js\base\codemirror\addon\display\fullscreen.js" />
+    <Content Include="Assets\js\base\codemirror\addon\display\panel.js" />
+    <Content Include="Assets\js\base\codemirror\addon\display\placeholder.js" />
+    <Content Include="Assets\js\base\codemirror\addon\display\rulers.js" />
+    <Content Include="Assets\js\base\codemirror\addon\edit\closebrackets.js" />
+    <Content Include="Assets\js\base\codemirror\addon\edit\closetag.js" />
+    <Content Include="Assets\js\base\codemirror\addon\edit\continuelist.js" />
+    <Content Include="Assets\js\base\codemirror\addon\edit\matchbrackets.js" />
+    <Content Include="Assets\js\base\codemirror\addon\edit\matchtags.js" />
+    <Content Include="Assets\js\base\codemirror\addon\edit\trailingspace.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\brace-fold.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\comment-fold.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\foldcode.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\foldgutter.css" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\foldgutter.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\indent-fold.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\markdown-fold.js" />
+    <Content Include="Assets\js\base\codemirror\addon\fold\xml-fold.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\anyword-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\css-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\html-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\javascript-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\show-hint.css" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\show-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\sql-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\hint\xml-hint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\coffeescript-lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\css-lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\html-lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\javascript-lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\json-lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\lint.css" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\lint\yaml-lint.js" />
+    <Content Include="Assets\js\base\codemirror\addon\merge\merge.css" />
+    <Content Include="Assets\js\base\codemirror\addon\merge\merge.js" />
+    <Content Include="Assets\js\base\codemirror\addon\mode\loadmode.js" />
+    <Content Include="Assets\js\base\codemirror\addon\mode\multiplex.js" />
+    <Content Include="Assets\js\base\codemirror\addon\mode\multiplex_test.js" />
+    <Content Include="Assets\js\base\codemirror\addon\mode\overlay.js" />
+    <Content Include="Assets\js\base\codemirror\addon\mode\simple.js" />
+    <Content Include="Assets\js\base\codemirror\addon\runmode\colorize.js" />
+    <Content Include="Assets\js\base\codemirror\addon\runmode\runmode-standalone.js" />
+    <Content Include="Assets\js\base\codemirror\addon\runmode\runmode.js" />
+    <Content Include="Assets\js\base\codemirror\addon\runmode\runmode.node.js" />
+    <Content Include="Assets\js\base\codemirror\addon\scroll\annotatescrollbar.js" />
+    <Content Include="Assets\js\base\codemirror\addon\scroll\scrollpastend.js" />
+    <Content Include="Assets\js\base\codemirror\addon\scroll\simplescrollbars.css" />
+    <Content Include="Assets\js\base\codemirror\addon\scroll\simplescrollbars.js" />
+    <Content Include="Assets\js\base\codemirror\addon\search\match-highlighter.js" />
+    <Content Include="Assets\js\base\codemirror\addon\search\matchesonscrollbar.css" />
+    <Content Include="Assets\js\base\codemirror\addon\search\matchesonscrollbar.js" />
+    <Content Include="Assets\js\base\codemirror\addon\search\search.js" />
+    <Content Include="Assets\js\base\codemirror\addon\search\searchcursor.js" />
+    <Content Include="Assets\js\base\codemirror\addon\selection\active-line.js" />
+    <Content Include="Assets\js\base\codemirror\addon\selection\mark-selection.js" />
+    <Content Include="Assets\js\base\codemirror\addon\selection\selection-pointer.js" />
+    <Content Include="Assets\js\base\codemirror\addon\tern\tern.css" />
+    <Content Include="Assets\js\base\codemirror\addon\tern\tern.js" />
+    <Content Include="Assets\js\base\codemirror\addon\tern\worker.js" />
+    <Content Include="Assets\js\base\codemirror\addon\wrap\hardwrap.js" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.dnd.js" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.edit.js" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.filter.js" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.js" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.persist.js" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.table.js" />
+    <Content Include="Assets\js\base\fancytree\LICENSE.txt" />
+    <Content Include="Assets\js\bootstrap\en-US\bootstrap.js" />
+    <Content Include="Assets\js\bootstrap\hu-HU\bootstrap.js" />
+    <Content Include="Assets\js\bootstrap\ui-fileupload.js" />
+    <Content Include="Assets\js\identity\services\user.js" />
+    <Content Include="Assets\js\identity\strings\en-us\identity.js" />
+    <Content Include="Assets\js\identity\strings\hu-hu\identity.js" />
+    <Content Include="Assets\js\identity\views\user.js" />
+    <Content Include="Assets\js\portal\modules\html\editor.html" />
+    <Content Include="Assets\js\portal\modules\html\editor.js" />
+    <Content Include="Assets\js\portal\modules\html\module.js" />
+    <Content Include="Assets\js\portal\services\media.js" />
+    <Content Include="Assets\js\portal\strings\en-us\portal.js" />
+    <Content Include="Assets\js\portal\strings\hu-hu\portal.js" />
+    <Content Include="Assets\js\portal\viewmodels\media.js" />
+    <Content Include="Assets\js\portal\views\media.js" />
+    <Content Include="Assets\js\project\strings\en-us\project.js" />
+    <Content Include="Assets\js\project\strings\hu-hu\project.js" />
+    <Content Include="Assets\js\security\services\acl.js" />
+    <Content Include="Assets\js\security\strings\en-us\security.js" />
+    <Content Include="Assets\js\security\strings\hu-hu\security.js" />
+    <Content Include="Assets\js\security\viewmodels\acl.js" />
+    <Content Include="Assets\js\security\views\acl.js" />
+    <Content Include="Assets\js\tinymce\_suffix.js" />
+    <Content Include="Assets\js\tinymce\_prefix.js" />
+    <Content Include="Assets\ss\bootstrap\list.css" />
+    <Content Include="Assets\ss\bootstrap\menubar.css" />
+    <Content Include="Assets\ss\bootstrap\table.css" />
+    <Content Include="Assets\ss\bootstrap\toggle.css" />
+    <Compile Include="Drive\Controllers\DriveController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Identity\Models\AccountModels.cs" />
+    <Compile Include="Common\Composition\AppResolvers.cs" />
+    <Compile Include="Common\Composition\CompositionHelper.cs" />
+    <Compile Include="Common\SignalR\CamelCaseContractResolver.cs" />
+    <Compile Include="Common\SignalR\ErrorHubPipelineModule.cs" />
+    <Compile Include="Portal\PortalAppResources.Designer.cs">
+      <DependentUpon>PortalAppResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Portal\Controllers\PortalsController.cs" />
+    <Compile Include="Portal\ViewModels\EngineEventViewModel.cs" />
+    <Compile Include="Portal\ViewModels\EnginePageViewModel.cs" />
+    <Compile Include="Portal\ViewModels\EnginePortalViewModel.cs" />
+    <Compile Include="Project\Controllers\ProjectsController.cs" />
+    <Compile Include="Common\Composition\ApiDependencyResolver.cs" />
+    <Compile Include="Common\Composition\ApiFilterProvider.cs" />
+    <Compile Include="Common\Composition\HttpCompositionProvider.cs" />
+    <Compile Include="Common\Composition\HangFireJobActivator.cs" />
+    <Compile Include="Common\Composition\MvcExportModelBinderAttribute.cs" />
+    <Compile Include="Common\Composition\AppContainerConfiguration.cs" />
+    <Compile Include="Common\Composition\MvcDependencyResolver.cs" />
+    <Compile Include="Common\Composition\MvcFilterProvider .cs" />
+    <Compile Include="Common\Composition\MvcModelBinderProvider.cs" />
+    <Compile Include="Common\Composition\HttpCompositionScopeModule.cs" />
+    <Compile Include="Common\Composition\SharingBoundaries.cs" />
+    <Compile Include="Controllers\PoliciesController.cs" />
+    <Compile Include="Common\Filters\GlobalDataAttribute.cs" />
+    <Compile Include="Portal\ModelBinders\ActionLinkModelBinder.cs" />
+    <Compile Include="Portal\ModelBinders\AuthTicketModelBinder.cs" />
+    <Compile Include="Identity\OAuth\OAuthFacebookClientData.cs" />
+    <Compile Include="Identity\OAuth\OAuthGoogleClient.cs" />
+    <Compile Include="Identity\OAuth\OAuthGoogleClientData.cs" />
+    <Compile Include="Identity\OAuth\OAuthName.cs" />
+    <Compile Include="Portal\ViewModels\EngineResultViewModel.cs" />
+    <Compile Include="Common\Helpers\HtmlExtensions.cs" />
+    <Compile Include="Common\Helpers\HtmlUtility.cs" />
+    <Compile Include="Portal\Routing\DomainRoute.cs" />
+    <Compile Include="Identity\Controllers\AccountController.cs" />
+    <Compile Include="Identity\Models\ResourceHelper.cs" />
+    <Compile Include="Identity\Models\OAuthLoginResult.cs" />
+    <Compile Include="Portal\Controllers\EngineController.cs" />
+    <Compile Include="Identity\Models\OAuthProvider.cs" />
+    <Compile Include="Identity\OAuth\OAuthMicrosoftClientData.cs" />
+    <Compile Include="Identity\OAuth\OAuthFacebookClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Identity\OAuth\OAuthHelpers.cs" />
+    <Compile Include="Identity\OAuth\OAuthMicrosoftClient.cs" />
+    <Compile Include="Identity\OAuth\OAuthMicrosoftClientEmailData.cs" />
+    <Compile Include="Identity\OAuth\OAuthTwitterClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Identity\IdentityAppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IdentityAppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\ss\bootstrap\typeahead.css" />
+    <Content Include="Assets\js\bootstrap\ko-editsession.js" />
+    <Content Include="Assets\js\bootstrap\ko-events.js" />
+    <Content Include="Assets\js\base\tinymce\license.txt" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Assets\js\base\tinymce\tinymce.min.js" />
+    <Content Include="Assets\ss\bootstrap\timespan.css" />
+    <Content Include="Assets\js\bootstrap\ui-timespan.js" />
+    <Content Include="Assets\js\base\typeahead\bloodhound.js" />
+    <Content Include="Assets\js\bootstrap\ui-typeahead.js" />
+    <Content Include="Assets\js\base\typeahead\typeahead.bundle.js" />
+    <Content Include="Assets\js\base\typeahead\typeahead.jquery.js" />
+    <Content Include="Assets\ss\bootstrap\fonts\icons.svg" />
+    <Content Include="Assets\js\bootstrap\winjs-license.txt" />
+    <Content Include="Assets\js\bootstrap\winjs-utilities.js" />
+    <Content Include="Assets\js\components.js" />
+    <Content Include="Assets\js\core.js" />
+    <Content Include="Assets\js\drive\document.js" />
+    <Content Include="Assets\js\drive\services\file.js" />
+    <Content Include="Assets\js\expression.js" />
+    <Content Include="Assets\js\input\services\command.js" />
+    <Content Include="Assets\js\logging\services\category.js" />
+    <Content Include="Assets\js\logging\services\notification.js" />
+    <Content Include="Assets\js\logging\services\rule.js" />
+    <Content Include="Assets\js\logging\viewmodels\category.js" />
+    <Content Include="Assets\js\logging\viewmodels\rule.js" />
+    <Content Include="Assets\js\logging\views\rule.js" />
+    <Content Include="Assets\js\portal\modules\chat\customerservice.css" />
+    <Content Include="Assets\js\portal\modules\chat\customer.css" />
+    <Content Include="Assets\js\portal\modules\event\_editor.js" />
+    <Content Include="Assets\js\portal\modules\event\editor.html" />
+    <Content Include="Assets\js\portal\modules\event\list.html" />
+    <Content Include="Assets\js\portal\modules\live.js" />
+    <Content Include="Assets\js\portal\toolwins\toolbox.js" />
+    <Content Include="Assets\js\project\services\businesstag.js" />
+    <Content Include="Assets\js\project\services\contact.js" />
+    <Content Include="Assets\js\project\services\project.js" />
+    <Content Include="Assets\js\project\viewmodels\businesstag.js" />
+    <Content Include="Assets\js\project\viewmodels\project.js" />
+    <Content Include="Assets\js\project\views\businesstag.js" />
+    <Content Include="Assets\js\routes.js" />
+    <Content Include="Assets\js\logging\viewmodels\notification.js" />
+    <Content Include="Assets\js\logging\services\event.js" />
+    <Content Include="Assets\js\logging\viewmodels\event.js" />
+    <Content Include="Assets\js\identity\viewmodels\user.js" />
+    <Content Include="Assets\js\logging\views\event.js" />
+    <Content Include="Assets\js\strings\hu-HU\logging.js" />
+    <Content Include="Assets\ss\bootstrap\box.css" />
+    <Content Include="Assets\ss\bootstrap\dialog.css" />
+    <Content Include="Assets\ss\bootstrap\font.css" />
+    <Content Include="Assets\ss\bootstrap\fonts\LICENSE.txt" />
+    <Content Include="Assets\ss\bootstrap\input.css" />
+    <Content Include="Assets\ss\bootstrap\layout.css" />
+    <Content Include="Assets\ss\bootstrap\media.css" />
+    <Content Include="Assets\ss\bootstrap\navbar.css" />
+    <Content Include="Assets\ss\fonts\buttons.svg" />
+    <Content Include="Assets\ss\logging\icons.css" />
+    <Content Include="Assets\ss\logging\event.css" />
+    <Content Include="Assets\ss\logging\icons.png" />
+    <Content Include="Assets\ss\pictures\droparea150727.png" />
+    <Content Include="Assets\ss\pictures\orglogo151109.png" />
+    <Content Include="Assets\ss\pictures\portal-module.png" />
+    <Content Include="Assets\ss\pictures\portal-style.png" />
+    <Content Include="Assets\ss\pictures\portal-tree.png" />
+    <Content Include="Assets\ss\pictures\project-actionlink.png" />
+    <Content Include="Assets\ss\pictures\project-workflow.png" />
+    <Content Include="Assets\ss\portal\fonts\icons.svg" />
+    <Content Include="Assets\ss\portal\modules\animatedpanel.css" />
+    <Content Include="Assets\ss\portal\modules\common.css" />
+    <Content Include="Assets\ss\portal\modules\image.css" />
+    <Content Include="Assets\ss\portal\modules\video.css" />
+    <Content Include="Assets\ss\portal\toolwins\toolbox.css" />
+    <Content Include="Assets\tt\logging\rules.html" />
+    <Content Include="Assets\tt\portal\media.html" />
+    <Content Include="Assets\tt\portal\portal.html" />
+    <Content Include="Assets\tt\project\actionlink.html" />
+    <Content Include="Assets\tt\project\actionpicker.html" />
+    <Content Include="Identity\Views\_ViewStart.cshtml" />
+    <Content Include="Identity\Views\Web.config" />
+    <Content Include="Analytics\Views\_ViewStart.cshtml" />
+    <Content Include="Analytics\Views\Web.config" />
+    <Content Include="Assets\js\portal\analytics.js" />
+    <Content Include="Assets\js\portal\app.js" />
+    <Content Include="Assets\js\portal\common.js" />
+    <Content Include="Assets\js\portal\context.js" />
+    <Content Include="Assets\js\portal\designer.js" />
+    <Content Include="Assets\js\portal\engine.js" />
+    <Content Include="Assets\js\portal\managers\input.js" />
+    <Content Include="Assets\js\portal\managers\menu.js" />
+    <Content Include="Assets\js\portal\managers\module.js" />
+    <Content Include="Assets\js\portal\managers\selection.js" />
+    <Content Include="Assets\js\portal\managers\style.js" />
+    <Content Include="Assets\js\portal\managers\toolwin.js" />
+    <Content Include="Assets\js\portal\modules\animatedpanel\cycle.js" />
+    <Content Include="Assets\js\portal\modules\animatedpanel\editor.html" />
+    <Content Include="Assets\js\portal\modules\animatedpanel\editor.js" />
+    <Content Include="Assets\js\portal\modules\animatedpanel\module.js" />
+    <Content Include="Assets\js\portal\modules\base.js" />
+    <Content Include="Assets\js\portal\modules\chat\editor.html" />
+    <Content Include="Assets\js\portal\modules\chat\editor.js" />
+    <Content Include="Assets\js\portal\modules\chat\module.js" />
+    <Content Include="Assets\js\portal\modules\content\editor.html" />
+    <Content Include="Assets\js\portal\modules\content\editor.js" />
+    <Content Include="Assets\js\portal\modules\content\module.js" />
+    <Content Include="Assets\js\portal\modules\edit.js" />
+    <Content Include="Assets\js\portal\modules\event\_editor.html" />
+    <Content Include="Assets\js\portal\modules\event\editor.js" />
+    <Content Include="Assets\js\portal\modules\event\_list.html" />
+    <Content Include="Assets\js\portal\modules\event\module.js" />
+    <Content Include="Assets\js\portal\modules\form\editor.html" />
+    <Content Include="Assets\js\portal\modules\form\editor.js" />
+    <Content Include="Assets\js\portal\modules\form\module.js" />
+    <Content Include="Assets\js\portal\modules\frame\editor.html" />
+    <Content Include="Assets\js\portal\modules\frame\editor.js" />
+    <Content Include="Assets\js\portal\modules\frame\module.js" />
+    <Content Include="Assets\js\portal\modules\image\editor.html" />
+    <Content Include="Assets\js\portal\modules\image\editor.js" />
+    <Content Include="Assets\js\portal\modules\image\module.js" />
+    <Content Include="Assets\js\portal\modules\link\editor.html" />
+    <Content Include="Assets\js\portal\modules\link\editor.js" />
+    <Content Include="Assets\js\portal\modules\link\module.js" />
+    <Content Include="Assets\js\portal\modules\panel\editor.html" />
+    <Content Include="Assets\js\portal\modules\panel\editor.js" />
+    <Content Include="Assets\js\portal\modules\panel\module.js" />
+    <Content Include="Assets\js\portal\modules\scroller\editor.html" />
+    <Content Include="Assets\js\portal\modules\scroller\editor.js" />
+    <Content Include="Assets\js\portal\modules\scroller\module.js" />
+    <Content Include="Assets\js\portal\modules\search\editor.html" />
+    <Content Include="Assets\js\portal\modules\search\editor.js" />
+    <Content Include="Assets\js\portal\modules\search\module.js" />
+    <Content Include="Assets\js\portal\modules\timer\editor.html" />
+    <Content Include="Assets\js\portal\modules\timer\editor.js" />
+    <Content Include="Assets\js\portal\modules\timer\module.js" />
+    <Content Include="Assets\js\portal\modules\video\editor.html" />
+    <Content Include="Assets\js\portal\modules\video\editor.js" />
+    <Content Include="Assets\js\portal\modules\video\module.js" />
+    <Content Include="Assets\js\portal\services\page.js" />
+    <Content Include="Assets\js\portal\services\portal.js" />
+    <Content Include="Assets\js\portal\toolwins\base.js" />
+    <Content Include="Assets\js\portal\toolwins\event.js" />
+    <Content Include="Assets\js\portal\toolwins\info.js" />
+    <Content Include="Assets\js\portal\toolwins\module.js" />
+    <Content Include="Assets\js\portal\toolwins\preview.js" />
+    <Content Include="Assets\js\portal\toolwins\style.js" />
+    <Content Include="Assets\js\portal\toolwins\tree.js" />
+    <Content Include="Assets\js\portal\viewmodels\page.js" />
+    <Content Include="Assets\js\portal\viewmodels\portal.js" />
+    <Content Include="Assets\js\portal\views\page.js" />
+    <Content Include="Assets\js\portal\views\pages.js" />
+    <Content Include="Assets\js\portal\views\portal.js" />
+    <Content Include="Assets\js\project\app.js" />
+    <Content Include="Assets\js\project\authentication.js" />
+    <Content Include="Assets\js\search\engine.js" />
+    <Content Include="Assets\js\search\engine.ui.js" />
+    <Content Include="Assets\js\search\modules\banner.js" />
+    <Content Include="Assets\js\search\modules\login.js" />
+    <Content Include="Assets\js\search\modules\media.js" />
+    <Content Include="Assets\js\search\modules\playlist.js" />
+    <Content Include="Assets\js\search\providers\dailymotion.js" />
+    <Content Include="Assets\js\search\providers\youtube.js" />
+    <Content Include="Assets\js\search\services\playlist.js" />
+    <Content Include="Assets\js\search\types.js" />
+    <Content Include="Assets\js\project\services\action.js" />
+    <Content Include="Assets\js\project\services\mail.js" />
+    <Content Include="Assets\js\project\viewmodels\action.js" />
+    <Content Include="Assets\js\project\viewmodels\contact.js" />
+    <Content Include="Assets\js\project\viewmodels\mail.js" />
+    <Content Include="Assets\js\project\views\action.js" />
+    <Content Include="Assets\js\project\views\contact.js" />
+    <Content Include="Assets\js\project\views\mail.js" />
+    <Content Include="Assets\js\project\views\project.js" />
+    <Content Include="Assets\js\security.js" />
+    <Content Include="Assets\js\sound.js" />
+    <Content Include="Assets\js\config.js" />
+    <Content Include="Assets\js\strings\hu-HU\core.js" />
+    <Content Include="Assets\js\strings\hu-HU\portal.js" />
+    <Content Include="Assets\js\strings\hu-HU\tinymce.js" />
+    <Content Include="Assets\js\tinymce\plugins\actionlink.js" />
+    <Content Include="Assets\js\tinymce\plugins\codemirror.js" />
+    <Content Include="Assets\js\tinymce\plugins\placeholders.js" />
+    <Content Include="Assets\js\tinymce\plugins\projectforms.js" />
+    <Content Include="Assets\js\tinymce\tinymce.js" />
+    <Content Include="Assets\js\types.js" />
+    <Content Include="Assets\js\ui.js" />
+    <Content Include="Assets\js\_prefix.js" />
+    <Content Include="Assets\js\_suffix.js" />
+    <Content Include="Assets\ss\bootstrap\normalize.css" />
+    <Content Include="Assets\ss\bootstrap\button.css" />
+    <Content Include="Assets\ss\app.css" />
+    <Content Include="Assets\ss\icons.css" />
+    <Content Include="Assets\ss\bootstrap\theme.css" />
+    <Content Include="Assets\ss\bootstrap\types.css" />
+    <Content Include="Assets\ss\pictures\bpattern140902.gif" />
+    <Content Include="Assets\ss\portal\designer\designer.css" />
+    <Content Include="Assets\ss\portal\font.css" />
+    <Content Include="Assets\ss\portal\modules\event.css" />
+    <Content Include="Assets\ss\portal\portal.css" />
+    <Content Include="Assets\ss\portal\toolwins\base.css" />
+    <Content Include="Assets\ss\portal\toolwins\info.css" />
+    <Content Include="Assets\ss\portal\toolwins\module.css" />
+    <Content Include="Assets\ss\portal\toolwins\style.css" />
+    <Content Include="Assets\ss\portal\toolwins\tree.css" />
+    <Content Include="Assets\ss\project\action.css" />
+    <Content Include="Assets\ss\search\base.css" />
+    <Content Include="Assets\ss\search\basket.png" />
+    <Content Include="Assets\ss\search\icons.css" />
+    <Content Include="Assets\ss\search\icons.png" />
+    <Content Include="Assets\ss\search\medialist.css" />
+    <Content Include="Assets\ss\search\modules\banner.css" />
+    <Content Include="Assets\ss\search\modules\media.css" />
+    <Content Include="Assets\ss\search\modules\playlist.css" />
+    <Content Include="Assets\ss\tinymce\plugins\actionlink.png" />
+    <Content Include="Assets\ss\tinymce\plugins\codemirror.png" />
+    <Content Include="Assets\ss\tinymce\plugins\placeholders.png" />
+    <Content Include="Assets\ss\tinymce\plugins\projectforms.png" />
+    <Content Include="Assets\ss\tinymce\tinymce.content.css" />
+    <Content Include="Assets\ss\tinymce\tinymce.css" />
+    <Content Include="Assets\tt\drive\files.html" />
+    <Content Include="Assets\tt\security\acl.html" />
+    <Content Include="Assets\tt\logging\events.html" />
+    <Content Include="Assets\tt\identity\users.html" />
+    <Content Include="Assets\tt\portal\designer\menu.html" />
+    <Content Include="Assets\tt\portal\page.html" />
+    <Content Include="Assets\tt\portal\portals.html" />
+    <Content Include="Assets\tt\portal\toolwins\style.html" />
+    <Content Include="Assets\tt\project\action.html" />
+    <Content Include="Assets\tt\project\actions.html" />
+    <Content Include="Assets\tt\project\contact.html" />
+    <Content Include="Assets\tt\project\contacts.html" />
+    <Content Include="Assets\tt\project\businesstags.html" />
+    <Content Include="Assets\tt\project\mail-picker.html" />
+    <Content Include="Assets\tt\project\mail.html" />
+    <Content Include="Assets\tt\project\mails.html" />
+    <Content Include="Assets\tt\project\project.html" />
+    <Content Include="Assets\tt\project\projects-menu.html" />
+    <Content Include="Assets\tt\project\projects.html" />
+    <Content Include="Assets\tt\search\providers\dailymotion.html" />
+    <Content Include="Assets\tt\search\providers\youtube.html" />
+    <Content Include="Assets\tt\search\search.html" />
+    <Content Include="Assets\js\base\beautify\beautify-css.js" />
+    <Content Include="Assets\js\base\beautify\beautify-html.js" />
+    <Content Include="Assets\js\base\beautify\beautify.js" />
+    <Content Include="Assets\js\base\codemirror\lib\codemirror.css" />
+    <Content Include="Assets\js\base\codemirror\lib\codemirror.js" />
+    <Content Include="Assets\js\base\codemirror\mode\css\css.js" />
+    <Content Include="Assets\js\base\codemirror\mode\css\index.html" />
+    <Content Include="Assets\js\base\codemirror\mode\css\less.html" />
+    <Content Include="Assets\js\base\codemirror\mode\css\less_test.js" />
+    <Content Include="Assets\js\base\codemirror\mode\css\scss.html" />
+    <Content Include="Assets\js\base\codemirror\mode\css\scss_test.js" />
+    <Content Include="Assets\js\base\codemirror\mode\css\test.js" />
+    <Content Include="Assets\js\base\codemirror\mode\htmlembedded\htmlembedded.js" />
+    <Content Include="Assets\js\base\codemirror\mode\htmlembedded\index.html" />
+    <Content Include="Assets\js\base\codemirror\mode\htmlmixed\htmlmixed.js" />
+    <Content Include="Assets\js\base\codemirror\mode\htmlmixed\index.html" />
+    <Content Include="Assets\js\base\codemirror\mode\index.html" />
+    <Content Include="Assets\js\base\codemirror\mode\javascript\index.html" />
+    <Content Include="Assets\js\base\codemirror\mode\javascript\javascript.js" />
+    <Content Include="Assets\js\base\codemirror\mode\javascript\json-ld.html" />
+    <Content Include="Assets\js\base\codemirror\mode\javascript\test.js" />
+    <Content Include="Assets\js\base\codemirror\mode\javascript\typescript.html" />
+    <Content Include="Assets\js\base\codemirror\mode\meta.js" />
+    <Content Include="Assets\js\base\codemirror\mode\xml\index.html" />
+    <Content Include="Assets\js\base\codemirror\mode\xml\test.js" />
+    <Content Include="Assets\js\base\codemirror\mode\xml\xml.js" />
+    <Content Include="Assets\js\base\codemirror\theme\visual-studio.css" />
+    <Content Include="Assets\js\base\fancytree\icons.gif" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.css" />
+    <Content Include="Assets\js\base\fancytree\jquery.fancytree.edit.css" />
+    <Content Include="Assets\js\base\fancytree\loading.gif" />
+    <Content Include="Assets\js\base\fileupload\cors\jquery.postmessage-transport.js" />
+    <Content Include="Assets\js\base\fileupload\cors\jquery.xdr-transport.js" />
+    <Content Include="Assets\js\base\fileupload\jquery.fileupload-ui.css" />
+    <Content Include="Assets\js\base\fileupload\jquery.fileupload-ui.js" />
+    <Content Include="Assets\js\base\fileupload\jquery.fileupload-validate.js" />
+    <Content Include="Assets\js\base\fileupload\jquery.fileupload.js" />
+    <Content Include="Assets\js\base\fileupload\jquery.iframe-transport.js" />
+    <Content Include="Assets\js\base\fileupload\loading.gif" />
+    <Content Include="Assets\js\base\fileupload\progressbar.gif" />
+    <Content Include="Assets\js\base\form2js\form2js.js" />
+    <Content Include="Assets\js\base\form2js\jquery.form2js.js" />
+    <Content Include="Assets\js\base\globalize\cultures\globalize.culture.hu-HU.js" />
+    <Content Include="Assets\js\base\globalize\cultures\globalize.culture.hu.js" />
+    <Content Include="Assets\js\base\globalize\globalize.js" />
+    <Content Include="Assets\js\base\jcarousel\jquery.jcarousel-autoscroll.js" />
+    <Content Include="Assets\js\base\jcarousel\jquery.jcarousel-control.js" />
+    <Content Include="Assets\js\base\jcarousel\jquery.jcarousel-core.js" />
+    <Content Include="Assets\js\base\jcarousel\jquery.jcarousel-pagination.js" />
+    <Content Include="Assets\js\base\jcarousel\jquery.jcarousel-scrollintoview.js" />
+    <Content Include="Assets\js\base\jcarousel\jquery.jcarousel.js" />
+    <Content Include="Assets\js\base\jquery\jquery.js" />
+    <Content Include="Assets\js\base\jquery\jquery.ui.css" />
+    <Content Include="Assets\js\base\jquery\jquery.ui.js" />
+    <Content Include="Assets\js\base\jquery\jquery.ui.png" />
+    <Content Include="Assets\js\base\knockout\cultures\en-US\validation.js" />
+    <Content Include="Assets\js\base\knockout\cultures\hu-HU\validation.js" />
+    <Content Include="Assets\js\base\knockout\knockout.debug.js" />
+    <Content Include="Assets\js\base\knockout\knockout.js" />
+    <Content Include="Assets\js\base\knockout\mapping.debug.js" />
+    <Content Include="Assets\js\base\knockout\mapping.js" />
+    <Content Include="Assets\js\base\knockout\projections.js" />
+    <Content Include="Assets\js\base\knockout\validation.js" />
+    <Content Include="Assets\js\base\sammy\jquery.sammy.js" />
+    <Content Include="Assets\js\base\scrolltofixed\jquery.scrolltofixed.js" />
+    <Content Include="Assets\js\base\signalr\jquery.signalr.js" />
+    <Content Include="Assets\js\base\tinymce\langs\hu_HU.js" />
+    <Content Include="Assets\js\base\tokeninput\tokeninput.css" />
+    <Content Include="Assets\js\base\tokeninput\tokeninput.js" />
+    <Content Include="Assets\js\bootstrap\ui-tokeninput.js" />
+    <Content Include="Assets\js\bootstrap\winjs-core.js" />
+    <Content Include="Assets\ss\bootstrap\colorpicker.css" />
+    <Content Include="Assets\ss\bootstrap\datapager.css" />
+    <Content Include="Assets\ss\bootstrap\datetime.css" />
+    <Content Include="Assets\ss\bootstrap\csseditor.css" />
+    <Content Include="Assets\ss\bootstrap\dropdown.css" />
+    <Content Include="Assets\ss\bootstrap\listview.css" />
+    <Content Include="Assets\ss\bootstrap\searchbox.css" />
+    <Content Include="Assets\js\bootstrap\ecma.js" />
+    <Content Include="Assets\js\bootstrap\winjs-classes.js" />
+    <Content Include="Assets\js\bootstrap\winjs-collections.js" />
+    <Content Include="Assets\js\bootstrap\winjs-common.js" />
+    <Content Include="Assets\js\bootstrap\winjs-media.js" />
+    <Content Include="Assets\js\bootstrap\winjs-messaging.js" />
+    <Content Include="Assets\js\bootstrap\require.js" />
+    <Content Include="Assets\js\bootstrap\winjs-promise.js" />
+    <Content Include="Assets\js\bootstrap\winjs-resources.js" />
+    <Content Include="Assets\js\bootstrap\ui-codemirror.js" />
+    <Content Include="Assets\js\bootstrap\ui-colorpicker.js" />
+    <Content Include="Assets\js\bootstrap\ui-dataerrors.js" />
+    <Content Include="Assets\js\bootstrap\ui-datapager.js" />
+    <Content Include="Assets\js\bootstrap\ui-datetime.js" />
+    <Content Include="Assets\js\bootstrap\ui-csseditor.js" />
+    <Content Include="Assets\js\bootstrap\ui-dialog.js" />
+    <Content Include="Assets\js\bootstrap\ui-htmltree.js" />
+    <Content Include="Assets\js\bootstrap\ui-dropdown.js" />
+    <Content Include="Assets\js\bootstrap\ui-flagchecked.js" />
+    <Content Include="Assets\js\bootstrap\ui-jquery.js" />
+    <Content Include="Assets\js\bootstrap\ui-listview.js" />
+    <Content Include="Assets\js\bootstrap\ui-searchbox.js" />
+    <Content Include="Assets\sn\notify.mp3" />
+    <Content Include="Assets\static\portal\templates\default\home.html" />
+    <Content Include="Assets\static\portal\templates\default\layout.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Assets\static\project\contacts.xlsx" />
+    <Content Include="robots.txt" />
+    <Compile Include="App_Start\Startup.SignalRConfig.cs" />
+    <Content Include="Portal\Views\Web.config" />
+    <Content Include="Portal\Views\_ViewStart.cshtml" />
+    <Content Include="Project\Views\_ViewStart.cshtml" />
+    <Content Include="Project\Views\Web.config" />
+    <Content Include="Drive\Views\_ViewStart.cshtml" />
+    <Content Include="Drive\Views\Web.config" />
+    <Content Include="Assets\js\project\viewmodels\action.types.js" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce-small.json" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce.json" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Assets\js\base\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Assets\js\bootstrap\ui-toggle.js" />
+    <Content Include="Assets\js\base\sammy\LICENSE" />
+    <Content Include="Assets\js\base\jcarousel\LICENSE" />
+    <Content Include="Assets\js\base\codemirror\LICENSE" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Black.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-BlackItalic.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Bold.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-BoldItalic.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Italic.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Light.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-LightItalic.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Medium.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-MediumItalic.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Regular.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-Thin.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\Roboto-ThinItalic.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\icons.eot" />
+    <Content Include="Assets\ss\bootstrap\fonts\icons.ttf" />
+    <Content Include="Assets\ss\bootstrap\fonts\icons.woff" />
+    <Content Include="Assets\ss\fonts\buttons.eot" />
+    <Content Include="Assets\ss\fonts\buttons.json" />
+    <Content Include="Assets\ss\fonts\buttons.ttf" />
+    <Content Include="Assets\ss\fonts\buttons.woff" />
+    <Content Include="Assets\ss\portal\fonts\icons.eot" />
+    <Content Include="Assets\ss\portal\fonts\icons.ttf" />
+    <Content Include="Assets\ss\portal\fonts\icons.woff" />
+    <Content Include="Assets\static\portal\templates\default\config.json" />
+    <Content Include="Assets\static\portal\media\web.config" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Policies\Index.cshtml" />
+    <Content Include="Project\Views\Projects\Index.cshtml" />
+    <Content Include="Analytics\Views\Analytics\Index.cshtml" />
+    <Content Include="Drive\Views\Drive\Index.cshtml" />
+    <Content Include="Portal\Views\Portals\Designer.cshtml" />
+    <Content Include="Portal\Views\Portals\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Partnerinfo.Properties</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Identity\IdentityAppResources.hu.resx" />
+    <EmbeddedResource Include="Identity\IdentityAppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IdentityAppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portal\PortalAppResources.hu.resx" />
+    <EmbeddedResource Include="Portal\PortalAppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PortalAppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Portal\Views\Engine\Content.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Partnerinfo.Chat\Partnerinfo.Chat.csproj">
+      <Project>{2821ccd1-9a24-44db-8424-c00012c3da71}</Project>
+      <Name>Partnerinfo.Chat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Data.EntityFramework\Partnerinfo.Data.EntityFramework.csproj">
+      <Project>{fcce93cf-b004-49a0-ab8e-c6f0b637303b}</Project>
+      <Name>Partnerinfo.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Data.InMemory\Partnerinfo.Data.InMemory.csproj">
+      <Project>{848ff9a4-d2fc-4a36-b1d3-88d399fb7842}</Project>
+      <Name>Partnerinfo.Data.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Data\Partnerinfo.Data.csproj">
+      <Project>{16734671-691d-4a23-85cc-6cf4d2d970f7}</Project>
+      <Name>Partnerinfo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Drive\Partnerinfo.Drive.csproj">
+      <Project>{cb39829e-158b-4254-9817-755ba9764755}</Project>
+      <Name>Partnerinfo.Drive</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Input.HangFire\Partnerinfo.Input.HangFire.csproj">
+      <Project>{77764ec0-5f92-4a14-95c1-a0aebc456f4b}</Project>
+      <Name>Partnerinfo.Input.HangFire</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Input.MailClient\Partnerinfo.Input.MailClient.csproj">
+      <Project>{b5a6273e-820d-4a77-af17-89a63d2d3235}</Project>
+      <Name>Partnerinfo.Input.MailClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Input.Processors\Partnerinfo.Input.Processors.csproj">
+      <Project>{0e47338f-be59-434d-a519-f6cbd7236a1e}</Project>
+      <Name>Partnerinfo.Input.Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Input\Partnerinfo.Input.csproj">
+      <Project>{47ac2743-f7c3-4df7-bee7-111ec2a35714}</Project>
+      <Name>Partnerinfo.Input</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Logging.SignalR\Partnerinfo.Logging.SignalR.csproj">
+      <Project>{e1e3bb3d-222c-46f5-94eb-785809db0040}</Project>
+      <Name>Partnerinfo.Logging.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Logging\Partnerinfo.Logging.csproj">
+      <Project>{c347aa46-9c77-4c61-8a81-3e75e63bf6c4}</Project>
+      <Name>Partnerinfo.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Portal\Partnerinfo.Portal.csproj">
+      <Project>{2dfa3a52-2704-4a79-84d7-3f776c08bd53}</Project>
+      <Name>Partnerinfo.Portal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Project.Actions\Partnerinfo.Project.Actions.csproj">
+      <Project>{8b7ebd1e-5440-4f55-8325-3982c723919d}</Project>
+      <Name>Partnerinfo.Project.Actions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Project\Partnerinfo.Project.csproj">
+      <Project>{1cdfebb1-9e61-4b62-a318-93e48c0576f1}</Project>
+      <Name>Partnerinfo.Project</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Web.Api\Partnerinfo.Web.Api.csproj">
+      <Project>{d512deda-687a-4a69-8197-fdd68deab0d1}</Project>
+      <Name>Partnerinfo.Web.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_AppUserMenu.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutBase.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_AppAreaMenu.cshtml" />
+    <Content Include="Identity\Views\Shared\_LoginInfo.cshtml" />
+    <Content Include="Identity\Views\Account\Login.cshtml" />
+    <Content Include="Identity\Views\Shared\_LoginProviders.cshtml" />
+    <Content Include="Identity\Views\Account\OAuthLoginConfirmation.cshtml" />
+    <Content Include="Identity\Views\Account\OAuthLoginFailure.cshtml" />
+    <Content Include="Identity\Views\Shared\_SignupInfo.cshtml" />
+    <Content Include="Identity\Views\Account\Signup.cshtml" />
+    <Content Include="Identity\Views\Account\Index.cshtml" />
+    <Content Include="Identity\Views\Account\Settings.cshtml" />
+    <Content Include="Identity\Views\Account\_OAuthLoginList.cshtml" />
+    <Content Include="Identity\Views\Account\_ChangePassword.cshtml" />
+    <Content Include="Identity\Views\Account\_SetPassword.cshtml" />
+    <Content Include="Identity\Views\Shared\_SignupInfoScript.cshtml" />
+    <Content Include="Identity\Views\Account\ResetPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\js\drive\viewmodels\" />
+    <Folder Include="Assets\js\drive\views\" />
+    <Folder Include="Assets\js\strings\en-US\" />
+    <Folder Include="Assets\static\portal\media\panorama\" />
+    <Folder Include="Assets\tt\portal\modules\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.WebApplication.targets" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1363</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost-partnerinfo.tv:11000</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+</Project>

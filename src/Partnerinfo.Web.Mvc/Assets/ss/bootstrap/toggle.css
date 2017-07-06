@@ -1,0 +1,88 @@
+﻿/* Copyright (c) Partnerinfo Ltd. All Rights Reserved. */
+
+.ui-btn-toggle {
+}
+
+/*-----------------------------------------------------------------------
+  Checkbox
+-----------------------------------------------------------------------*/
+
+.ui-checkbox {
+    display: inline-block;
+    vertical-align: top;
+    width: 1.36363636em;
+    height: 1.36363636em;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+    .ui-checkbox > i {
+        display: block;
+        position: relative;
+        margin: 0 2px;
+        padding: 0;
+        top: 0.45em;
+        left: 0;
+        height: 2px;
+        background-color: rgba(0,0,0,0.32);
+    }
+
+/*-----------------------------------------------------------------------
+  ToggleButton
+-----------------------------------------------------------------------*/
+
+.ui-btn.ui-btn-checkbox,
+.ui-btn.ui-btn-checkbox:focus,
+.ui-btn.ui-btn-checkbox:hover,
+.ui-btn.ui-btn-checkbox:active {
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1.38461538;
+    overflow: visible;
+    font-size: inherit;
+    font-weight: normal;
+    color: inherit;
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+}
+
+    .ui-btn.ui-btn-checkbox > .ui-checkbox {
+        width: 1.15384615em;
+        height: 1.15384615em;
+    }
+
+.ui-btn[aria-checked="false"] > .ui-checkbox > i {
+    background-color: transparent;
+}
+
+.ui-btn[aria-checked="true"] > .ui-checkbox > i {
+    top: -0.5em;
+    left: -0.15em;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    speak: none;
+    font-family: 'ui-icons';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.96153845em;
+    background-color: transparent;
+}
+
+    .ui-btn[aria-checked="true"] > .ui-checkbox > i:before {
+        content: "\e904";
+    }
+
+/*-----------------------------------------------------------------------
+  RadioButton
+-----------------------------------------------------------------------*/
+
+.ui-btn[role=radio] > .ui-checkbox {
+    border-radius: 1.36363636em;
+}
+
+.ui-btn.ui-btn-checkbox[role=radio] > .ui-checkbox {
+    border-radius: 1.15384615em;
+}

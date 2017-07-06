@@ -1,0 +1,75 @@
+﻿<script defer="defer" type="text/html" id="koActionPickerNameCell">
+    <div class="ui-btn ui-btn-checkbox" data-bind='css: { disabled: !enabled }'>
+        <span class="ui-checkbox" data-bind='style: { backgroundColor: component.color }'></span>
+        <span data-bind='text: name'></span>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionPickerList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" role="menu">
+                <ul class="ui-navbar navHor" role="menu">
+                    <li role="menuitem">
+                        <button class="ui-btn" type="button" data-bind='click: function (d) { d.viewMode("edit"); }, clickBubble: false'>
+                            <i class="i add"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="ui-data-toolbar-secondary">
+                <ul role="menu" class="ui-navbar navHor">
+                    <li role="menuitem" data-bind='component: { name: "ui-searchbox",
+    params: {
+        value: filter.name,
+        attr: {
+            placeholder: "Akció keresése..."
+        },
+        submit: filter.submit.bind(filter),
+        cancel: filter.cancel.bind(filter)
+    }
+}'></li>
+                    <li role="menuitem" data-bind='component: { name: "ui-datapager", params: { list: $data, ctrls: "prev next" } }'></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ui-data-content">
+            <div data-bind='listView: {
+    displayHeader: false,
+    displayIndicator: false,
+    displayRowIndex: false,
+    displaySelectionCheckbox: false,
+    synchronize: true,
+    columns: [
+        { cellTemplate: "#koActionPickerNameCell", width: "*" },
+        { binding: "elapsed: modifiedDate", cellClass: "ui-text-right ui-type-time", width: "100px" }
+    ]
+}'>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionPickerEditor">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" role="menu">
+                <ul class="ui-navbar navHor" role="menu">
+                    <li role="menuitem">
+                        <button class="ui-btn" type="button" data-bind='click: function (d) { d.viewMode("list"); d.refresh(); }, clickBubble: false'>
+                            <i class="i back"></i>
+                            <span>Vissza</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ui-data-content">
+            <div data-bind='ui: { name: "project.action", item: { projectId: filter.toObject().projectId } }'></div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionPicker">
+    <div data-bind='template: { name: viewMode() === "list" ? "koActionPickerList" : "koActionPickerEditor" }'></div>
+</script>

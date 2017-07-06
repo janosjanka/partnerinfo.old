@@ -1,0 +1,13 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-portal-toolwin-style-navbar {
+    margin-bottom: 4px;
+}
+
+.ui-portal-toolwin-style-code {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

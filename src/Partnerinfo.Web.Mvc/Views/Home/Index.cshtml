@@ -1,0 +1,141 @@
+﻿@section Script {
+    @Html.Partial("_SignupInfoScript")
+}
+<section class="ui-container-fluid ui-color-2">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-md-8">
+                <div role="article" class="ui-box">
+                    <div role="heading" class="ui-box-header">
+                        <h1>Az Online Marketing Rendszer<br /><small>Marketing oldalak készítése mobil, tablet és desktop eszközökre</small></h1>
+                    </div>
+                    <div role="group" class="ui-box-group">
+                        <ul class="ui-bullet-list ui-font-lg">
+                            <li>Magas teljesítményű web alapú tervező felület</li>
+                            <li>Korszerű, moduláris, aszinkron oldalak készítése</li>
+                            <li>Adaptív megjelenés (mobil, tablet, desktop)</li>
+                            <li>Testreszabható és egymásba ágyazható oldalak</li>
+                            <li>Együttműködési támogatás más felhasználókkal</li>
+                            <li>Saját domain-en hosztolás telepítés nélkül</li>
+                            <li>Google Analytics és Real Time Reporting API támogatás</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-col-md-4">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    @Html.Partial("_LoginInfo")
+                }
+                @Html.Partial("_SignupInfo")
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ui-container-fluid ui-color-1">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-md-5">
+                <div role="article" class="ui-box">
+                    <div role="heading" class="ui-box-header">
+                        <h2>Üzleti munkafolyamat alapú modellezés akciólink és űrlap támogatással</h2>
+                    </div>
+                    <div role="group" class="ui-box-group">
+                        <ul class="ui-bullet-list ui-font-lg">
+                            <li>
+                                Akció modulok üzleti folyamatok létrehozásához
+                                <ul class="ui-bullet-list ui-font-sm">
+                                    <li>Időzített futtatás</li>
+                                    <li>Feltételes futtatás</li>
+                                    <li>Felhasználók fel/leiratkoztatása</li>
+                                    <li>Felhasználók címkézése</li>
+                                    <li>Levélküldés</li>
+                                    <li>Naplózás</li>
+                                </ul>
+                            </li>
+                            <li>Akciólink generálás megosztáshoz és űrlapokhoz</li>
+                            <li>Megszemélyesített akciólinkek generálása</li>
+                            <li>Egyedi cím az akciólinkekhez naplózással és szűréssel</li>
+                            <li>Üzleti címkézés alapú levelezés és állapot menedzsment</li>
+                            <li>Projektek támogatása felhasználói együttműködéssel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-col-md-7">
+                <div role="article" class="ui-box">
+                    <div role="group" class="ui-box-group">
+                        <img src="~/assets/ss/pictures/project-workflow.png" alt="Munkafolyamat alapú modellezés" />
+                    </div>
+                    <div role="group" class="ui-box-group">
+                        <img src="~/assets/ss/pictures/project-actionlink.png" alt="Akciólink megosztása felhasználóval" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ui-container-fluid ui-color-4">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-box">
+                <div class="ui-box-header">
+                    <h2>Weboldal tervezői eszközök</h2>
+                </div>
+            </div>
+        </div>
+        <div class="ui-row">
+            <div class="ui-col-md-4">
+                <div class="ui-box">
+                    <div class="ui-box-header">
+                        <h3>Modulok<br /><small>Kliens oldali aszinkron modulok</small></h3>
+                    </div>
+                    <div class="ui-box-group">
+                        <img src="~/assets/ss/pictures/portal-module.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="ui-col-md-4">
+                <div class="ui-box">
+                    <div class="ui-box-header">
+                        <h3>CSS stílusok<br /><small>Elnevezett és inline stílusok támogatása</small></h3>
+                    </div>
+                    <div class="ui-box-group">
+                        <img src="~/assets/ss/pictures/portal-style.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="ui-col-md-4">
+                <div class="ui-box">
+                    <div class="ui-box-header">
+                        <h3>Hieararchia nézet<br /><small>Név, stílus megjelenítéssel és szűréssel</small></h3>
+                    </div>
+                    <div class="ui-box-group">
+                        <img src="~/assets/ss/pictures/portal-tree.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ui-container-fluid ui-color-3">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-md-8">
+                <div class="ui-box">
+                    <div class="ui-box-header">
+                        <h2>Saját chat és ügyfélszolgálati rendszer</h2>
+                    </div>
+                    <div class="ui-box-group">
+                        <ul class="ui-bullet-list ui-font-lg">
+                            <li>Tesztreszabható chat modul (témák, hangok, szövegek)</li>
+                            <li>Üzenetek naplózása és valós idejű nyomonkövetés</li>
+                            <li>Látogatók azonnali megszólítása</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-col-md-4"></div>
+        </div>
+    </div>
+</section>

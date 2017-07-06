@@ -1,0 +1,4 @@
+﻿User-agent: Googlebot
+Disallow: /a/
+Disallow: /api/
+Disallow: /assets/

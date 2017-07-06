@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+@section Script {
+    <script type="text/javascript">
+        var d = (window.parent || window).document;
+        PI.ui({
+            name: "portal.designer",
+            element: document.body.appendChild(document.createElement("div")),
+            toolbar1: d.querySelector("@(Request.QueryString["toolbar1"])"),
+            toolbar2: d.querySelector("@(Request.QueryString["toolbar2"])"),
+            portalUri: "@Html.Raw(Request.QueryString["portalUri"])",
+            pageUri: "@Html.Raw(Request.QueryString["pageUri"])",
+        });
+    </script>
+}

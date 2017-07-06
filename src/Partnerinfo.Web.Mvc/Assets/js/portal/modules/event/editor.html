@@ -1,0 +1,266 @@
+﻿<script defer="defer" type="text/html" id="koPortalEventModuleSelectors">
+    <div class="ui-module-event-jq ui-dropdown" data-bind='dropdown'>
+        <button class="ui-btn" type="button">
+            <i class="i dd"></i>
+        </button>
+        <ul role="menu" class="ui-menu" style="width: 350px;" data-bind='event: {
+    click: function (d, e) {
+        field($(".ui-type-query:first", e.target.parentNode).text());
+    },
+    clickBubble: false
+}'>
+            <!-- ko if: $data.specials -->
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">this</span>
+                    <span class="type-note">Az éppen aktuális webelem</span>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">parent</span>
+                    <span class="type-note">Az éppen aktuális webelem szülője</span>
+                </a>
+            </li>
+            <li role="separator"></li>
+            <!-- /ko -->
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">#név</span>
+                    <span class="type-note">Egy konkrét webelem név által</span>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">#név1, #név2</span>
+                    <span class="type-note">Több konkrét webelem név által</span>
+                </a>
+            </li>
+            <li role="separator"></li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">.ui-theme-név</span><span>Több webelem CSS osztály által</span>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">.ui-module</span><span>Minden modul a weboldalon</span>
+                </a>
+            </li>
+            <li role="separator"></li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">[id^="név"]</span>
+                    <span class="type-note">Minden webelem ami "név"-el kezdődik</span>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">[id="név"]</span>
+                    <span class="type-note">Minden webelem ami "név"-el egyezik</span>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-type-query">[id$="név"]</span>
+                    <span class="type-note">Minden webelem ami "név"-el végződik</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModuleCommon">
+    <table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 50px;" />
+            <col />
+            <col style="width: 150px;" />
+            <col style="width: 80px;" />
+            <col style="width: 20px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    Név
+                </td>
+                <td>
+                    <input type="text" placeholder="Felhasználói eseménynév" data-bind='value: item.name' />
+                </td>
+                <td class="ui-text-right">
+                    Indítási késleltetés
+                </td>
+                <td>
+                    <input class="ui-type-time" type="number" min="0" data-bind='value: item.event.delay' />
+                </td>
+                <td>
+                    ms
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModuleSource">
+    <table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 160px;" />
+            <col style="width: 160px;" />
+            <col style="width: 120px;" />
+            <col style="width: 80px;" />
+            <col style="width: 30px;" />
+            <col style="width: 50px;" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    <select data-bind='options: events, optionsText: "text", optionsValue: "value", value: item.event.name'></select>
+                </td>
+                <td colspan="4">
+                    <input class="ui-type-query" type="text" placeholder="Webelem(ek) az eseményhez..." data-bind='value: item.source, attr: { readonly: item.event.name() === "ready" }' />
+                </td>
+                <td data-bind='template: { name: "koPortalEventModuleSelectors", data: { field: item.source } }'></td>
+                <td class="ui-text-right">
+                    <strong class="ui-type-number" data-bind='text: sourceCount'></strong> db webelem
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" data-bind='component: { name: "ui-toggle", params: { checked: item.event.isBubble, text: "Lefuthat a felsőbb szintű (hierarchia) webelemeken is, ezáltal futtatva a szülők ilyen típusú eseményeit is" } }'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModuleTarget">
+    <table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 160px;" />
+            <col style="width: 160px;" />
+            <col style="width: 120px;" />
+            <col style="width: 80px;" />
+            <col style="width: 30px;" />
+            <col style="width: 50px;" />
+            <col />
+            <col style="width: 60px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>
+                    <button class="ui-btn" type="button" data-bind='click: $root.createStyle.bind($root)'>
+                        <i class="i add v1"></i>
+                        <span>Új tulajdonság</span>
+                    </button>
+                </td>
+                <td colspan="4">
+                    <input class="ui-type-query" type="text" placeholder="Webelem(ek) az animációhoz..." data-bind='value: item.target' />
+                </td>
+                <td data-bind='template: { name: "koPortalEventModuleSelectors", data: { field: item.target, specials: true } }'></td>
+                <td colspan="2" class="ui-text-right">
+                    <strong class="ui-type-number" data-bind='text: targetCount'></strong> db webelem
+                </td>
+            </tr>
+        </thead>
+        <tbody data-bind='foreach: item.styles'>
+            <tr>
+                <td>
+                    <select data-bind='options: $root.cssMap, optionsValue: "property", optionsText: "name", value: property'></select>
+                </td>
+                <td>
+                    <input class="typVal" type="text" placeholder="Érték" data-bind='value: value' />
+                </td>
+                <td>
+                    <select data-bind='options: $root.easings, value: easing'></select>
+                </td>
+                <td>
+                    <input class="ui-type-duration" type="number" placeholder="Hossz" data-bind='value: duration' />
+                </td>
+                <td>
+                    ms
+                </td>
+                <td colspan="2" data-bind='component: { name: "ui-toggle", params: { checked: queue, text: "Szinkron futtatás" } }'></td>
+                <td class="ui-text-right">
+                    <a class="ui-btn ui-btn-flat ui-btn-xs" data-bind='click: $root.moveUpStyle.bind($root, $data)'><i class="i du"></i></a>
+                    <a class="ui-btn ui-btn-flat ui-btn-xs" data-bind='click: $root.removeStyle.bind($root, $data)'><i class="i delete"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModuleAction">
+    <div data-bind='component: { name: "ui-toggle", params: { checked: item.event.active, nullable: true, text: "Modul be/ki kapcsolása az esemény futtatásakor" } }'></div>
+    <!--<table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <col style="width: 60px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td data-bind='component: { name: "ui-toggle", params: { checked: item.event.active, nullable: true, text: "Modul be/ki kapcsolása az esemény futtatásakor" } }'></td>
+                <td>
+                    <input type="text" style="margin-right: 32px" readonly="readonly" data-bind='value: item.action.link' />
+                </td>
+                <td class="ui-text-right" data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: { id: projectId }, outputLink: item.action.link } } }'></td>
+            </tr>
+            <tr>
+                <td colspan="3" data-bind='component: { name: "ui-toggle", params: { checked: item.action.redirect, text: "Átirányítás engedélyezése az akció-ban beállítottra" } }'></td>
+            </tr>
+        </tbody>
+    </table>-->
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModuleScript">
+    <textarea placeholder="JavaScript eseménykezelő kódja..." rows="15" spellcheck="false" data-bind='component: {
+    name: "ui-codemirror",
+    params: {
+        value: item.script,
+        codemirror: { theme: "visual-studio" }
+    } }'></textarea>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModuleTriggers">
+    <table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 250px;" />
+            <col />
+            <col style="width: 30px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <td>
+                    <a class="ui-btn" role="button" data-bind='click: addTrigger, clickBubble: false'>
+                        <i class="i add v1"></i>
+                        <span>Új eseménykioldó</span>
+                    </a>
+                </td>
+                <td colspan="2" class="ui-text-right ui-type-help">
+                    Az eseménykioldók lehetővé teszik a futtatását más eseményeknek láncoltan
+                </td>
+            </tr>
+        </thead>
+        <tbody data-bind='foreach: item.triggers'>
+            <tr>
+                <td>
+                    <select data-bind='value: event, options: $parent.userEvents, optionsText: "name", optionsValue: "name"'></select>
+                </td>
+                <td data-bind='component: { name: "ui-toggle", params: { checked: queue, text: "Várd meg amíg teljesen lefut (másképp párhuzamosan fut a többivel)" } }'></td>
+                <td class="ui-text-right">
+                    <a class="ui-btn ui-btn-flat ui-btn-xs" data-bind='click: $parent.removeTrigger.bind($parent, $data)'><i class="i delete"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalEventModule">
+    <div class="ui-box">
+        <div class="ui-box-group" data-bind='template: { name: "koPortalEventModuleCommon" }'></div>
+        <div class="ui-box-group" data-bind='template: { name: "koPortalEventModuleSource" }'></div>
+        <div class="ui-box-group" data-bind='template: { name: "koPortalEventModuleTarget" }'></div>
+        <div class="ui-box-group" data-bind='template: { name: "koPortalEventModuleAction" }'></div>
+        <div class="ui-box-group" data-bind='template: { name: "koPortalEventModuleScript" }'></div>
+        <div class="ui-box-group" data-bind='template: { name: "koPortalEventModuleTriggers" }'></div>
+    </div>
+</script>

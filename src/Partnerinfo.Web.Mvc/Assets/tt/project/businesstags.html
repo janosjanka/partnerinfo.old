@@ -1,0 +1,125 @@
+﻿<script defer="defer" type="text/html" id="koBusinessTagItemReadonly">
+    <tr>
+        <td>
+            <div class="ui-btn ui-btn-checkbox">
+                <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+            </div>
+        </td>
+        <td data-bind='component: { name: "ui-toggle", params: { checked: checked, nullable: true, text: displayName } }'></td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koBusinessTagItemView">
+    <tr>
+        <td>
+            <div class="ui-btn ui-btn-checkbox">
+                <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+            </div>
+        </td>
+        <td data-bind='component: { name: "ui-toggle", params: { checked: checked, nullable: true, text: displayName } }, attr: { title: description }'></td>
+        <td class="ui-text-right">
+            <div data-bind='dropdown: { align: "right" }'>
+                <button class="ui-btn ui-btn-flat ui-btn-sm" type="button">
+                    <i class="i dd"></i>
+                </button>
+                <ul role="menu" class="ui-menu" style="width: 145px">
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { $parent.editItem(d); }, clickBubble: false'>
+                            <i class="i edit"></i>
+                            <span>Szerkesztés</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { d.deleteAsync(); }, clickBubble: false'>
+                            <i class="i delete"></i>
+                            <span>Törlés</span>
+                        </a>
+                    </li>
+                    <li role="separator"></li>
+                    <li role="menuitem" data-bind='component: { name: "ui-colorpicker", params: { color: color } }'></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koBusinessTagItemEdit">
+    <tr>
+        <td>
+            <div class="ui-btn ui-btn-checkbox">
+                <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+            </div>
+        </td>
+        <td>
+            <form data-bind='submit: function () { $parent.commitAll(); }'>
+                <input type="text" data-bind='value: name, hasFocus: true' />
+                <input class="ui-hidden" type="submit" />
+            </form>
+        </td>
+        <td class="ui-text-right">
+            <div data-bind='dropdown: { align: "right" }'>
+                <button class="ui-btn ui-btn-flat ui-btn-sm" type="button">
+                    <i class="i dd"></i>
+                </button>
+                <ul role="menu" class="ui-menu" style="width: 145px">
+                    <li role="menuitem">
+                        <a data-bind='click: function () { $parent.commitAll(); }, clickBubble: false'>
+                            <span>Mentés</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a data-bind='click: function () { $parent.cancelAll(); }, clickBubble: false'>
+                            <span>Mégse</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koBusinessTagListReadonly">
+    <div class="ui-box">
+        <table class="ui-table ui-table-xs">
+            <colgroup>
+                <col style="width: 20px;" />
+                <col />
+            </colgroup>
+            <tbody data-bind='template: { foreach: items, name: "koBusinessTagItemReadonly" }'></tbody>
+        </table>
+    </div>
+    <div class="ui-box">
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn" type="reset" data-bind='click: function () { $data.clearCheckedItems(); }, clickBubble: false'>
+                <span>Alapállapot</span>
+            </button>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koBusinessTagListEditable">
+    <div class="ui-box">
+        <table class="ui-table ui-table-xs">
+            <colgroup>
+                <col style="width: 20px;" />
+                <col />
+                <col style="width: 30px;" />
+            </colgroup>
+            <tbody data-bind='template: { foreach: items, name: function (item) { return item.editing() ? "koBusinessTagItemEdit" : "koBusinessTagItemView"; } }'></tbody>
+        </table>
+    </div>
+    <div class="ui-box">
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn" type="button" data-bind='click: function () { $data.addNewItem(); }, clickBubble: false'>
+                <span>Új címke</span>
+            </button>
+            <button class="ui-btn" type="button" data-bind='click: function () { $data.clearCheckedItems(); }, clickBubble: false'>
+                <span>Alapállapot</span>
+            </button>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koBusinessTagList">
+    <div class="ui-box" data-bind='template: { name: readonly() ? "koBusinessTagListReadonly" : "koBusinessTagListEditable" }'></div>
+</script>

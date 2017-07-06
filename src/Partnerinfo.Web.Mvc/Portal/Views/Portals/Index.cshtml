@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.AppClass.Enqueue("ui-theme-wide");
+    ViewBag.AppClass.Enqueue("ui-theme-green");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Script {
+    <script type="text/javascript" src="@Scripts.Url("~/assets/portal/app.js")"></script>
+}
+<div class="ui-main-header">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-xs-6">
+                <div role="toolbar" class="ui-toolbar">
+                    <div role="group" class="ui-btn-group">
+                        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function () { $(".ui-sidebar").toggleClass("ui-collapse"); }, clickBubble: false'>
+                            <i class="i menu"></i>
+                        </button>
+                    </div>
+                    <div role="group" class="ui-btn-group" id="pi-portal-toolbar1"></div>
+                </div>
+            </div>
+            <div class="ui-col-xs-6">
+                <div role="toolbar" class="ui-toolbar ui-pull-right" id="pi-portal-toolbar2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui-main-content">
+    <div class="ui-sidebar ui-collapse" id="pi-portal-sidebar"></div>
+    <pi-portal-app class="ui-canvas" id="pi-portal-app" params='toolbar1: "#pi-portal-toolbar1", toolbar2: "#pi-portal-toolbar2", sidebar: "#pi-portal-sidebar"'></pi-portal-app>
+</div>

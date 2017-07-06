@@ -1,0 +1,27 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+html {
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body.mce-content-body {
+    margin: 8px;
+    font: 13px Roboto, Sans-Serif;
+}
+
+.mceNonEditable {
+    opacity: 0.5;
+}
+
+    .mceNonEditable:active,
+    .mceNonEditable::selection {
+        background: #ccc;
+    }
+
+    .mceNonEditable .mceNonEditable {
+        opacity: 1;
+    }

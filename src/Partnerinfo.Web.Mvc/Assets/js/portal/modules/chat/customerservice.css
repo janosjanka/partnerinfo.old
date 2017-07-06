@@ -1,0 +1,206 @@
+﻿.ui-module-chat {
+    position: relative;
+    min-height: 250px;
+}
+
+.ui-module-chat-head {
+    padding: 0 8px;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4e69a2;
+    background-color: rgba(78, 105, 162, 0.8);
+    border: solid #2e4588;
+    border-width: 1px 1px 0 1px;
+    border-radius: 3px 3px 0 0;
+}
+
+    .ui-module-chat-head .ui-module-chat-state {
+        line-height: 27px;
+    }
+
+    .ui-module-chat-head .ui-module-chat-collapse {
+        display: none;
+    }
+
+.ui-module-chat-body {
+    position: absolute;
+    top: 27px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #c8c8c8;
+    color: #333;
+}
+
+/* Chat User Box */
+
+.ui-module-chat-userbox-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+}
+
+.ui-module-chat-userbox {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+/* Chat User Box -> User List */
+
+.ui-module-chat-userlist-container {
+    padding: 1px;
+}
+
+.ui-module-chat-userstate {
+    width: 8px;
+}
+
+.ui-module-chat-usermsgs {
+    width: 32px;
+    opacity: 0;
+    text-align: right;
+}
+
+.ui-module-chat-userchatexp .ui-module-chat-userstate {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAD9JREFUeNpiZECA/wxYACMQ20PZB3ApQNbpgCZ/AF0BI5qC/zDCHocb/sNMYMTnyP9ojoU52IEBn06YewACDAAtWg5+Oh4hVwAAAABJRU5ErkJggg==');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ui-module-chat-usertyping .ui-module-chat-userstate {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMZQTFRFAAAA////AAAAbn14cnqAeoaTfGxZfYWQf4eHgImGgYqVhGhKhI6Kmms6mm4+m249nYJfomwyr7a5snK2taSAt3+7w3g0xX05xn05yX0yyZDJymqYy9DTzn2u0YxT0at/0qbV04i904u+2YrD2ZRP3r+W6Lno6qpM67FP6/Dy9OO5+duZ/dWQ/5sS/5se/5wW/5wX/5we/5wf/50a/58l/6Yp/6gp/6gt/7ky/7k9/7k+/7tf/7xD/81O/85O/89R/+KI/+afBIJeQwAAAAN0Uk5TAAAzRaalyAAAAIZJREFUGNNNzUUCwkAQRNHqDu7O4JoEdwgJMnD/S7EgI717f1ENmJtNALKc8cZTOySX2W5zYEJnle4X6j0dxPvu5moOqyBkeNuOEqw2hIyC477K6ouQUXA6lxlx+LvEiEPbMghovUJjEBaf53WnDYL/XV8O2iBUGptHURuEVH4+NAaBmS2DfgCKDUZXoMxAAAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ui-module-chat-usermsgsunread {
+    background-color: #f4f4f4;
+}
+
+    .ui-module-chat-usermsgsunread .ui-module-chat-usermsgs {
+        opacity: 1;
+    }
+
+/* Chat Message Box */
+
+.ui-module-chat-msgbox-container,
+.ui-module-chat-msgbox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.ui-module-chat-msgbox-container {
+    left: 25%;
+    border: solid #c8c8c8;
+    border-width: 0 0 0 1px;
+}
+
+.ui-module-chat-msglist {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+    .ui-module-chat-msglist .ui-module-chat-msguser,
+    .ui-module-chat-msglist .ui-module-chat-msgtext {
+        white-space: normal;
+        border: none;
+    }
+
+.ui-module-chat-msg {
+    display: block;
+    margin: 0;
+    padding: 2px 8px;
+}
+
+.ui-module-chat-msguser {
+    display: inline;
+    margin: 0 8px 0 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.ui-module-chat-msgtext {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/* Chat Message Status */
+
+.ui-module-chat-msgstate {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    padding: 4px 8px;
+    background-color: #e8e8e8;
+}
+
+    .ui-module-chat-msgstate.ui-module-chat-usertyping {
+        display: block;
+        visibility: visible;
+    }
+
+/* Chat Message Box Form */
+
+.ui-module-chat-msgform-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #c8c8c8;
+}
+
+.ui-module-chat-msginput {
+    margin: 0;
+    padding: 4px;
+    height: 40px;
+    border: none;
+    outline: none;
+}
+
+.ui-module-chat-msgsubmit {
+    display: none;
+}
+
+/* Chat State Flags */
+
+.ui-module-chat-state {
+    display: inline-block;
+    margin: 0 8px 0 0;
+    width: 8px;
+    height: 8px;
+    background-color: #c8c8c8;
+    border-radius: 4px;
+}
+
+.ui-module-chat-active .ui-module-chat-state {
+    background-color: #33cc33;
+}

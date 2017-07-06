@@ -1,0 +1,61 @@
+﻿/* Copyright (c) Partnerinfo Ltd. All rights reserved. */
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+/*-----------------------------------------------------------------------
+  Form
+-----------------------------------------------------------------------*/
+
+.ui-form-group {
+    margin-bottom: 8px;
+}
+
+.ui-form-hl > .ui-form-group {
+    margin-right: -16px;
+    margin-left: -16px;
+}
+
+    .ui-form-hl > .ui-form-group:before,
+    .ui-form-hl > .ui-form-group:after {
+        display: table;
+        content: " ";
+    }
+
+    .ui-form-hl > .ui-form-group:after {
+        clear: both;
+    }
+
+/*-----------------------------------------------------------------------
+  Validation
+-----------------------------------------------------------------------*/
+
+.validation-summary-errors {
+    overflow: hidden;
+    text-align: left;
+    color: #be4b49;
+}
+
+    .validation-summary-errors > ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+        .validation-summary-errors > ul > li {
+            line-height: 2em;
+        }
+
+.input-warning,
+.input-validation-error {
+    padding-right: 32px !important;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJPSURBVDjLpZPLS5RhFMYfv9QJlelTQZwRb2OKlKuINuHGLlBEBEOLxAu46oL0F0QQFdWizUCrWnjBaDHgThCMoiKkhUONTqmjmDp2GZ0UnWbmfc/ztrC+GbM2dXbv4ZzfeQ7vefKMMfifyP89IbevNNCYdkN2kawkCZKfSPZTOGTf6Y/m1uflKlC3LvsNTWArr9BT2LAf+W73dn5jHclIBFZyfYWU3or7T4K7AJmbl/yG7EtX1BQXNTVCYgtgbAEAYHlqYHlrsTEVQWr63RZFuqsfDAcdQPrGRR/JF5nKGm9xUxMyr0YBAEXXHgIANq/3ADQobD2J9fAkNiMTMSFb9z8ambMAQER3JC1XttkYGGZXoyZEGyTHRuBuPgBTUu7VSnUAgAUAWutOV2MjZGkehgYUA6O5A0AlkAyRnotiX3MLlFKduYCqAtuGXpyH0XQmOj+TIURt51OzURTYZdBKV2UBSsOIcRp/TVTT4ewK6idECAihtUKOArWcjq/B8tQ6UkUR31+OYXP4sTOdisivrkMyHodWejlXwcC38Fvs8dY5xaIId89VlJy7ACpCNCFCuOp8+BJ6A631gANQSg1mVmOxxGQYRW2nHMha4B5WA3chsv22T5/B13AIicWZmNZ6cMchTXUe81Okzz54pLi0uQWp+TmkZqMwxsBV74Or3od4OISPr0e3SHa3PX0f3HXKofNH/UIG9pZ5PeUth+CyS2EMkEqs4fPEOBJLsyske48/+xD8oxcAYPzs4QaS7RR2kbLTTOTQieczfzfTv8QPldGvTGoF6/8AAAAASUVORK5CYII=') /*exclamation.png*/ !important;
+    background-repeat: no-repeat !important;
+    background-position: right 8px top 4px !important;
+}
+
+button.input-warning {
+    padding-right: 16px !important;
+}

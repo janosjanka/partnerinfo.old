@@ -1,0 +1,13 @@
+﻿.fancytree-node {
+    position: relative;
+}
+
+.fancytree-edit-input {
+    display: block !important;
+    width: 100% !important;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    font-size: 0.9em;
+    background-color: #feffbb;
+}

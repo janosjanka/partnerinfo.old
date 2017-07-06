@@ -1,0 +1,66 @@
+﻿<script defer="defer" type="text/html" id="koActionTypeCell">
+    <button class="ui-btn ui-btn-flat ui-btn-sm" type="button" data-bind='click: showLinkDialog, clickBubble: false'>
+        <i class="i share"></i>
+    </button>
+    <div class="ui-btn ui-btn-checkbox" data-bind='css: { disabled: !enabled }'>
+        <span class="ui-checkbox" data-bind='style: { backgroundColor: component.color }'></span>
+        <a data-bind='text: name' data-command='selection.update'></a>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koActionListEditTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("list.create"), clickBubble: false'>
+                <i class="i add"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.link"), clickBubble: false'>
+                <i class="i share"></i>
+            </button>
+            <!-- ko if: selection().length >= 1 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.update"), clickBubble: false'>
+                <i class="i edit"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.copy"), clickBubble: false'>
+                <i class="i copy"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.delete"), clickBubble: false'>
+                <i class="i delete"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koActionListQueryTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: filter.name, attr: { placeholder: "Akció keresése..." }, submit: filter.submit.bind(filter), cancel: filter.cancel.bind(filter)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-toggle params='checked: filter.orderBy, text: "Legfrissebb", option: "recent", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: filter.orderBy, text: "Névsorrend", option: "name", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-datapager params='list: $data'></ui-datapager>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koActionListEditTools" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koActionListQueryTools" }'></div>
+        </div>
+        <div class="ui-data-content">
+            <div data-bind='listView: {
+    columns: [
+        { header: "Akció", cellTemplate: "#koActionTypeCell", width: "*" },
+        { binding: "elapsed: modifiedDate", cellClass: "ui-text-right ui-type-time", width: "100px" }
+    ]
+}'>
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,108 @@
+﻿<script defer="defer" type="text/html" id="koPortalAnimatedPanelModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 200px" />
+            <col style="width: 200px" />
+            <col style="width: 10px" />
+            <col style="width: 170px" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Effektek kiválasztása a listából</td>
+                <td>
+                    <select data-bind='value: selectedEffect, options: effectOptions, event: {
+    change: function (d, e) {
+        var fx = String(d.module.fx.peek()).split(",");
+        fx.push(d.selectedEffect());
+        d.module.fx(fx.join(","));
+        return false;
+    }
+}'></select>
+                </td>
+                <td></td>
+                <td colspan="2">
+                    <input name="fx" type="text" data-bind='value: module.fx' />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Jelenetek lejátszási sebessége
+                </td>
+                <td>
+                    <input name="speed" type="number" data-bind='value: module.speed' />
+                </td>
+                <td></td>
+                <td>
+                    Indítási esemény
+                </td>
+                <td>
+                    <select name="startEvent" data-bind='value: module.startEvent, options: _T("portal.eventOptions"), optionsText: "text", optionsValue: "value"' />
+                </td>
+            </tr>
+            <tr>
+                <td>Késleltetés a jelenetek között</td>
+                <td>
+                    <input name="timeout" type="number" data-bind='value: module.timeout' />
+                </td>
+                <td></td>
+                <td>
+                    Megállítási esemény
+                </td>
+                <td>
+                    <select name="pauseEvent" data-bind='value: module.pauseEvent, options: _T("portal.eventOptions"), optionsText: "text", optionsValue: "value"' />
+                </td>
+            </tr>
+            <tr>
+                <td>Kezdje az utolsó jelenettel</td>
+                <td>
+                    <input name="backwards" type="checkbox" data-bind='checked: module.backwards' />
+                </td>
+                <td></td>
+                <td>
+                    Előző gomb neve
+                </td>
+                <td>
+                    <input name="prev" type="text" data-bind='value: module.prev' />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Véletlenszerű sorrend
+                </td>
+                <td>
+                    <input name="random" type="checkbox" data-bind='checked: module.random' />
+                </td>
+                <td></td>
+                <td>
+                    Következő gomb neve
+                </td>
+                <td>
+                    <input name="next" type="text" data-bind='value: module.next' />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Megállítás ha az egér felette áll
+                </td>
+                <td>
+                    <input name="pause" type="checkbox" data-bind='checked: module.pause' />
+                </td>
+                <td></td>
+                <td>
+                    Előző/következő esemény
+                </td>
+                <td>
+                    <select name="prevNextEvent" data-bind='value: module.prevNextEvent, options: _T("portal.eventOptions"), optionsText: "text", optionsValue: "value"' />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="ui-text-right">
+                    <a class="ui-btn" data-bind='click: showPreview, clickBubble: false'>
+                        <span>Előnézet megjelenítése</span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>

@@ -1,0 +1,455 @@
+.ui-helper-hidden {
+    display: none;
+}
+
+ul.fancytree-container {
+    white-space: nowrap;
+    padding: 3px;
+    margin: 0;
+    overflow: auto;
+    min-height: 0;
+    position: relative;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+    ul.fancytree-container ul {
+        padding: 0 0 0 16px;
+        margin: 0;
+    }
+
+    ul.fancytree-container li {
+        margin: 0;
+        padding: 1px 0 0 0;
+        list-style: outside none;
+        list-style-type: none;
+        -moz-background-clip: border-box;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        -moz-background-inline-policy: continuous;
+        -moz-background-origin: padding-box;
+        -webkit-background-origin: padding-box;
+        background-origin: padding-box;
+        background-attachment: scroll;
+        background-color: transparent;
+        background-position: 0;
+        background-repeat: repeat-y;
+        background-image: none;
+    }
+
+        ul.fancytree-container li.fancytree-lastsib {
+            background-image: none;
+        }
+
+ul.fancytree-no-connector > li {
+    background-image: none;
+}
+
+.ui-fancytree-disabled ul.fancytree-container {
+    opacity: .5;
+    background-color: #c0c0c0;
+}
+
+span.fancytree-empty,
+span.fancytree-vline,
+span.fancytree-expander,
+span.fancytree-icon,
+span.fancytree-checkbox,
+span.fancytree-radio,
+span.fancytree-drag-helper-img,
+#fancytree-drop-marker {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-image: url(/assets/js/base/fancytree/icons.gif);
+    background-position: 0;
+}
+
+span.fancytree-icon, span.fancytree-checkbox,
+span.fancytree-radio, span.fancytree-custom-icon {
+    margin-top: 1px;
+}
+
+span.fancytree-custom-icon {
+    display: inline-block;
+}
+
+img.fancytree-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 3px;
+    margin-top: 1px;
+    vertical-align: top;
+    border-style: none;
+}
+
+.fancytree-exp-n span.fancytree-expander,
+.fancytree-exp-nl span.fancytree-expander {
+    background-image: none;
+}
+
+    .fancytree-exp-n span.fancytree-expander,
+    .fancytree-exp-n span.fancytree-expander:hover {
+        background-position: 0 -64px;
+    }
+
+    .fancytree-exp-nl span.fancytree-expander,
+    .fancytree-exp-nl span.fancytree-expander:hover {
+        background-position: -16px -64px;
+    }
+
+.fancytree-exp-c span.fancytree-expander {
+    background-position: 0 -80px;
+}
+
+    .fancytree-exp-c span.fancytree-expander:hover {
+        background-position: -16px -80px;
+    }
+
+.fancytree-exp-cl span.fancytree-expander {
+    background-position: 0 -96px;
+}
+
+    .fancytree-exp-cl span.fancytree-expander:hover {
+        background-position: -16px -96px;
+    }
+
+.fancytree-exp-cd span.fancytree-expander {
+    background-position: -64px -80px;
+}
+
+    .fancytree-exp-cd span.fancytree-expander:hover {
+        background-position: -80px -80px;
+    }
+
+.fancytree-exp-cdl span.fancytree-expander {
+    background-position: -64px -96px;
+}
+
+    .fancytree-exp-cdl span.fancytree-expander:hover {
+        background-position: -80px -96px;
+    }
+
+.fancytree-exp-e span.fancytree-expander,
+.fancytree-exp-ed span.fancytree-expander {
+    background-position: -32px -80px;
+}
+
+    .fancytree-exp-e span.fancytree-expander:hover,
+    .fancytree-exp-ed span.fancytree-expander:hover {
+        background-position: -48px -80px;
+    }
+
+.fancytree-exp-el span.fancytree-expander,
+.fancytree-exp-edl span.fancytree-expander {
+    background-position: -32px -96px;
+}
+
+    .fancytree-exp-el span.fancytree-expander:hover,
+    .fancytree-exp-edl span.fancytree-expander:hover {
+        background-position: -48px -96px;
+    }
+
+.fancytree-loading span.fancytree-expander,
+.fancytree-loading span.fancytree-expander:hover,
+.fancytree-statusnode-wait span.fancytree-icon,
+.fancytree-statusnode-wait span.fancytree-icon:hover {
+    background-image: url('data:image/gif;base64,R0lGODlhGAAYAPMNAMzOzOzq7OTi5PT29Nza3PTy9OTm5Ozu7NTS1Pz6/Pz+/Nze3NTW1P///wAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJBgANACwAAAEAGAAXAAAEfrDJSau9ON+URk+Kdg1AWQYTsCRik5gAKplyRtITgmf6LgmmAiZQQhRiFSKAgemxEgeL0/ICEDTK2uQIMGi4AgtXa7mFK7fF93QxhSqsBqEktAABZwpgwAVgqngVMEgYfQhxDTBXWEEpjSIJc1EzMHWQiAEBApmTLZ6foKEUEQAh+QQJBgANACwDAAEAEgAWAAAEerBJeaa9VwCRsG8JIBLDZxmiGJggkopTslrDKwoTOksugCSajiRVkARGkgTBcgQwhiKhp5cIAZamZqAgMrC4G/DOU9uUF19VI6UwEURFzcZyKDbAgGSqJCEsDyk7YDEiDClYEwE7cocsay9jHgk9AJEmBW+IjkkBUg0RACH5BAkGAAoALAMAAQASABcAAAR0UMk5xaE4KwGKzslBAN0nGQipluDqetiwEkIKBJpNJBIHSzxFgISgCH4KAkGiCmo4gESCtDQNbwWSwaTIAo4knEn2JS+4VxyROypxnEnKYa1IDCijiRdwySxIIW0AVRh/LlQaU4c3YyoCR1wSXpEYWZQxJhEAIfkECQYACwAsAwABABIAFgAABHlwyUmnqhiLkWc6BbcAQmcgQJqiAJawagwE1BATQiDECMUiCQpBVZIEUoRKAoCgUVRBSqLgQnaUhZThulAYAIYsgnpdkqZcY8qpxAwBZIniyJYcVpPBLhWVZFMHE3trBQUHbwBJeTKMij6MK3UTdwEFOjlxGT1pbZwRACH5BAkGAAwALAMAAwASABIAAARskMnJ0imDaqkC+OCScMWUgCgYKEggDSgRCEIKuAzyESNVqwwPALGp6D4uUI/CQgkYA0wxUQhYC8uidstNeL/cSgqnIXywKDLl8CHCQE8N+3MQoxCGQuFg3klOVjYxEwM4CUcpJVsJMwIBihQRACH5BAkGAA0ALAEAAwAWABIAAARzsMk5RzmD6q0C+OCSbFoCnmBASsNJBIJwqmRBAMRIyV+xNhmSB8BIGAQ/EuIUVOhWneUHMZERfCQDitY4IQyrgHQynGJXhbP0k9wMEIEbANnemD50SgF31uynBmkHcgALP2UoHwRtCYQgcHUSCTACAX0UEQAh+QQJBgANACwAAAMAGAASAAAEd7DJSUc5g+otVQBguCQcpzBhCgTlphBEEAgpWypkSYOFiQA5zgfAcP0AiEzpGGwojqEmZWhzolQIqWQAEmwK3VJgQQAhFqNJAkS4QcOUkMId8mp2dk7il6es4XpVXyEIBgUXC3MtUyqEiosSCWVYSpBqMwIBPSURACH5BAUGAA0ALAIAAwAVABIAAAR4sMkpVTmD6l2BB0vCSYkRTMLnnVpBfFMSpJ9BvWqx0YA+FYgPgUNjaFQA0SYIyJA8w4BPE1j9PLZRo+ARXAGs0aA7GYM4lsbBOvkoOIi4Z9qgeXcq5ZOsSSAJTlsfCAYFejgABHQNVSpGEkACen2IPVocMgIGgRsRADs=') /*/js/webjs/themes/images/progress.gif*/;
+    background-position: 0;
+}
+
+span.fancytree-node.fancytree-statusnode-error span.fancytree-icon,
+.fancytree-statusnode-error span.fancytree-node span.fancytree-icon {
+    background-position: 0 -112px;
+}
+
+span.fancytree-checkbox {
+    margin-left: 3px;
+    background-position: 0 -32px;
+}
+
+    span.fancytree-checkbox:hover {
+        background-position: -16px -32px;
+    }
+
+.fancytree-partsel span.fancytree-checkbox {
+    background-position: -64px -32px;
+}
+
+    .fancytree-partsel span.fancytree-checkbox:hover {
+        background-position: -80px -32px;
+    }
+
+.fancytree-selected span.fancytree-checkbox {
+    background-position: -32px -32px;
+}
+
+    .fancytree-selected span.fancytree-checkbox:hover {
+        background-position: -48px -32px;
+    }
+
+.fancytree-radio span.fancytree-checkbox {
+    background-position: 0 -48px;
+}
+
+    .fancytree-radio span.fancytree-checkbox:hover {
+        background-position: -16px -48px;
+    }
+
+.fancytree-radio .fancytree-partsel span.fancytree-checkbox {
+    background-position: -64px -48px;
+}
+
+    .fancytree-radio .fancytree-partsel span.fancytree-checkbox:hover {
+        background-position: -80px -48px;
+    }
+
+.fancytree-radio .fancytree-selected span.fancytree-checkbox {
+    background-position: -32px -48px;
+}
+
+    .fancytree-radio .fancytree-selected span.fancytree-checkbox:hover {
+        background-position: -48px -48px;
+    }
+
+span.fancytree-icon {
+    margin-left: 3px;
+    background-position: 0;
+}
+
+.fancytree-ico-c span.fancytree-icon:hover {
+    background-position: -16px 0;
+}
+
+.fancytree-has-children.fancytree-ico-c span.fancytree-icon {
+    background-position: -32px 0;
+}
+
+    .fancytree-has-children.fancytree-ico-c span.fancytree-icon:hover {
+        background-position: -48px 0;
+    }
+
+.fancytree-ico-e span.fancytree-icon {
+    background-position: -64px 0;
+}
+
+    .fancytree-ico-e span.fancytree-icon:hover {
+        background-position: -80px 0;
+    }
+
+.fancytree-ico-cf span.fancytree-icon {
+    background-position: 0 -16px;
+}
+
+    .fancytree-ico-cf span.fancytree-icon:hover {
+        background-position: -16px -16px;
+    }
+
+.fancytree-has-children.fancytree-ico-cf span.fancytree-icon {
+    background-position: -32px -16px;
+}
+
+    .fancytree-has-children.fancytree-ico-cf span.fancytree-icon:hover {
+        background-position: -48px -16px;
+    }
+
+.fancytree-ico-ef span.fancytree-icon {
+    background-position: -64px -16px;
+}
+
+    .fancytree-ico-ef span.fancytree-icon:hover {
+        background-position: -80px -16px;
+    }
+
+span.fancytree-node {
+    display: inherit;
+    width: 100%;
+}
+
+span.fancytree-title {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: default;
+}
+
+span.fancytree-node.fancytree-error span.fancytree-title {
+    color: #f00;
+}
+
+div.fancytree-drag-helper a {
+    border: 1px solid #808080;
+    background-color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+    opacity: .8;
+}
+
+div.fancytree-drag-helper.fancytree-drop-reject {
+    border-color: #f00;
+}
+
+div.fancytree-drop-accept span.fancytree-drag-helper-img {
+    background-position: -32px -112px;
+}
+
+div.fancytree-drop-reject span.fancytree-drag-helper-img {
+    background-position: -16px -112px;
+}
+
+#fancytree-drop-marker {
+    width: 32px;
+    position: absolute;
+    background-position: 0 -128px;
+    margin: 0;
+}
+
+    #fancytree-drop-marker.fancytree-drop-after,
+    #fancytree-drop-marker.fancytree-drop-before {
+        width: 64px;
+        background-position: 0 -144px;
+    }
+
+    #fancytree-drop-marker.fancytree-drop-copy {
+        background-position: -64px -128px;
+    }
+
+    #fancytree-drop-marker.fancytree-drop-move {
+        background-position: -32px -128px;
+    }
+
+span.fancytree-drag-source {
+    background-color: #e0e0e0;
+}
+
+    span.fancytree-drag-source span.fancytree.title {
+        color: #808080;
+    }
+
+span.fancytree-drop-target.fancytree-drop-accept a {
+    background-color: #3169c6 !important;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.fancytree-ext-filter-dimm span.fancytree-node span.fancytree-title {
+    color: #c0c0c0;
+    font-weight: lighter;
+}
+
+.fancytree-ext-filter-dimm tr.fancytree-submatch span.fancytree-title,
+.fancytree-ext-filter-dimm span.fancytree-node.fancytree-submatch span.fancytree-title {
+    color: #333;
+    font-weight: normal;
+}
+
+.fancytree-ext-filter-dimm tr.fancytree-match span.fancytree-title,
+.fancytree-ext-filter-dimm span.fancytree-node.fancytree-match span.fancytree-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.fancytree-ext-filter-hide tr.fancytree-hide,
+.fancytree-ext-filter-hide span.fancytree-node.fancytree-hide {
+    display: none;
+}
+
+.fancytree-ext-filter-hide tr.fancytree-submatch span.fancytree-title,
+.fancytree-ext-filter-hide span.fancytree-node.fancytree-submatch span.fancytree-title {
+    color: #c0c0c0;
+    font-weight: lighter;
+}
+
+.fancytree-ext-filter-hide tr.fancytree-match span.fancytree-title,
+.fancytree-ext-filter-hide span.fancytree-node.fancytree-match span.fancytree-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.fancytree-node {
+    border: 1px solid transparent;
+}
+
+.fancytree-container.fancytree-treefocus span.fancytree-node.fancytree-focused {
+    border-color: #39f;
+}
+
+.fancytree-container.fancytree-treefocus span.fancytree-node.fancytree-active,
+.fancytree-container.fancytree-treefocus span.fancytree-node.fancytree-selected,
+span.fancytree-node.fancytree-active:hover,
+span.fancytree-node.fancytree-selected:hover {
+    background-color: #4285f4;
+    color: #fff;
+}
+
+.fancytree-node.fancytree-selected {
+    font-style: italic;
+}
+
+/*-----------------------------------------------------------------------
+  Table
+-----------------------------------------------------------------------*/
+
+table.fancytree-ext-table {
+    position: relative;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-spacing: 0;
+    border-collapse: collapse;
+    empty-cells: show;
+}
+
+    table.fancytree-ext-table td {
+        padding: 0;
+        line-height: 1.76923076em;
+        white-space: nowrap;
+    }
+
+    table.fancytree-ext-table > tbody span.fancytree-node,
+    table.fancytree-ext-table > tbody span.fancytree-node:hover {
+        display: inline-block;
+        border: none;
+        background: none;
+    }
+
+    table.fancytree-ext-table > tbody span.fancytree-title:hover {
+        border: none;
+        background: inherit;
+        background: transparent;
+        background: none;
+    }
+
+    table.fancytree-ext-table > tbody > tr:hover {
+        background-color: rgba(0,0,0,0.032);
+    }
+
+    table.fancytree-ext-table > tbody > tr.fancytree-focused span.fancytree-title {
+        outline: 1px dotted #333;
+    }
+
+    table.fancytree-ext-table > tbody > tr.fancytree-active {
+        outline: 1px solid rgba(222, 222, 222, 0.7);
+        background-color: rgba(0,0,0,0.032);
+    }
+
+    table.fancytree-ext-table > tbody > tr.fancytree-selected {
+        background-color: rgba(0,0,0,0.032);
+    }
+
+    table.fancytree-ext-table.fancytree-treefocus > tbody > tr.fancytree-active {
+        background-color: #4285f4;
+        color: #fff;
+    }
+
+    table.fancytree-ext-table.fancytree-treefocus > tbody > tr.fancytree-selected {
+        background-color: #cbe8f6;
+    }

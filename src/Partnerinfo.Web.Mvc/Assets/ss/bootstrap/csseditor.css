@@ -1,0 +1,33 @@
+﻿.ui-csse-grp-title {
+    line-height: 2;
+    font-size: medium;
+}
+
+.ui-csse-prop {
+    white-space: nowrap;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+    .ui-csse-prop > label {
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+        line-height: 1.38461538;
+    }
+
+    .ui-csse-prop > .ui-csse-input {
+        display: inline-block;
+        vertical-align: top;
+        width: 60%;
+    }
+
+.ui-csse-input > input,
+.ui-csse-input > input:hover,
+.ui-csse-input > input:focus {
+    display: block;
+    width: 100%;
+    line-height: 1.38461538;
+    color: #00f;
+    background: #fff;
+    border-color: transparent;
+}

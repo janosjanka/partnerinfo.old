@@ -1,0 +1,562 @@
+﻿<script defer="defer" type="text/html" id="koEventContactEditor">
+    <project-contact-input params='label: { text: "Megosztás felhasználóval", width: "170px" }, contacts: contacts, projectId: project && project.id, limit: 1'></project-contact-input>
+</script>
+
+<script defer="defer" type="text/html" id="koEventFilterStringList">
+    <div class="conVerS">
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn" type="button" data-bind='click: list.push.bind(list, PI.Logging.EventStringList.placeholder), clickBubble: false'>
+                <span data-bind='text: text.createNew'></span>
+            </button>
+            <button class="ui-btn" type="button" data-bind='enable: false, click: list.push.bind(list, PI.Logging.EventStringList.placeholder), clickBubble: false'>
+                <span data-bind='text: text.loadRange'></span>
+            </button>
+        </div>
+    </div>
+    <table class="ui-table ui-table-xs">
+        <colgroup>
+            <col />
+            <col style="width: 16px" />
+        </colgroup>
+        <tbody data-bind='foreach: list.items'>
+            <tr>
+                <td>
+                    <input type="text" data-bind='attr: $parent.attr, value: value' />
+                </td>
+                <td>
+                    <button class="ui-btn ui-btn-flat ui-btn-xs" type="button" data-bind='click: $parent.list.remove.bind($parent.list, value), clickBubble: false'>
+                        <i class="i delete"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koEventFilterContent">
+    <table class="ui-table ui-table-xs">
+        <colgroup>
+            <col />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    Esemény tárgya
+                </td>
+                <td>
+                    <select data-bind='value: objectType, options: objectTypeOptions, optionsText: "text", optionsValue: "value"'></select>
+                </td>
+            </tr>
+            <tr data-bind='with: object'>
+                <td colspan="2">
+                    <button class="ui-btn ui-btn-flat ui-btn-xs" type="button" data-bind='click: $parent.cancel.bind($parent, "object"), clickBubble: false'>
+                        <i class="i close"></i>
+                        <span data-bind='text: name'></span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td role="heading" colspan="2">
+                    Felhasználó állapota
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div role="group" class="ui-btn-group-vl">
+                        <ui-toggle class="pi-event-ostate-added" params='checked: contactState, option: PI.Logging.ObjectState.added, text: "Feliratkozott"'></ui-toggle>
+                        <ui-toggle class="pi-event-ostate-modified" params='checked: contactState, option: PI.Logging.ObjectState.modified, text: "Adatmódosítás történt"'></ui-toggle>
+                        <ui-toggle class="pi-event-ostate-deleted" params='checked: contactState, option: PI.Logging.ObjectState.deleted, text: "Törlődött"'></ui-toggle>
+                    </div>
+                </td>
+                <td>
+                    <div role="group" class="ui-btn-group-vl">
+                        <ui-toggle class="pi-event-ostate-none" params='checked: contactState, option: PI.Logging.ObjectState.none, text: "Mindegyik"'></ui-toggle>
+                        <ui-toggle class="pi-event-ostate-unchanged" params='checked: contactState, option: PI.Logging.ObjectState.unchanged, text: "Nem módosult"'></ui-toggle>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="text" placeholder="Egyedi webcím" maxlength="64" data-bind='value: customUri' />
+                </td>
+            </tr>
+            <tr class="ui-valign-top">
+                <td data-bind='template: { name: "koEventFilterStringList",
+    data: {
+        list: emails,
+        attr: {
+            placeholder: "Email cím",
+            maxLength: 256
+        },
+        text: {
+            createNew: "Új email",
+            loadRange: "Betöltés"
+        }
+    }
+}'></td>
+                <td data-bind='template: { name: "koEventFilterStringList",
+    data: {
+        list: clients,
+        attr: {
+            placeholder: "Kliens ID",
+            maxLength: 64
+        },
+        text: {
+            createNew: "Új kliens ID",
+            loadRange: "Betöltés"
+        }
+    }
+}'></td>
+            </tr>
+            <!-- ko if: timeInterval() === PI.Logging.TimeInterval.custom -->
+            <tr>
+                <td role="heading" colspan="2">
+                    Mettől - meddig
+                </td>
+            </tr>
+            <tr>
+                <td data-bind='component: { name: "ui-datetime", params: { value: dateFrom, text: { year: "Év", month: "Hónap", day: "Nap", hour: "Óra", minute: "Perc" } } }'></td>
+            </tr>
+            <tr>
+                <td data-bind='component: { name: "ui-datetime", params: { value: dateTo, text: { year: "Év", month: "Hónap", day: "Nap", hour: "Óra", minute: "Perc" } } }'></td>
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koEventFilterFooter">
+    <div role="group" class="ui-btn-group">
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: submit, clickBubble: false'>
+            <span>Szűrés</span>
+        </button>
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='visible: canCancel, click: cancel, clickBubble: false'>
+            <span>Visszaállítás</span>
+        </button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListSourceCell">
+    <button class="ui-btn ui-btn-flat ui-btn-sm" type="button" data-command='{ "name": "addToFilter", "what": "object" }'>
+        <i data-bind='attr: { "class": objectIcon }'></i>
+    </button>
+    <a data-bind='text: objectText, attr: { title: objectTitle }, click: viewInBrowser, clickBubble: false'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListSourceAndProjectCell">
+    <button class="ui-btn ui-btn-flat ui-btn-sm" type="button" data-command='{ "name": "addToFilter", "what": "object" }'>
+        <i data-bind='attr: { "class": objectIcon }'></i>
+    </button>
+    <span class="pi-event-object">
+        <a data-bind='text: objectText, attr: { title: objectTitle }, click: viewInBrowser, clickBubble: false'></a>
+    </span>
+    <span class="pi-event-project">
+        <a target="_blank" data-bind='text: project && project.name, attr: { href: projectLink, title: projectLink }'></a>
+    </span>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListCategoryCell">
+    <!-- ko with: category -->
+    <div role="checkbox" class="ui-btn ui-btn-checkbox" aria-checked="false">
+        <div class="ui-checkbox" data-bind='style: { backgroundColor: color }, attr: { title: name }'>
+            <i data-command='{ "name": "addToFilter", "what": "category" }'></i>
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+
+<script defer="defer" type="text/html" id="koEventListContactCell">
+    <div role="radio" aria-checked="false" data-bind='attr: { "class" : "ui-btn ui-btn-checkbox pi-event-ostate-" + $data.contactState }'>
+        <span class="ui-checkbox">
+            <i data-command='{ "name": "addToFilter", "what": "contactState" }'></i>
+        </span>
+    </div>
+    <!-- ko if: contact -->
+    <a class="ui-btn ui-btn-flat ui-btn-sm" target="_blank" data-bind='attr: { href: contactLink, title: contactTitle }'>
+        <i class="i contact"></i>
+    </a>
+    <a data-command='{ "name": "addToFilter", "what": "contact" }' data-bind='text: contactText, attr: { title: contactTitle }'></a>
+    <!-- /ko -->
+    <!-- ko ifnot: contact -->
+    <a class="ui-btn ui-btn-flat ui-btn-sm" data-command='{ "name": "addToFilter", "what": "clientId" }'>
+        <i class="i unknown"></i>
+    </a>
+    <a class="ui-type-host" data-command='{ "name": "addToFilter", "what": "clientId" }' data-bind='text: clientId, attr: { title: clientTitle }'></a>
+    <!-- /ko -->
+</script>
+
+<script defer="defer" type="text/html" id="koEventListBrowserCell">
+    <i class="i phone" data-bind='visible: isFromMobile(), attr: { title: mobileDevice }'></i>
+    <span data-bind='text: browserVersion'></span>
+    <i data-bind='attr: { "class": "i " + browserBrand, title: browserBrand }'></i>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListStartDateCell">
+    <a class="ui-type-time" data-command='{ "name": "addToFilter", "what": "startDate" }' data-bind='text: startDateText'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListClientCell">
+    <a class="ui-type-host" data-command='{ "name": "addToFilter", "what": "clientId" }' data-bind='text: clientId, attr: { title: clientTitle }'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListCustomUriCell">
+    <a data-command='{ "name": "addToFilter", "what": "customUri" }' data-bind='text: customUri, attr: { title: customUri }'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListReferrerUrlCell">
+    <!-- ko if: referrerUrl -->
+    <a class="ui-btn ui-btn-flat ui-btn-sm" data-bind='attr: { href: referrerUrl, target: "_blank", title: referrerUrl }'>
+        <i class="i action"></i>
+    </a>
+    <!-- /ko -->
+</script>
+
+<script defer="defer" type="text/html" id="koEventListToolbar">
+    <div role="toolbar" class="ui-toolbar ui-visible-sm ui-visible-md ui-visible-lg">
+        <div role="group" class="ui-btn-group">
+            <ui-toggle params='checked: watch, text: "Real-Time", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <button class="ui-btn ui-btn-flat" title="Frissítés" data-bind='visible: !hasSelection(), click: refresh, clickBubble: false'>
+                <i class="i refresh"></i>
+            </button>
+        </div>
+        <div role="group" class="ui-btn-group" data-bind='visible: hasSelection'>
+            <div data-bind='dropdown'>
+                <button class="ui-btn ui-btn-flat" type="button">
+                    <i class="i tag"></i>
+                    <i class="i dd"></i>
+                </button>
+                <ul class="ui-menu" role="menu" style="width: 250px;" data-bind='foreach: {
+    data: categories.items()
+},
+click: function (categoryList, event) {
+    categoryList.exec({
+        name: "setAllCategories",
+        item: ko.dataFor(event.target)
+    });
+}'>
+                    <li role="menuitem">
+                        <a data-bind='attr: { title: name }'>
+                            <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+                            <span data-bind='text: name'></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="ui-btn ui-btn-flat" title="Törlés" data-bind='click: exec.bind($data, { name: "deleteAll" }), clickBubble: false'>
+                <i class="i delete"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" title="Letöltés" data-bind='click: download, clickBubble: false'>
+                <i class="i download"></i>
+            </button>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <span>Kijelölve:</span>
+            <span class="ui-type-number" data-bind='text: filteredSelection() ? total : selection().length'></span>
+            <span data-bind='visible: !filteredSelection() && (selection().length === items().length) && (total > selection().length)'>
+                <a data-bind='click: function (d) { d.filteredSelection(true); d.selectAll(); }, clickBubble: false'>Kijelöl mindent a mappában</a>
+            </span>
+            <span data-bind='with: filter.category'>
+                <span data-bind='text: name, visible: id'></span>
+            </span>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListFilter">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group ui-visible-lg">
+            <ui-toggle params='checked: filter.timeInterval, option: PI.Logging.TimeInterval.today, text: "Ma", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: filter.timeInterval, option: PI.Logging.TimeInterval.thisWeek, text: "Hét", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: filter.timeInterval, option: PI.Logging.TimeInterval.thisMonth, text: "Hó", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: filter.timeInterval, option: PI.Logging.TimeInterval.custom, text: "Mind", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: filter.contactSID,
+    width: "175px",
+    attr: {
+        placeholder: "Keresés felhasználóra...",
+        maxLength: 256
+    },
+    menu: {
+        width: "425px",
+        data: filter,
+        content: "koEventFilterContent",
+        footer: "koEventFilterFooter"
+    },
+    submit: refresh.bind($data),
+    canCancel: filter.hasChanged,
+    cancel: resetFilter.bind($data)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group ui-visible-md ui-visible-lg">
+            <ui-datapager params='list: $data '></ui-datapager>
+        </div>
+        <div role="group" class="ui-btn-group ui-visible-md ui-visible-lg">
+            <button class="ui-btn ui-btn-flat" title="Szabályok" data-bind='click: function() { PI.dialog({ name: "logging.rules" }); }, clickBubble: false'>
+                <i class="i option"></i>
+            </button>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListCounter">
+    <div class="pi-event-counter-box" data-bind='visible: visible, click: clear, clickBubble: false'>
+        <div class="pi-event-counter-close"><i class="i close"></i></div>
+        <div class="pi-event-counter-value" data-bind='text: value'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListFull">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koEventListToolbar" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koEventListFilter" }'></div>
+        </div>
+        <div class="ui-data-content">
+            <div class="pi-event-counter" data-bind='template: { name: "koEventListCounter", if: counter, data: counter }'></div>
+            <div data-bind='listView: {
+                 displayRowIndex: true,
+                 synchronize: true,
+                 selectionMode: "multi",
+                 columns: [
+                    { header: "Esemény tárgya", cellTemplate:
+                        function (bindings) {
+                            var filter = bindings.list.filter;
+                            return filter.project()
+                                ? "#koEventListSourceCell"
+                                : "#koEventListSourceAndProjectCell"
+                        },
+                        minWidth: "150px"
+                    },
+                    { header: "Egyedi webcím", cellTemplate: "#koEventListCustomUriCell", width: "150px" },
+                    { header: "", cellTemplate: "#koEventListCategoryCell", width: "20px" },
+                    { header: "Felhasználó", cellTemplate: "#koEventListContactCell", width: "150px" },
+                    { header: "Kliens ID", cellTemplate: "#koEventListClientCell", width: "90px" },
+                    { header: "Böngésző", cellTemplate: "#koEventListBrowserCell", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-number" },
+                    { header: "Időpont", cellTemplate: "#koEventListStartDateCell", width: "125px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-time" },
+                    { header: "Hossz", binding: "text: finishElapsedTimeText, attr: { title: finishDateText }", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-duration" },
+                    { header: "Utolsó", binding: "text: correlationElapsedTimeText, attr: { title: correlationStartDateText }", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-duration" },
+                    { header: "", cellTemplate: "#koEventListReferrerUrlCell", width: "32px" }
+                 ],
+                 onitemclick: function (event) {
+                     var data = event.detail;
+                     var command = $(data.target).closest("[data-command]").data("command");
+                     if (command) {
+                        command.item = data.item;
+                        return data.list.exec(command);
+                     }
+                 }
+}'>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koEventMenuList">
+    <li role="menuitem" class="ui-scroll-vl-lg">
+        <div class="event-list" data-bind='listView: {
+            displayHeader: false,
+            displaySelectionCheckbox: false,
+            columns: [
+                { cellTemplate: "#koEventListSourceCell", width: "*", minWidth: "150px" },
+                { cellTemplate: "#koEventListContactCell", width: "150px" },
+                { cellTemplate: "#koEventListBrowserCell", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-number" },
+                { cellTemplate: "#koEventListStartDateCell", width: "125px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-time" }
+            ],
+            onitemclick: function (event) {
+                var data = event.detail;
+                var command = $(data.target).closest("[data-command]").data("command");
+                if (command) {
+                    command.item = data.item;
+                    return data.list.exec(command);
+                }
+            }
+}'>
+        </div>
+    </li>
+    <!-- ko if: !busy() && !items().length -->
+    <li role="menuitem" class="ui-type-note ui-text-center">
+        Nincsenek események
+    </li>
+    <!-- /ko -->
+    <li role="menuitem" class="ui-footer ui-clearfix">
+        <div class="ui-pull-left">
+            <a class="ui-btn ui-btn-flat" href="/admin/analytics">
+                <span>Mutass minden eseményt...</span>
+            </a>
+        </div>
+        <div class="ui-pull-right">
+            <span class="progress ui-pull-left" data-bind='visible: busy'></span>
+            <span class="conHor2XS ui-pull-left" data-bind='component: { name: "ui-searchbox",
+    params: {
+        value: filter.contactSID,
+        attr: {
+            placeholder: "Keresés felhasználóra...",
+            maxLength: 256
+        },
+        submit: refresh.bind($data),
+        canCancel: filter.hasChanged,
+        cancel: resetFilter.bind($data)
+    }
+}'></span>
+            <span class="ui-pull-left" data-bind='component: { name: "ui-datapager", params: { list: $data, ctrls: "prev next" } }'></span>
+        </div>
+    </li>
+</script>
+
+<script defer="defer" type="text/html" id="koEventListReduced">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koEventListToolbar" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koEventListFilter" }'></div>
+        </div>
+        <div class="ui-data-content">
+            <div class="pi-event-counter" data-bind='template: { name: "koEventListCounter", if: counter, data: counter }'></div>
+            <div data-bind='listView: {
+                 displayIndicator: false,
+                 displayRowIndex: false,
+                 displaySelectionCheckbox: false,
+                 synchronize: true,
+                 selectionMode: "multi",
+                 columns: [
+                    { header: "Esemény tárgya", cellTemplate:
+                        function (bindings) {
+                            var filter = bindings.list.filter;
+                            return filter.project()
+                                ? "#koEventListSourceCell"
+                                : "#koEventListSourceAndProjectCell"
+                        },
+                        minWidth: "150px"
+                    },
+                    { header: "Egyedi webcím", cellTemplate: "#koEventListCustomUriCell", width: "150px" },
+                    { header: "", cellTemplate: "#koEventListCategoryCell", width: "20px" },
+                    { header: "Felhasználó", cellTemplate: "#koEventListContactCell", width: "150px" },
+                    { header: "Böngésző", cellTemplate: "#koEventListBrowserCell", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-number" },
+                    { header: "Időpont", cellTemplate: "#koEventListStartDateCell", width: "125px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-time" },
+                    { header: "Hossz", binding: "text: finishElapsedTimeText, attr: { title: finishDateText }", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-duration" },
+                    { header: "Utolsó", binding: "text: correlationElapsedTimeText, attr: { title: correlationStartDateText }", width: "60px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-duration" },
+                    { header: "", cellTemplate: "#koEventListReferrerUrlCell", width: "32px" }
+                 ],
+                 onitemclick: function (event) {
+                     var data = event.detail;
+                     var command = $(data.target).closest("[data-command]").data("command");
+                     if (command) {
+                        command.item = data.item;
+                        return data.list.exec(command);
+                     }
+                 }
+}, event: { mouseover: hideCounter }'>
+            </div>
+        </div>
+        <div class="ajax-loader" data-bind='visible: busy'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koEventCategoryViewMenu">
+    <li role="menuitem">
+        <a data-bind='click: $parent.editItem.bind($parent, $data), clickBubble: false'>
+            <i class="i edit"></i>
+            <span>Szerkesztés</span>
+        </a>
+    </li>
+    <li role="menuitem">
+        <a data-bind='click: $parent.deleteAsync.bind($parent, $data), clickBubble: false'>
+            <i class="i delete"></i>
+            <span>Törlés</span>
+        </a>
+    </li>
+    <li role="separator"></li>
+    <li role="menuitem" data-bind='component: { name: "ui-colorpicker", params: { color: color } }'></li>
+</script>
+
+<script defer="defer" type="text/html" id="koEventCategoryView">
+    <tr>
+        <td colspan="2">
+            <div class="ui-btn ui-btn-checkbox">
+                <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+                <span data-bind='text: name, attr: { title: tooltip }'></span>
+            </div>
+        </td>
+        <td role="toolbar" class="ui-text-right" data-bind='if: $index'>
+            <div data-bind='dropdown: { align: "right" }'>
+                <button class="ui-btn ui-btn-flat ui-btn-sm" type="button">
+                    <i class="i dd"></i>
+                </button>
+                <ul role="menu" class="ui-menu" style="width: 145px">
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { $parent.editItem(d); }, clickBubble: false'>
+                            <i class="i edit"></i>
+                            <span>Szerkesztés</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { d.deleteAsync(); }, clickBubble: false'>
+                            <i class="i delete"></i>
+                            <span>Törlés</span>
+                        </a>
+                    </li>
+                    <li role="separator"></li>
+                    <li role="menuitem" data-bind='component: { name: "ui-colorpicker", params: { color: color } }'></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koEventCategoryEdit">
+    <tr>
+        <td>
+            <div class="ui-btn ui-btn-checkbox">
+                <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+            </div>
+        </td>
+        <td>
+            <form data-bind='submit: function () { $parent.commitAll(); }'>
+                <input type="text" data-bind='value: name, hasFocus: true' />
+                <input class="ui-hidden" type="submit" />
+            </form>
+        </td>
+        <td role="toolbar" class="ui-text-right">
+            <div data-bind='dropdown: { align: "right" }'>
+                <button class="ui-btn ui-btn-flat ui-btn-xs" type="button">
+                    <i class="i dd"></i>
+                </button>
+                <ul role="menu" class="ui-menu" style="width: 145px">
+                    <li role="menuitem">
+                        <a data-bind='click: function () { $parent.commitAll(); }, clickBubble: false'>Mentés</a>
+                    </li>
+                    <li role="menuitem">
+                        <a data-bind='click: function () { $parent.cancelAll(); }, clickBubble: false'>Mégse</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koEventCategoryList">
+    <table class="ui-table ui-table-xs">
+        <colgroup>
+            <col style="width: 25px;" />
+            <col />
+            <col style="width: 30px;" />
+        </colgroup>
+        <tbody data-bind='template: { foreach: items, name: function (item) { return item.editing() ? "koEventCategoryEdit" : "koEventCategoryView"; } },
+            click: function (list, event) {
+                var td = $(event.target).closest("td");
+                if (td.attr("role") !== "menubar") {
+                    var category = ko.dataFor(event.target);
+                    category && list.moveTo(category);
+                }
+            }'></tbody>
+    </table>
+    <div class="conS">
+        <ul role="menu" class="ui-navbar navHor">
+            <li role="menuitem">
+                <button class="ui-btn" type="button" data-bind='click: function (d) { d.addNewItem(); }, clickBubble: false'>
+                    <span>Új kategória</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+</script>

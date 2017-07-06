@@ -1,0 +1,136 @@
+﻿<script defer="defer" type="text/html" id="koLogRuleItemView">
+    <tr>
+        <td>
+            <span data-bind='text: $index() + 1'></span>
+            <span>. szabály</span>
+        </td>
+        <td class="ui-text-right">
+            <ul role="menu" class="ui-navbar navHorS">
+                <li role="menuitem">
+                    <button class="ui-btn" type="button" data-bind='click: function (rule) { $parent.editItem(rule); }, clickBubble: false'>
+                        <i class="i edit"></i>
+                    </button>
+                </li>
+                <li role="menuitem">
+                    <button class="ui-btn" type="button" data-bind='click: function (rule) { rule.deleteAsync(); }, clickBubble: false'>
+                        <i class="i delete"></i>
+                    </button>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koLogRuleItemEdit">
+    <tr>
+        <td class="ui-valign-top">
+            <table class="ui-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <button class="ui-btn" type="button" data-bind='click: function (rule) { rule.conditions.push({}); }, clickBubble: false'>
+                                <span>Új feltétel</span>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="ui-btn" type="button" data-bind='click: function (rule) { rule.actions.push({}); }, clickBubble: false'>
+                                <span>Új akció</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ui-valign-top">
+                            <table class="ui-table">
+                                <colgroup>
+                                    <col />
+                                    <col />
+                                </colgroup>
+                                <tbody data-bind='template: { name: "koLogRuleCondition", foreach: conditionsView }'></tbody>
+                            </table>
+                        </td>
+                        <td class="ui-valign-top">
+                            <table class="ui-table">
+                                <colgroup>
+                                    <col />
+                                    <col />
+                                </colgroup>
+                                <tbody data-bind='template: { name: "koLogRuleAction", foreach: actionsView }'></tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="ui-valign-top ui-text-right">
+            <ul role="menu" class="ui-navbar navHorS">
+                <li role="menuitem">
+                    <button class="ui-btn ui-btn-primary" type="submit" data-bind='click: function () { $parent.commitAll(); }, clickBubble: false'>
+                        <span>Mentés</span>
+                    </button>
+                </li>
+                <li role="menuitem">
+                    <button class="ui-btn" type="submit" data-bind='click: function () { $parent.cancelAll(); }, clickBubble: false'>
+                        <span>Mégse</span>
+                    </button>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koLogRuleCondition">
+    <tr>
+        <td>
+            <select data-bind='value: code'>
+                <option></option>
+                <option value="startDateGreaterThan">Dátum nagyobb mint</option>
+                <option value="startDateLessThan">Dátum kisebb mint</option>
+                <option value="clientIdContains">Kliens ID tartalmazza</option>
+                <option value="customUriContains">Egyéni webcím tartalmazza</option>
+                <option value="referrerUrlContains">Hivatkozási webcím tartalmazza</option>
+                <option value="projectIdEquals">Projekt</option>
+                <option value="contactStateEquals">Felhasználó állapota</option>
+                <option value="contactMailContains">Felhasználó email tartalmazza</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" data-bind='value: value' />
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koLogRuleAction">
+    <tr>
+        <td>
+            <select data-bind='value: code'>
+                <option></option>
+                <option value="categorize">Kategorizál</option>
+                <option value="remove">Eltávolít</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" data-bind='value: value' />
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koLogRuleList">
+    <div data-bind='template: { name: "koLogRuleToolbar" }'></div>
+    <table class="ui-table">
+        <colgroup>
+            <col />
+            <col style="width: 150px;" />
+        </colgroup>
+        <tbody data-bind='template: { name: function (rule) { return rule.editing() ? "koLogRuleItemEdit" : "koLogRuleItemView"; }, foreach: items }'></tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koLogRuleToolbar">
+    <ul role="menu" class="ui-navbar navHorM">
+        <li role="menuitem">
+            <button class="ui-btn" type="button" data-bind='click: function (list) { list.addNew(); }, clickBubble: false'>
+                <span>Új szabály</span>
+            </button>
+        </li>
+    </ul>
+</script>

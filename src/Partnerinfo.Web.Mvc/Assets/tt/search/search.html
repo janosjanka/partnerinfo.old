@@ -1,0 +1,973 @@
+﻿<script defer="defer" type="text/html" id="koSearchMediaItemPlaylist">
+    <p>
+        <span>Lista: </span>
+        <strong data-bind='text: name' />
+    </p>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchMediaItemDuration">
+    <p>
+        <span>Hossz: </span>
+        <strong data-bind='text: hours + ":" + mins + "." + secs' />
+    </p>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchMediaItemPublished">
+    <p>
+        <span>Dátum: </span>
+        <strong data-bind='elapsed: $data'></strong>
+    </p>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchMediaItemReadonly">
+    <div class="wsMediaItem wsAnimation" data-bind='css: { wsActive: isActive }'>
+        <div class="wsMediaItemPic">
+            <img data-bind='attr: { src: thumbnailUrl }' />
+            <div class="wsMlsItePlay">
+                <i class="i isearch play"></i>
+            </div>
+        </div>
+        <div class="wsMediaItemTip">
+            <p>
+                <strong data-bind='text: title'></strong>
+            </p>
+            <!-- ko template: { if: durationParts, name: "koSearchMediaItemDuration", data: durationParts } --><!-- /ko -->
+            <!-- ko template: { if: published, name: "koSearchMediaItemPublished", data: published } --><!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchMediaItemEditable">
+    <div class="wsMediaItem wsAnimation" draggable="true" data-bind='css: { wsActive: isActive }, event: {
+    dragstart: function (data, event) {
+        var items;
+        if ($list.selection.indexOf(data) === -1) {
+            $list.deselectAll();
+            items = [data];
+        } else {
+            items = $list.selection();
+        }
+        var playlistItems = items.map(function (item) { return item.toPlaylistItem(); });
+        event.originalEvent.dataTransfer.effectAllowed = "copy";
+        event.originalEvent.dataTransfer.dropEffect = "copy";
+        event.originalEvent.dataTransfer.setData("text", JSON.stringify(playlistItems));
+        return true;
+    },
+    dragend: function () {
+        $list.deselectAll();
+        return false;
+    }
+}'>
+        <div class="wsMediaItemPic">
+            <img data-bind='attr: { src: thumbnailUrl }' />
+            <span class="wsSelectionTab" />
+            <div class="ui-listview-toggle" data-bind='visible: $list.engine.playlistEnabled'>
+                <div class="ui-btn ui-btn-checkbox" role="checkbox" aria-checked="false">
+                    <div class="ui-checkbox"><i></i></div>
+                </div>
+            </div>
+            <div class="wsMlsItePlay">
+                <i class="i isearch play"></i>
+            </div>
+        </div>
+        <div class="wsMediaItemTip">
+            <p>
+                <strong data-bind='text: title'></strong>
+            </p>
+            <!-- ko template: { if: durationParts, name: "koSearchMediaItemDuration", data: durationParts } --><!-- /ko -->
+            <!-- ko template: { if: published, name: "koSearchMediaItemPublished", data: published } --><!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearch">
+    <!-- ko if: bannerEnabled -->
+    <div class="wsProvBanner" data-bind='template: { name: "koSearchBanner", data: banner }'></div>
+    <!-- /ko -->
+    <div class="wsProvContent" data-bind='css: { wsVisible: playlist.visible }'>
+        <div class="wsProvMenuPart ui-clearfix" data-bind='visible: menuVisible, template: { name: "koSearchProvMenu" }'></div>
+        <div class="wsProvMediaPart ui-clearfix">
+            <div class="wsMediaPane">
+                <!-- ko template: { if: media.mediaItem, name: "koSearchMediaPlayer", data: media } --><!-- /ko -->
+                <!-- ko template: {
+                     if: $data.playlistEnabled() && ($data.view() === PI.Project.Search.ViewMode.playlist),
+                     name: canEdit ? "koSearchPlaylistItemThumbnailListEdit" : "koSearchPlaylistItemThumbnailListView",
+                     data: playlist.mixedPlaylistItemList.filter.name() ? playlist.mixedPlaylistItemList : playlist.sharedOrCurrent.itemList } -->
+                <!-- /ko -->
+                <!-- ko if: view() === PI.Project.Search.ViewMode.medialist -->
+                <!-- ko with: provider -->
+                <div class="wsMediaContent" data-bind='template: { name: view, data: list }'></div>
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <!-- ko if: playlistEnabled -->
+            <div class="wsPlaylistPane" data-bind='template: { name: "koSearchPlaylistPane", data: playlist }'></div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<!-- Login Templates -->
+
+<script defer="defer" type="text/html" id="koSearchLoginInfo">
+    <!-- ko with: user.identity -->
+    <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function (u) { window.open("https://www.facebook.com", "_blank"); }, clickBubble: false'>
+        <!-- ko if: avatarLink -->
+        <img data-bind='attr: { src: avatarLink, alt: email.name }' />
+        <!-- /ko -->
+        <span data-bind='text: email.name, attr: { title: email.address }'></span>
+    </button>
+    <!-- /ko -->
+    <!-- ko ifnot: authenticated -->
+    <!-- ko if: login.errorMessage -->
+    <button class="ui-btn ui-btn-flat" data-bind='text: login.errorMessage, click: function () { $data.login.errorMessage(null); }, clickBubble: false'></button>
+    <!-- /ko -->
+    <button class="ui-btn ui-btn-flat" type="button" data-bind='click: authorize.bind($data), clickBubble: false'>
+        <i class="i isearch signup"></i>
+        <span>Bejelentkezés</span>
+    </button>
+    <!-- /ko -->
+</script>
+
+<!-- Search Box Templates -->
+
+<script defer="defer" type="text/html" id="koSearchProvQueryBox">
+    <div data-bind='with: provider'>
+        <div data-bind='component: {
+    name: "ui-searchbox",
+    params: {
+        value: list.filter.query,
+        attr: { placeholder: String.format("{0} keresés...", name) },
+        submit: list.filter.changed,
+        cancel: function (d) {
+            var isPlaylist = !!$parent.playlist.playlistList.current();
+            $data.list.filter.deferRefresh(function () { this.query(null); }, isPlaylist);
+            isPlaylist && $parent.setView({ view: PI.Project.Search.ViewMode.playlist });
+        }
+    }
+}'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlsQueryBox">
+    <div data-bind='component: {
+        name: "ui-searchbox",
+        params: {
+            value: $data.playlist.mixedPlaylistItemList.filter.name,
+            attr: {
+                placeholder: $data.playlist.sharedPlaylistList.current()
+                           ? $data.playlist.sharedPlaylistList.current().item.name()
+                           : "Keresés a listákban..."
+            },
+            menu: {
+                data: $data,
+                content: "koSearchPlsQueryBoxMenu",
+                options: {
+                    open: function () {
+                        var list = $data.playlist.sharedPlaylistList;
+                        if (list.state() === PI.EntityCollectionState.closed) {
+                            list.open();
+                        }
+                    }
+                }
+            },
+            submit: function () {
+                $data.playlist.mixedPlaylistItemList.loadByContact($data.user.identity().id);
+            },
+            canCancel: ko.pureComputed(function () {
+                return $data.playlist.mixedPlaylistItemList.filter.name()
+                    || $data.playlist.sharedPlaylistList.current();
+            }),
+            cancel: function () {
+                $data.playlist.mixedPlaylistItemList.filter.deferRefresh(function () { this.name(null); });
+                $data.playlist.sharedPlaylistList.moveTo(null);
+            }
+        }
+    }'></div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlsQueryBoxMenu">
+    <div data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    synchronize: true,
+    items: playlist.sharedPlaylistList,
+    columns: [
+        { binding: "text: item.name", width: "*" },
+        { binding: "text: item.itemCount", width: "32px", cellClass: "ui-text-right ui-type-number" }
+    ],
+    onitemclick: function (event) {
+        event.preventDefault();
+        $data.playlist.sharedPlaylistList.moveTo(event.detail.item);
+        $.ui.dropdown.closeAll();
+    }
+}'>
+    </div>
+    <div class="ui-footer ui-clearfix">
+        <div class="ui-pull-right" data-bind='component: { name: "ui-datapager", params: { list: playlist.sharedPlaylistList, ctrls: "first prev next last row" } }'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchProvMenu">
+    <div role="menu" class="wsProvMenu">
+        <!-- ko template: { if: providerVisible, name: "koSearchProvItem", foreach: $data.providers.items } --><!-- /ko -->
+        <div role="menuitem" class="wsProvMenuItem" data-bind='css: { selected: $data.view() === PI.Project.Search.ViewMode.playlist }'>
+            <button class="ui-btn ui-btn-flat" type="button" title="Lejátszási lista nézet" data-bind='click: function (engine) { engine.setView({ view: PI.Project.Search.ViewMode.playlist }); }, clickBubble: false'>
+                <i class="i isearch playlist"></i>
+            </button>
+        </div>
+        <div role="menuitem" class="wsProvMenuItem" data-bind='template: { if: searchVisible, name: function () { return $data.view() === PI.Project.Search.ViewMode.medialist ? "koSearchProvQueryBox" : "koSearchPlsQueryBox"; } }'></div>
+        <div role="menuitem" class="wsProvMenuItem pinned">
+            <ul role="menu" class="ui-navbar">
+                <li role="menuitem" data-bind='with: provider'>
+                    <span class="progress" style="display: none;" data-bind='visible: list.busy'></span>
+                </li>
+                <li role="menuitem" data-bind='template: { if: loginVisible, name: "koSearchLoginInfo" }'></li>
+                <li role="menuitem" data-bind='if: authenticated'>
+                    <button class="ui-btn ui-btn-flat" title="Lejátszási listák" data-bind='css: { selected: playlist.visible }, click: function (d) { d.playlist.visible(!d.playlist.visible()); }'>
+                        <i class="i isearch playlist"></i>
+                        <span data-bind='text: playlist.currentOrDefault.item.name'></span>
+                    </button>
+                </li>
+                <li role="menuitem">
+                    <button class="ui-btn ui-btn-fb" data-bind='click: shareWithFacebook, clickBubble: false'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216">
+                            <path fill="white" d="M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9 11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1 11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2 15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3 11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path>
+                        </svg>
+                        <span>Megosztás</span>
+                    </button>
+                </li>
+                <li role="menuitem" data-bind='if: PI.identity'>
+                    <button class="ui-btn ui-btn-primary" data-bind='click:
+    function (engine) {
+         $.WinJS.dialog({
+            title: "Belépés",
+            content: $(
+    "&lt;input id=\"koSearchLoginDialogFB\" type=\"number\" placeholder=\"Facebook azonosítóval...\" /&gt;" +
+    "&lt;br/&gt;&lt;br/&gt;" +
+    "&lt;input id=\"koSearchLoginDialogEmail\" type=\"email\" placeholder=\"Email címmel...\" /&gt;"),
+            position: { my: "center top", at: "center top" },
+            width: "300px",
+            height: "auto",
+            buttons: [{
+                "class": "ui-btn ui-btn-primary",
+                "text": "Belépés",
+                "click": function () {
+                    var $this = $(this);
+                    var facebookId = $("#koSearchLoginDialogFB").val();
+                    var email = $("#koSearchLoginDialogEmail").val();
+                    if (facebookId || email) {
+                        engine.login.logout();
+                        engine.login.facebookId(facebookId);
+                        engine.login.name(null);
+                        engine.login.email(email);
+                        engine.login.loginAsync().then(function () { $this.dialog("close"); });
+                    }
+                }
+            }]
+        });
+    },
+    clickBubble: false'>
+                        <i class="i contact"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchProvItem">
+    <div role="menuitem" class="wsProvMenuItem" data-bind='css: { selected: $parent.view() === PI.Project.Search.ViewMode.medialist && $parent.provider() && $parent.provider().type === $data.type }'>
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='attr: { title: name }, click: $parent.onProviderItemClick, clickBubble: false'>
+            <i data-bind='attr: { "class": logo }'></i>
+        </button>
+    </div>
+</script>
+
+<!-- Banner Module -->
+
+<script defer="defer" type="text/html" id="koSearchBanner">
+    <!-- ko with: medialist -->
+    <div class="wsMediaLine ui-clearfix" data-bind='template: { name: "koSearchBannerML" }'></div>
+    <!-- /ko -->
+    <!-- ko with: playlist -->
+    <div class="wsMediaLine ui-clearfix" data-bind='template: { name: "koSearchBannerPL" }'></div>
+    <!-- /ko -->
+</script>
+
+<script defer="defer" type="text/html" id="koSearchBannerMLI">
+    <div class="wsMediaItem" data-bind='css: { wsActive: isActive }'>
+        <div class="wsMediaItemPic">
+            <img data-bind='attr: { src: thumbnailUrl }' />
+            <div class="wsMlsItePlay">
+                <i class="i isearch play"></i>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchBannerML">
+    <div class="wsMediaListContainer">
+        <div role="tooltip" class="wsMediaListTooltip"></div>
+        <div class="wsMediaListNav wsMediaListNavPrev">
+            <i class="i previous"></i>
+        </div>
+        <div class="wsMediaList" data-bind='css: { wsMediaListHasSelection: $data.selection().length },
+    listView: {
+        displayIndicator: false,
+        displayHeader: false,
+        displaySelectionCheckbox: false,
+        selectionMode: "none",
+        columns: [{ cellTemplate: "#koSearchBannerMLI" }],
+        onitemclick: function (event) {
+            if (!(event.detail.shiftKey || event.detail.ctrlKey)) {
+                event.preventDefault();
+                $data.selection.removeAll();
+                $data.engine.playMedia(event.detail.item);
+            }
+        },
+        onrender: function () {
+            var container = $($element).parent().jcarousel({ list: ".ui-listview-body", animation: 800, easing: "ease" });
+            $parent.onbeforescroll = function (event) { container.jcarousel("scroll", Math.floor(event.detail / 8) * 8, true, function () { $parent.raiseAfterScroll(); }); };
+            $(".wsMediaListNavPrev:first", container).jcarouselControl({ target: "-=8" });
+            $(".wsMediaListNavNext:first", container).jcarouselControl({ target: "+=8" });
+        }
+    },
+    event: {
+        mouseover: function (d, e) {
+            var data = ko.dataFor(e.target);
+            data && data.title && $($element)
+                .siblings(".wsMediaListTooltip")
+                .text(ko.unwrap(data.title))
+                .show();
+        },
+        mouseleave: function () { $($element).siblings(".wsMediaListTooltip").fadeOut(); }
+    }' />
+        <div class="wsMediaListNav wsMediaListNavNext">
+            <i class="i next"></i>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchBannerPLI">
+    <div class="wsMediaItem" data-bind='css: { wsActive: isActive }'>
+        <div class="wsMediaItemPic">
+            <img data-bind='attr: { src: thumbnailUrl }' />
+        </div>
+        <div class="wsMlsItePlay">
+            <i class="i isearch play"></i>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchBannerPL">
+    <div class="wsMediaListContainer">
+        <div role="tooltip" class="wsMediaListTooltip"></div>
+        <div class="wsMediaListNav wsMediaListNavPrev">
+            <i class="i previous"></i>
+        </div>
+        <div class="wsMediaList" data-bind='css: { wsMediaListHasSelection: $data.selection().length },
+    listView: {
+        displayIndicator: false,
+        displayHeader: false,
+        displaySelectionCheckbox: false,
+        selectionMode: "none",
+        columns: [{ cellTemplate: "#koSearchBannerPLI" }],
+        onitemclick: function (event) {
+            if (!(event.detail.shiftKey || event.detail.ctrlKey)) {
+                event.preventDefault();
+                $data.selection.removeAll();
+                $data.engine.playItem(event.detail.item);
+            }
+        },
+        onrender: function () {
+            var container = $($element).parent().jcarousel({ list: ".ui-listview-body", animation: 800, easing: "ease" });
+            $parent.onbeforescroll = function (event) { container.jcarousel("scroll", Math.floor(event.detail / 8) * 8, true, function () { $parent.raiseAfterScroll(); }); };
+            $(".wsMediaListNavPrev:first", container).jcarouselControl({ target: "-=8" });
+            $(".wsMediaListNavNext:first", container).jcarouselControl({ target: "+=8" });
+        }
+    },
+    event: {
+        mouseover: function (d, e) { var data = ko.dataFor(e.target); data && data.item && data.item.name && $($element).siblings(".wsMediaListTooltip").text(ko.unwrap(data.item.name)).show(); },
+        mouseleave: function () { $($element).siblings(".wsMediaListTooltip").fadeOut(); }
+    }' />
+        <div class="wsMediaListNav wsMediaListNavNext">
+            <i class="i next"></i>
+        </div>
+    </div>
+</script>
+
+<!-- Media Module -->
+
+<script defer="defer" type="text/html" id="koSearchMediaPlayer">
+    <div class="wsMediaPlayer" data-bind='css: { animation: $data.animation }, style: { "transform": $data.transform, "webkitTransform": $data.transform, "mozTransform": $data.transform }'>
+        <div class="wsMediaNav wsMediaNavPrev" data-bind='click: $data.engine.playNext.bind($data.engine, -1), clickBubble: false'>
+            <div class="wsMediaNavArrow"></div>
+        </div>
+        <div class="wsMediaFrame ui-clearfix" data-bind='with: $data.mediaItem'>
+            <div class="wsMediaWindow">
+                <div class="wsMediaFrameMenu">
+                    <h2 data-bind='text: $data.title'></h2>
+                    <span class="wsMediaFrameMenuToolbar">
+                        <button class="ui-btn ui-btn-flat ui-btn-xs" type="button" data-bind='enable: $parent.engine.canEdit && $parent.engine.playlistEnabled(), click: $parent.addToPlaylist.bind($parent), clickBubble: false'>
+                            <i class="i isearch addlist"></i>
+                        </button>
+                    </span>
+                </div>
+                <div id="koSearchMediaPlayerContent" class="wsMediaPlayerContent"></div>
+            </div>
+            <div class="wsMediaDescription">
+                <div class="wsMediaFrameMenu">
+                    <h2 class="wsMediaFrameMenuTitle">Leírás</h2>
+                </div>
+                <div class="wsMediaDescriptionBody" data-bind='html: $data.descriptionHtml'></div>
+            </div>
+        </div>
+        <div class="wsMediaNav wsMediaNavNext" data-bind='click: $data.engine.playNext.bind($data.engine, +1), clickBubble: false'>
+            <div class="wsMediaNavArrow"></div>
+        </div>
+    </div>
+</script>
+
+<!-- Playlist Module -->
+
+<script defer="defer" type="text/html" id="koSearchPlaylistItemThumbnailItemView">
+    <div class="wsMediaItem wsAnimation" draggable="true" data-bind='css: { wsActive: isActive }'>
+        <div class="wsMediaItemPic">
+            <img data-bind='attr: { src: thumbnailUrl }' />
+            <div class="wsMlsItePlay">
+                <i class="i isearch play"></i>
+            </div>
+        </div>
+        <div class="wsMediaItemTip">
+            <p>
+                <strong data-bind='text: item.name' />
+            </p>
+            <!-- ko template: { if: durationParts, name: "koSearchMediaItemDuration", data: durationParts } --><!-- /ko -->
+            <!-- ko template: { if: item.publishDate, name: "koSearchMediaItemPublished", data: item.publishDate } --><!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistItemThumbnailItemEdit">
+    <div class="wsMediaItem wsAnimation" draggable="true" data-bind='css: { wsActive: isActive }, event: {
+    dragstart: function (data, event) {
+        var items;
+        if ($list.selection.indexOf(data) === -1) {
+            $list.deselectAll();
+            items = [data];
+        } else {
+            items = $list.selection();
+        }
+        var playlistItems = items.map(function (item) { return item.toObject(); });
+        if (playlistItems.length) {
+            event.originalEvent.dataTransfer.effectAllowed = "copyMove";
+            event.originalEvent.dataTransfer.setData("text", JSON.stringify(playlistItems));
+            return true;
+        }
+        return false;
+    },
+    dragend: function () {
+        $list.deselectAll();
+        return false;
+    },
+    dragover: function (data, event) {
+        event.preventDefault();
+        event.originalEvent.dataTransfer.dropEffect = PI.Project.Security.identity.peek() ? "move" : "none";
+        return false;
+    },
+    drop: function (data, event) {
+        event.preventDefault();
+        if (PI.Project.Security.identity()) {
+            var playlistItems = JSON.parse(event.originalEvent.dataTransfer.getData("text"));
+            if (Array.isArray(playlistItems)) {
+                var oldItem = playlistItems[0];
+                oldItem && $list.moveById(oldItem.id, ko.unwrap(data.item.sortOrderId));
+            }
+        }
+        return false;
+    }
+}'>
+        <div class="wsMediaItemPic">
+            <img data-bind='attr: { src: thumbnailUrl }' />
+            <span class="wsSelectionTab" />
+            <div class="ui-listview-toggle">
+                <div class="ui-btn ui-btn-checkbox" role="checkbox" aria-checked="false">
+                    <div class="ui-checkbox"><i></i></div>
+                </div>
+            </div>
+            <div class="wsMlsItePlay">
+                <i class="i isearch play"></i>
+            </div>
+        </div>
+        <div class="wsMediaItemTip">
+            <p>
+                <strong data-bind='text: item.name' />
+            </p>
+            <!-- ko template: { if: item.playlist, name: "koSearchMediaItemPlaylist", data: item.playlist } --><!-- /ko -->
+            <!-- ko template: { if: durationParts, name: "koSearchMediaItemDuration", data: durationParts } --><!-- /ko -->
+            <!-- ko template: { if: item.publishDate, name: "koSearchMediaItemPublished", data: item.publishDate } --><!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistItemThumbnailListView">
+    <div class="wsMediaList ui-clearfix" data-bind='css: { wsMediaListHasSelection: $data.selection().length },
+listView: {
+    displayHeader: false,
+    displayIndicator: false,
+    displaySelectionCheckbox: false,
+    selectionMode: "none",
+    synchronize: true,
+    columns: [{ cellTemplate: "#koSearchPlaylistItemThumbnailItemView" }],
+    onitemclick: function (event) {
+        $data.moveTo(event.detail.item);
+        $data.engine.playItem(event.detail.item);
+    }
+}' />
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistItemThumbnailListEdit">
+    <div class="wsMediaMenuPane ui-clearfix">
+        <ul role="menu" class="wsMediaMenu">
+            <li role="menuitem" data-bind='visible: selection().length !== items().length'>
+                <a role="button" data-bind='click: function (pls) { pls.selectAll(); }, clickBubble: false'>
+                    Mindet kijelöli
+                </a>
+            </li>
+            <li role="menuitem" data-bind='visible: selection().length'>
+                <a role="button" data-bind='click: function (pls) { pls.deselectAll(); }, clickBubble: false'>
+                    Kijelölés megszüntetése
+                </a>
+            </li>
+            <li role="menuitem" data-bind='visible: selection().length'>
+                <a role="button" class="wsBtnAddToPlaylist" data-bind='click:
+function (l) {
+    var s = l.selection();
+    l.engine.playlist.addNewItems(s, true);
+    l.remove(function (it) { return s.indexOf(it) !== -1; });
+},
+clickBubble: false'>
+                    <i class="i add"></i>
+                    <span data-bind='text: selection().length'></span>
+                    <span> db hozzáadása</span>
+                </a>
+            </li>
+            <li role="menuitem" class="ui-pull-right">
+                <button class="ui-btn input-warning" type="button" title="Házibuli üzemmód" data-bind="visible: engine.canEdit, click: function (pls) { pls.engine.editMode(PI.Project.Search.EditMode.readonly); }, clickBubble: false">
+                    &nbsp;
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="wsMediaList ui-clearfix" data-bind='css: { wsMediaListHasSelection: selection().length },
+listView: {
+    displayHeader: false,
+    displayIndicator: false,
+    displaySelectionCheckbox: false,
+    synchronize: true,
+    selectionMode: "multi",
+    columns: [{ cellTemplate: "#koSearchPlaylistItemThumbnailItemEdit" }],
+    onitemclick: function (e) {
+        if (!(e.detail.shiftKey || e.detail.ctrlKey)) {
+            e.preventDefault();
+
+            var module = $data.engine.playlist;
+            var currentPlaylist = module.playlistList.current();
+            var video = e.detail.item;
+            var videoPlaylist = video.item.playlist;
+
+            module.visible(true);
+
+            if (videoPlaylist && currentPlaylist && $data.filter.name()) {
+                var complete = function () {
+                    ko.tasks.schedule(function () {
+                        var pls = module.playlistList.current();
+                        if (pls) {
+                            var plsItem = pls.itemList.findById(ko.unwrap(video.item.id));
+                            if (plsItem) {
+                                plsItem.engine.playItem(plsItem);
+                            }
+                        }
+                    });
+                };
+                var videoPlaylistId = ko.unwrap(videoPlaylist.id);
+                if (videoPlaylistId != ko.unwrap(currentPlaylist.item.id)) {
+                    module.setPlaylistById(videoPlaylistId).then(complete);
+                } else {
+                    complete();
+                }
+                return;
+            }
+
+            var list = $(".wsPlaylist:first", $($element).parents(".wsProvMediaPart:first"));
+            var group = $(e.detail.group), srcCoord = group.offset(), dstCoord = list.offset();
+            group.animate({
+                left: dstCoord.left - srcCoord.left,
+                top: dstCoord.top - srcCoord.top,
+                opacity: 0
+            }, 500, function () {
+                $data.moveTo(e.detail.item);
+                $data.selection.removeAll();
+                module.addNewItems([e.detail.item], true);
+                ko.cleanNode(e.detail.group);
+                group.remove();
+            });
+        }
+    },
+    onselectionchanged: function (e) {
+        if ($data.engine.playlistEnabled() && e.detail.items.length) {
+            $data.engine.playlist.visible(true);
+        }
+    }
+}' />
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistItem">
+    <div class="wsPlsIte ui-clearfix" data-bind='css: { wsActive: isActive }'>
+        <div class="wsPlsItePlay">
+            <div class="wsPlsIteLogo">
+                <i class="i isearch playitem" data-bind='css: { "active": isActive }'></i>
+            </div>
+            <img class="wsPlsItePicture" data-bind='attr: { src: thumbnailUrl }' />
+            <!-- ko if: durationParts -->
+            <div class="wsPlsIteTime" data-bind='text: durationParts.hours + ":" + durationParts.mins + "." + durationParts.secs'></div>
+            <!-- /ko -->
+        </div>
+        <div class="wsPlsIteContent">
+            <div class="wsPlsIteName" data-bind='text: item.name'></div>
+            <div class="wsPlsIteDate" data-bind='elapsed: item.publishDate'></div>
+        </div>
+        <div class="wsPlsIteMenu">
+            <div class="ui-btn-group">
+                <!-- ko if: $list.length > 1 -->
+                <!-- ko if: $index() === 0 -->
+                <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function (plsIte) { $list.moveItemTo($index(), $list.length - 1); }, clickBubble: false'>
+                    <i class="i down"></i>
+                    <i class="i down"></i>
+                </button>
+                <!-- /ko -->
+                <!-- ko if: $index() === $list.length - 1 -->
+                <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function (plsIte) { $list.moveItemTo($index(), 0); }, clickBubble: false'>
+                    <i class="i up"></i>
+                    <i class="i up"></i>
+                </button>
+                <!-- /ko -->
+                <!-- ko if: $index() > 0 -->
+                <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function (plsIte) { $list.moveItemTo($index(), $index() - 1); }, clickBubble: false'>
+                    <i class="i up"></i>
+                </button>
+                <!-- /ko -->
+                <!-- /ko -->
+                <button class="ui-btn ui-btn-flat" type="button" data-bind='click:
+    function (plsIte) {
+        var list = $(".wsMediaList:first", $($element).parents(".wsProvMediaPart:first"));
+        var group = $($element).parents(".wsPlsIte:first");
+        var srcCoord = group.offset();
+        var dstCoord = list.offset();
+        group.animate({
+            top: dstCoord.top - srcCoord.top,
+            left: dstCoord.left - srcCoord.left,
+            opacity: 0
+        }, 500, function () {
+            var plsIteData = plsIte.toObject();
+            $list.deleteItem(plsIte);
+            var plsItemList = $root.engine.playlist.sharedOrCurrent.itemList;
+            if (plsItemList !== $list) {
+                plsItemList.unshift(plsIteData);
+            }
+        });
+    },
+    clickBubble: false'>
+                    <i class="i close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistListItemName">
+    <span data-bind='text: item.name, css: { "ui-type-default": isDefault }'></span>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistListItemMenu">
+    <div class="ui-btn-group-sm" data-bind='click: WinJS.noop, clickBubble: false'>
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='text: item.itemCount'></button>
+        <button class="ui-btn ui-btn-flat" type="button" placeholder="Szerkesztési mód (be/ki)" data-bind='text: item.editMode()[0], click: toggleEditModeAndSave, clickBubble: false'></button>
+        <!-- ko if: isDefault -->
+        <button class="ui-btn ui-btn-flat">*</button>
+        <!-- /ko -->
+        <!-- ko ifnot: isDefault -->
+        <button class="ui-btn ui-btn-flat" style="opacity: 0.2;" placeholder="Legyen az alapértelmezett lista" data-bind='click: function (pls) { $list.setAsDefault(pls); }, clickBubble: false'>*</button>
+        <!-- /ko -->
+        <button class="ui-btn ui-btn-flat" type="button" placeholder="Átnevezés" data-bind='click: function (pls) {
+    var input = $("&lt;input id=\"koSearchPlaylistListItemMenuRename\" type=\"text\" /&gt;").val(pls.item.name());
+    $.WinJS.dialog({
+        title: "Átnevezés",
+        content: input,
+        position: { my: "center top", at: "center top" },
+        width: "300px",
+        height: "auto",
+        buttons: [{
+            "class": "ui-btn ui-btn-primary",
+            "text": "Átnevezés",
+            "click": function () {
+                var $element = $(this);
+                pls.item.name(input.val());
+                pls.save(false, false).then(function () {
+                    $element.dialog("close");
+                });
+            }
+        }]
+    });
+}, clickBubble: false'>
+            <i class="i edit"></i>
+        </button>
+        <button class="ui-btn ui-btn-flat" type="reset" placeholder="Törlés" data-bind='enable: !isDefault, click: function (pls) { $list.deleteItem(pls); }, clickBubble: false'>
+            <i class="i delete"></i>
+        </button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistListMenu">
+    <li role="menuitem" data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    synchronize: true,
+    items: playlistList,
+    columns: [
+        { cellTemplate: "#koSearchPlaylistListItemName", width: "*" },
+        { cellTemplate: "#koSearchPlaylistListItemMenu", width: "150px", cellClass: "ui-text-right" }
+    ],
+    onitemclick: function (event) {
+        WinJS.Utilities.async($.ui.dropdown.closeAll);
+    }
+},
+event: {
+    dragenter: function (d, e) {
+        $(e.target).parents(".ui-listview-group:first").addClass("ui-listview-droptarget");
+    },
+    dragleave: function (d, e) {
+        $(e.target).parents(".ui-listview-group:first").removeClass("ui-listview-droptarget");
+    },
+    dragover: function (d, e) {
+        e.preventDefault();
+        e.originalEvent.dataTransfer.dropEffect = "copy";
+        return false;
+    },
+    drop: function (d, e) {
+        e.preventDefault();
+        $(e.target).parents(".ui-listview-group:first").removeClass("ui-listview-droptarget");
+        var playlist = ko.dataFor(e.target);
+        if (playlist instanceof PI.Project.Search.Playlist) {
+            var json = e.originalEvent.dataTransfer.getData("text");
+            var items = json && JSON.parse(json);
+            Array.isArray(items) && d.addNewItems(items);
+        }
+        return false;
+    }
+}'></li>
+    <li role="menuitem" class="ui-footer ui-clearfix">
+        <div class="ui-pull-right" data-bind='component: { name: "ui-datapager", params: { list: playlistList, ctrls: "first prev next last row" } }'></div>
+    </li>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistItemList">
+    <div class="wsPlsDropCon" data-bind='event: {
+    dragover: function (playlist, e) {
+        e.preventDefault();
+        e.originalEvent.dataTransfer.dropEffect = "copy";
+        return false;
+    },
+    drop: function (playlist, e) {
+        e.preventDefault();
+        var json = e.originalEvent.dataTransfer.getData("text");
+        var items = json && JSON.parse(json);
+        Array.isArray(items) && playlist.engine.playlist.addNewItems(items);
+        return false;
+    }
+}'>
+        <!-- ko if: $data.engine.playlistDropImgVisible -->
+        <div class="wsPlsDropImg">
+            <img data-bind='attr: { src: $data.engine.playlistDropImgUrl }' />
+        </div>
+        <!-- /ko -->
+        <div class="wsPlaylist" data-bind='listView: {
+    displayHeader: false,
+    displayRowIndex: true,
+    displaySelectionCheckbox: false,
+    selectionMode: "none",
+    synchronize: true,
+    items: $data.itemList,
+    columns: [{
+        cellTemplate: "#koSearchPlaylistItem"
+    }],
+    emptyTemplate: "Nincs videó a listádban",
+    onrender: function () {
+        $(".ui-listview-body:first", $element)
+            .sortable({
+                axis: "y",
+                cursor: "move",
+                distance: 10,
+                placeholder: "wsPlsItePlaceholder",
+                start: function (event, ui) { ui.item.ix = ui.item.index(); },
+                update: function (event, ui) {
+                    var newIndex = ui.item.index();
+                    if (ui.item.ix !== newIndex) {
+                        $data.itemList.moveItemTo(ui.item.ix, newIndex);
+                        ui.item.ix = newIndex;
+                        return false;
+                    }
+                }
+            })
+            .disableSelection();
+    },
+    onitemclick: function (event) {
+        if (!(event.detail.shiftKey || event.detail.ctrlKey)) {
+            $data.itemList.moveTo(event.detail.item);
+            $data.engine.playItem(event.detail.item);
+        }
+    }
+}'>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistCurrentContent">
+    <!-- ko template: { name: "koSearchPlaylistItemList" } --><!-- /ko -->
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistSaveInfo">
+    <div class="wsPlsSaveInfo">
+        <p>Ezzel az alkalmazás nem kap engedélyt, hogy Facebookon bejegyzést tegyen közzé.</p>
+        <hr />
+        <div class="ui-btn-group ui-pull-right">
+            <button class="ui-btn ui-btn-lg" type="button" data-bind='click:
+    function (m) {
+        m.saveInfoVisible(false);
+    },
+    clickBubble: false'>
+                Mégsem
+            </button>
+            <button class="ui-btn ui-btn-lg ui-btn-fb" type="button" data-bind='enable: !defaultPlaylist.itemList.isEmpty, click:
+    function (m) {
+        m.defaultPlaylist.save(true);
+        m.saveInfoVisible(false);
+    },
+    clickBubble: false'>
+                <span>Rendben</span>
+                <span data-bind='text: "(" + defaultPlaylist.itemList.length + " db)"'></span>
+            </button>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistDefaultContent">
+    <div class="wsPlsListPartMenu" data-bind='visible: !exists()'>
+        <form data-bind='submit: function () { $data.engine.playlist.defaultPlaylist.save(true); }'>
+            <table class="ui-table ui-table-xs">
+                <colgroup>
+                    <col />
+                    <col style="width: 32px;" />
+                    <col style="width: 150px;" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Lejátszási lista neve" required="required" maxlength="256" data-bind='value: item.name' />
+                        </td>
+                        <td>
+                            <button class="ui-btn input-warning" type="button" data-bind='click: function (pls) { pls.engine.playlist.saveInfoVisible(!pls.engine.playlist.saveInfoVisible()); }, clickBubble: false'>
+                                &nbsp;
+                            </button>
+                        </td>
+                        <td>
+                            <div class="ui-btn-group ui-pull-right">
+                                <button class="ui-btn ui-btn-fb" type="submit" data-bind='enable: !engine.playlist.defaultPlaylist.itemList.isEmpty'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216">
+                                        <path fill="white" d="M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9 11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1 11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2 15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3 11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path>
+                                    </svg>
+                                    <span>Mentés</span>
+                                </button>
+                                <button class="ui-btn" data-bind='click:
+    function () {
+        $data.engine.playlist.defaultPlaylist.itemList.removeAll();
+        $data.engine.playlist.playlistList.open().then(function () {
+            $data.engine.playlist.playlistList.moveToFirst();
+        });
+    }'>
+                                    <i class="i close"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <!-- ko template: { if: engine.playlist.saveInfoVisible, name: "koSearchPlaylistSaveInfo", data: engine.playlist } --><!-- /ko -->
+    </div>
+    <!-- ko template: { name: "koSearchPlaylistItemList" } --><!-- /ko -->
+</script>
+
+<script defer="defer" type="text/html" id="koSearchPlaylistPane">
+    <div class="wsPlsMenuPart">
+        <div class="ui-row">
+            <div class="ui-col-xs-4">
+                <div class="ui-btn-group">
+                    <form data-bind='dropdown: { align: "left" }, submit: function () { var textArea = $("textarea:first", $element); $data.addMediaLinks(textArea.val().split(/\n/)); textArea.val(null); }'>
+                        <button class="ui-btn ui-btn-flat" type="button" title="Linkek hozzáadásáa (1/sor)">
+                            <i class="i isearch addlist"></i>
+                        </button>
+                        <ul class="ui-menu" role="menu" style="min-width: 320px;">
+                            <li role="menuitem">
+                                <div class="conXS">
+                                    <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function() { window.open("http://www.youtube.com", "_blank"); }, clickBubble: false'>
+                                        <i class="i isearch youtube"></i>
+                                    </button>
+                                    <span>Másold alább a linked!</span>
+                                    <button class="ui-btn ui-btn-flat ui-pull-right" type="reset" data-bind='click: function () { $("textarea:first", $($element).parents("form:first")).val(null); }, clickBubble: false'>
+                                        <i class="i delete"></i>
+                                    </button>
+                                </div>
+                                <textarea class="wsPlsLinks" rows="10" placeholder="( egy link / sor )"></textarea>
+                            </li>
+                            <li role="menuitem" class="ui-footer">
+                                <button class="ui-btn ui-btn-fb" type="submit">Linkek hozzáadása</button>
+                                <button class="ui-btn" type="button" data-bind='enable: sharedOrCurrent, click:
+    function (m) {
+        var textArea = $("textarea:first", $($element).parents("form:first"));
+        textArea.val(m.currentOrDefault.itemList.getMediaLinks().join("\n"));
+    },
+    clickBubble: false'>
+                                    Aktív lista betöltése
+                                </button>
+                            </li>
+                        </ul>
+                    </form>
+                    <button class="ui-btn ui-btn-flat" type="button" title="Új lista létrehozása" data-bind='click: function (m) { m.resetAll(); }, clickBubble: false'>
+                        <i class="i isearch newlist"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="ui-col-xs-8" data-bind="if: engine.authenticated && defaultExists">
+                <div class="ui-btn-group ui-pull-right">
+                    <div data-bind='dropdown: { autoClose: false, align: "right", open: function () { $data.playlistList.open(); } }'>
+                        <button class="ui-btn ui-btn-flat" type="button">
+                            <span class="progress" style="display: none;" data-bind='visible: playlistList.busy' />
+                            <!-- ko with: playlistList.current --><span data-bind='text: item.name'></span><!-- /ko -->
+                            <!-- ko ifnot: playlistList.current --><span>Lejátszási listák</span><!-- /ko -->
+                            <span class="ui-type-number"><span data-bind='text: playlistList.total'></span> db</span>
+                            <i class="i dd"></i>
+                        </button>
+                        <ul role="menu" class="ui-menu" style="width: 320px" data-bind='template: { name: "koSearchPlaylistListMenu" }'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wsPlsListPart" data-bind='template: {
+    name: defaultVisible ? "koSearchPlaylistDefaultContent" : "koSearchPlaylistCurrentContent",
+    data: defaultVisible ? defaultPlaylist : playlistList.current
+}'>
+    </div>
+</script>

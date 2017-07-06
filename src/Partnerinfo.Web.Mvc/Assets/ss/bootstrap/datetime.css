@@ -1,0 +1,41 @@
+﻿.ui-datetime {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    font-style: normal;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.ui-datetime-date,
+.ui-datetime-time {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.ui-datetime-year,
+.ui-datetime-month,
+.ui-datetime-day {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-left: 0 !important;
+    margin-right: 4px !important;
+    width: 64px !important;
+}
+
+.ui-datetime-month {
+    width: 98px !important;
+}
+
+.ui-datetime-hours,
+.ui-datetime-minutes {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 48px !important;
+}
+
+.ui-datetime-separator {
+    margin: 0 4px;
+}

@@ -1,0 +1,23 @@
+﻿{
+  "portal": {
+    "homePage": "home",
+    "masterPage": "layout"
+  },
+  "pages": [
+    {
+      "uri": "layout",
+      "name": "Layout",
+      "htmlContent": "layout.html"
+    },
+    {
+      "uri": "home",
+      "name": "Home",
+      "htmlContent": "home.html"
+    },
+    {
+      "uri": "confirm",
+      "name": "Confirm",
+      "htmlContent": "confirm.html"
+    }
+  ]
+}

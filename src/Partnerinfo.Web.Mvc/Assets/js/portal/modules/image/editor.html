@@ -1,0 +1,76 @@
+﻿<script defer="defer" type="text/html" id="koPortalImageModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 125px;" />
+            <col />
+            <col style="width: 75px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Kép webcíme</td>
+                <td>
+                    <input name="image.url" type="url" data-bind='value: module.image.url' />
+                </td>
+                <td>
+                    <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function () {
+    PI.dialog({
+        name: "drive.filepicker",
+        mode: "single",
+        done: function (res) {
+            if (res.result === "ok") {
+                var it = res.items && res.items[0];
+                it && $data.module.image.url(it.item.link);
+            }
+        }
+    });
+}, clickBubble: false'>
+                        <i class="i portal module-image"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>Kattintási webcím</td>
+                <td>
+                    <input name="link.url" type="url" data-bind='value: module.link.url' />
+                </td>
+                <td data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: portal.project, outputLink: module.link.url, displayMode: "name" } } }'></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="ui-clearfix">
+        <div class="ui-pull-left" style="width: 50%;">
+            <table class="ui-table">
+                <colgroup>
+                    <col style="width: 125px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>Kattintási mód</td>
+                        <td>
+                            <select name="link.target" data-bind='value: module.link.target'>
+                                <option></option>
+                                <option value="_blank">Új ablakban</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Rövid leírás</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <textarea name="image.alt" rows="2" data-bind='value: module.image.alt'></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui-pull-right" style="width: 50%;">
+            <div class="ui-box">
+                <div class="ui-box-group">
+                    <img style="max-width: 300px; max-height: 200px;" data-bind='attr: { src: module.image.url, alt: module.image.alt }' />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

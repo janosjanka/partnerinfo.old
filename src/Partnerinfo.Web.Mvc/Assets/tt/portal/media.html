@@ -1,0 +1,51 @@
+﻿<script defer="defer" type="text/html" id="koPortalMediaMenu">
+</script>
+
+<script defer="defer" type="text/template" id="koPortalMediaListEditTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <!-- ko if: selection().length >= 1 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.delete"), clickBubble: false'>
+                <i class="i delete"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-fileupload params='options: { url: uploadUrl, done: command("refresh") }'></ui-fileupload>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koPortalMediaListQueryTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: query.name, attr: { placeholder: "Média keresése..." }, submit: query.submit.bind(query), cancel: query.cancel.bind(query)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group ui-visible-sm ui-visible-md ui-visible-lg">
+            <ui-toggle params='checked: query.orderBy, text: "Legfrissebb", option: "recent", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: query.orderBy, text: "Névsorrend", option: "name", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalMediaListLinkCell">
+    <a data-bind='text: uri, attr: { href: link }' target="_blank"></a>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalMediaList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koPortalMediaListEditTools" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koPortalMediaListQueryTools" }'></div>
+        </div>
+        <div class="ui-data-content" data-bind='listView: {
+    synchronize: true,
+    columns: [
+        { header: "Média neve", binding: "text: name", width: "*", minWidth: "150px" },
+        { header: "Média címe", cellTemplate: "#koPortalMediaListLinkCell", width: "*", minWidth: "150px" },
+        { binding: "elapsed: modifiedDate", width: "100px", cellClass: "ui-text-right ui-type-time" }
+    ]
+}'>
+        </div>
+    </div>
+</script>

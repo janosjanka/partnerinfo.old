@@ -1,0 +1,79 @@
+﻿@model SignupBindingModel
+<div class="ui-box ui-box-bordered">
+    <div class="ui-box-header">
+        <h2 class="ui-font-sm">@IdentityAppResources.Account_CreateNew</h2>
+    </div>
+    @if (OAuthWebSecurity.RegisteredClientData.Count > 0)
+    {
+        <div class="ui-box-group">
+            @Html.Partial("_LoginProviders", OAuthWebSecurity.RegisteredClientData, new ViewDataDictionary { { "returnurl", ViewBag.ReturnUrl } })
+        </div>
+    }
+    <form method="post" action="@Url.Action("signup", "account")">
+        <div class="ui-box-group">
+            <div class="ui-form-hl">
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-3">
+                        @Html.LabelFor(m => m.Email, new { @for = "pi-signup-email" })
+                    </div>
+                    <div class="ui-col-sm-9">
+                        @Html.TextBoxFor(m => m.Email, new { id = "pi-signup-email", @class = "ui-form-control", type = "email" })
+                    </div>
+                </div>
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-3">
+                        @Html.LabelFor(m => m.Password, new { @for = "pi-signup-password" })
+                    </div>
+                    <div class="ui-col-sm-9">
+                        @Html.PasswordFor(m => m.Password, new { id = "pi-signup-password", @class = "ui-form-control" })
+                    </div>
+                </div>
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-3">
+                        @Html.LabelFor(m => m.LastName, new { @for = "pi-signup-lastname" })
+                    </div>
+                    <div class="ui-col-sm-9">
+                        @Html.TextBoxFor(m => m.LastName, new { id = "pi-signup-lastname", @class = "ui-form-control" })
+                    </div>
+                </div>
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-3">
+                        @Html.LabelFor(m => m.FirstName, new { @for = "pi-signup-firstname" })
+                    </div>
+                    <div class="ui-col-sm-9">
+                        @Html.TextBoxFor(m => m.FirstName, new { id = "pi-signup-firstname", @class = "ui-form-control" })
+                    </div>
+                </div>
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-3">
+                        @Html.LabelFor(m => m.Gender, new { @for = "pi-signup-gender" })
+                    </div>
+                    <div class="ui-col-sm-9">
+                        @Html.DropDownListFor(m => m.Gender, new[] { new SelectListItem(), new SelectListItem { Text = "Nő", Value = "female" }, new SelectListItem { Text = "Férfi", Value = "male" } }, new { id = "pi-signup-gender" })
+                    </div>
+                </div>
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-3">
+                        @Html.LabelFor(m => m.Birthday, new { @for = "pi-signup-birthday-container" })
+                    </div>
+                    <div class="ui-col-sm-9">
+                        <div id="pi-signup-birthday-container"></div>
+                        @Html.HiddenFor(m => m.Birthday, new { id = "pi-signup-birthday" })
+                    </div>
+                </div>
+                @Html.ValidationSummary()
+            </div>
+        </div>
+        <div class="ui-box-footer ui-text-center">
+            <button class="ui-btn ui-btn-primary ui-btn-lg" type="submit">
+                <i class="i wink"></i>
+                <span>@IdentityAppResources.Account_Signup</span>
+            </button>
+        </div>
+        <div class="ui-box-footer">
+            A <strong>regisztrációval</strong> elfogadom és tudomásul veszem a <a rel="nofollow" target="_blank" href="@Url.Action("index", "policies")">"Használati feltételek"</a>-ben foglaltakat.
+        </div>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ExtraData)
+    </form>
+</div>

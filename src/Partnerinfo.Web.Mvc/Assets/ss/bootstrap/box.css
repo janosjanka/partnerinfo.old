@@ -1,0 +1,52 @@
+﻿/* Copyright (c) Partnerinfo Ltd. All rights reserved. */
+
+.ui-box,
+.ui-box-header,
+.ui-box-group,
+.ui-box-footer {
+    border: 1px solid transparent;
+}
+
+.ui-box {
+    margin-bottom: 16px;
+}
+
+.ui-box-header,
+.ui-box-group,
+.ui-box-footer {
+    padding: 8px 16px;
+    border-width: 1px 0;
+}
+
+.ui-box.ui-box-bordered {
+    color: #333;
+    background-color: #fafafa;
+    border: 1px solid #e8e8e8;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+    .ui-box.ui-box-bordered .ui-box-header,
+    .ui-box.ui-box-bordered .ui-box-footer {
+        color: #333;
+        background-color: #f4f4f4;
+        border-color: #e8e8e8;
+    }
+
+.ui-box:before,
+.ui-box:after,
+.ui-box-header:before,
+.ui-box-header:after,
+.ui-box-group:before,
+.ui-box-group:after,
+.ui-box-footer:before,
+.ui-box-footer:after {
+    display: table;
+    content: " ";
+}
+
+.ui-box:after,
+.ui-box-header:after,
+.ui-box-group:after,
+.ui-box-footer:after {
+    clear: both;
+}

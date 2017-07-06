@@ -1,0 +1,67 @@
+.i
+{
+	display: inline-block;
+	float: none;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	background-color: transparent;
+	background-image: url('pi.core.logo.vX.png');
+	background-repeat: no-repeat;
+}
+.i.logo.dailymotion
+{
+	width: 64px;
+	height: 30px;
+	background-position: 0 0;
+}
+
+.i.logo.facebook
+{
+	width: 64px;
+	height: 30px;
+	background-position: 0 -30px;
+}
+
+.i.logo.google
+{
+	width: 64px;
+	height: 30px;
+	background-position: -64px 0;
+}
+
+.i.logo.microsoft
+{
+	width: 64px;
+	height: 30px;
+	background-position: -64px -30px;
+}
+
+.i.logo.pi-dark
+{
+	width: 244px;
+	height: 26px;
+	background-position: 0 -60px;
+}
+
+.i.logo.pi-light
+{
+	width: 244px;
+	height: 26px;
+	background-position: 0 -86px;
+}
+
+.i.logo.twitter
+{
+	width: 64px;
+	height: 30px;
+	background-position: -128px 0;
+}
+
+.i.logo.youtube
+{
+	width: 64px;
+	height: 30px;
+	background-position: -128px -30px;
+}
+

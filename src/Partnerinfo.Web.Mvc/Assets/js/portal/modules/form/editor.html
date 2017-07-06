@@ -1,0 +1,82 @@
+﻿<script defer="defer" type="text/html" id="koPortalFormModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 125px;" />
+            <col />
+            <col style="width: 75px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td colspan="3">
+                    Adatok postázási címe (pl. felhasználói adatok regisztrálási címe)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="method" title="HTTP művelet" data-bind='value: module.method'>
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                    </select>
+                </td>
+                <td>
+                    <input class="ui-type-link" type="url" name="action" placeholder="Link vagy akciólink" data-bind='value: module.action' />
+                </td>
+                <td data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: portal.project, outputLink: module.action, displayMode: "name" } } }'></td>
+            </tr>
+            <!-- ko if: module.action -->
+            <tr>
+                <td>
+                    <select name="method" data-bind='value: module.target'>
+                        <option value="_self" />
+                        <option value="_blank">Új ablakban</option>
+                    </select>
+                </td>
+                <td colspan="2" data-bind='component: { name: "ui-toggle", params: { checked: module.postback, text: "HTML alapú (külső domainre, böngésző biztonsági korlátokat megkerülve)" } }'></td>
+            </tr>
+            <tr>
+                <td colspan="3" data-bind='component: { name: "ui-toggle", params: { enable: !module.postback(), checked: module.redirect, text: "Átirányítás engedélyezve (pl. egy akció-ban beállított oldalra)" } }'></td>
+            </tr>
+            <tr>
+                <td>
+                    További műveletek
+                </td>
+                <td colspan="2">
+                    <select name="method" data-bind='value: module.task.type'>
+                        <option value="none" />
+                        <option value="invitation">Meghívással kapcsolatos adatok feldolgozása ( HTML név: 'invitation' )</option>
+                    </select>
+                </td>
+            </tr>
+            <!-- ko if: module.task.type() !== "none" -->
+            <tr>
+                <td colspan="3">
+                    Másodlagos akció (pl. meghívó küldése során az egyes személyeknek levél küldése, stb.)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="ui-type-link" type="url" name="task.action" readonly="readonly" placeholder="Akciólink" data-bind='value: module.task.action' />
+                </td>
+                <td data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: portal.project, outputLink: module.task.action, displayMode: "name" } } }'></td>
+            </tr>
+            <!-- /ko -->
+            <tr>
+                <td>
+                    Ha sikerült
+                </td>
+                <td>
+                    <select data-bind='enable: !module.postback(), value: module.onsuccess, options: events, optionsText: "name", optionsValue: "name"' />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ha nem sikerült
+                </td>
+                <td>
+                    <select data-bind='enable: !module.postback(), value: module.onfailure, options: events, optionsText: "name", optionsValue: "name"' />
+                </td>
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</script>

@@ -1,0 +1,24 @@
+﻿<script defer="defer" type="text/html" id="koPortalLinkModule">
+    <table class="ui-table">
+        <colgroup>
+            <col />
+            <col style="width: 50px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="url" name="url" placeholder="Link vagy Akciólink" required="required" data-bind='value: module.url' />
+                </td>
+                <td data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: portal.project, outputLink: module.url, displayMode: "name" } } }'></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <select name="target" style="width: 150px;" data-bind='value: module.target'>
+                        <option value="_self" />
+                        <option value="_blank">Új ablakban</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>

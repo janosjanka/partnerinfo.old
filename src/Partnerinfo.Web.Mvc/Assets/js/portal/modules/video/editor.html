@@ -1,0 +1,54 @@
+﻿<script defer="defer" type="text/html" id="koPortalVideoModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 120px" />
+            <col />
+            <col style="width: 75px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Videó webcíme</td>
+                <td colspan="2">
+                    <input name="url" type="url" required="required" data-bind='value: module.url, hasFocus: true' />
+                </td>
+            </tr>
+            <tr>
+                <td>Borító kép webcíme</td>
+                <td>
+                    <input name="thumbnailUrl" type="url" data-bind='value: module.thumbnailUrl' />
+                </td>
+                <td class="ui-text-right">
+                    <a class="ui-btn" data-bind='click: fillThumbnailUrl, clickBubble: false'>
+                        <span>Ajánl</span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="ui-clearfix">
+        <div class="ui-pull-left" style="width: 40%">
+            <ul class="ui-navbar-vl" role="menu">
+                <li role="menuitem">Betöltés a következő eseményre</li>
+                <li role="menuitem">
+                    <select name="loadEvent" data-bind='value: module.loadEvent, optionsCaption: "Seelct...."'>
+                        <option />
+                        <option value="click">Kattintás a képre</option>
+                        <option value="dblclick">Dupla kattintás a képre</option>
+                        <option value="mouseenter">Egér a kép felé került</option>
+                    </select>
+                </li>
+                <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { checked: module.autoplay, text: "Automatikus lejátszás" } }'></li>
+                <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { checked: module.autohide, text: "Automatikus elrejtése" } }'></li>
+                <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { checked: module.controls, text: "Videó vezérlőpanel megjelenítése" } }'></li>
+                <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { checked: module.fs, text: "Teljes képernyő engedélyezése" } }'></li>
+                <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { checked: module.rel, text: "Kapcsolódó videók megjelenítése" } }'></li>
+                <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { checked: module.showinfo, text: "Videó információk megjelenítése" } }'></li>
+            </ul>
+        </div>
+        <div class="ui-pull-right" style="width: 60%">
+            <div class="conS">
+                <div class="ui-module ui-module-video ui-module-cover" style="height: 250px;" data-bind='video: module.url'></div>
+            </div>
+        </div>
+    </div>
+</script>

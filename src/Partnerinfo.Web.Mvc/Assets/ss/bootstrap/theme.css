@@ -1,0 +1,170 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+body {
+    color: #333;
+    background: #fff;
+}
+
+.ui-app-header {
+    color: #fafafa;
+    background-color: #333;
+    background-image: -moz-linear-gradient(top, #555, #333 100%);
+    background-image: -webkit-linear-gradient(top, #555, #333 100%);
+    background-image: linear-gradient(to bottom, #555, #333 100%);
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);
+}
+
+    .ui-app-header .ui-app-logo {
+        color: #fafafa;
+        text-shadow: 1px 1px 1px #333;
+    }
+
+.ui-app-main {
+    color: inherit;
+    background-color: inherit;
+}
+
+.ui-main-header {
+    color: #333;
+    background-color: #fafafa;
+    box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.52) inset;
+}
+
+.ui-sidebar {
+    background-color: #fafafa;
+    border-color: #e8e8e8;
+    box-shadow: rgba(0, 0, 0, 0.08) 4px 8px 16px 4px;
+}
+
+.ui-canvas {
+    background-color: #fafafa;
+}
+
+/*-----------------------------------------------------------------------
+  Sections
+-----------------------------------------------------------------------*/
+
+.ui-color-1 {
+    background: #fff;
+    color: #333;
+}
+
+.ui-color-2 {
+    background-color: #eee;
+    color: #333;
+}
+
+.ui-color-3 {
+    background-color: #555;
+    color: #fafafa;
+}
+
+.ui-color-4 {
+    background-color: #333;
+    color: #fafafa;
+}
+
+    /*-----------------------------------------------------------------------
+      Inverse Foreground Colors
+    -----------------------------------------------------------------------*/
+
+    .ui-app-header a,
+    .ui-color-3 a,
+    .ui-color-4 a {
+        color: #3acfff;
+    }
+
+    .ui-app-header .ui-open a,
+    .ui-color-3 .ui-open a,
+    .ui-color-4 .ui-open a {
+        color: #10c;
+    }
+
+.ui-app-header .ui-btn.ui-btn-flat {
+    text-shadow: 1px 1px 1px #333;
+}
+
+    .ui-app-header .ui-btn.ui-btn-flat:active {
+        text-shadow: inherit;
+    }
+
+.ui-app-header .ui-open .ui-btn.ui-btn-flat,
+.ui-color-3 .ui-open .ui-btn.ui-btn-flat,
+.ui-color-4 .ui-open .ui-btn.ui-btn-flat {
+    color: #333;
+    text-shadow: inherit;
+}
+
+/*-----------------------------------------------------------------------
+  Navy
+-----------------------------------------------------------------------*/
+
+.ui-theme-navy .ui-app-header {
+    background-color: #004360;
+    background-image: -moz-linear-gradient(top, #00608a, #004360 100%);
+    background-image: -webkit-linear-gradient(top, #00608a, #004360 100%);
+    background-image: linear-gradient(to bottom, #00608a, #004360 100%);
+}
+
+/*-----------------------------------------------------------------------
+  Red
+-----------------------------------------------------------------------*/
+
+.ui-theme-red .ui-app-header {
+    background-color: #9a0000;
+    background-image: -moz-linear-gradient(top, #bb0000, #9a0000 100%);
+    background-image: -webkit-linear-gradient(top, #bb0000, #9a0000 100%);
+    background-image: linear-gradient(to bottom, #bb0000, #9a0000 100%);
+}
+
+.ui-theme-red .ui-app-main {
+    background: #fff;
+}
+
+/*-----------------------------------------------------------------------
+  Green
+-----------------------------------------------------------------------*/
+
+.ui-theme-green .ui-app-header {
+    background-color: #236d00;
+    background-image: -moz-linear-gradient(top, #2d8b00, #236d00 100%);
+    background-image: -webkit-linear-gradient(top, #2d8b00, #236d00 100%);
+    background-image: linear-gradient(to bottom, #2d8b00, #236d00 100%);
+}
+
+.ui-theme-green .ui-app-main {
+    background: #fff;
+}
+
+/*-----------------------------------------------------------------------
+  Gray
+-----------------------------------------------------------------------*/
+
+.ui-theme-gray .ui-app-header {
+    color: #333;
+    background-color: #f2f2f2;
+    background-image: -moz-linear-gradient(top, #f2f2f2, #eee 100%);
+    background-image: -webkit-linear-gradient(top, #f2f2f2, #eee 100%);
+    background-image: linear-gradient(to bottom, #f2f2f2, #eee 100%);
+}
+
+.ui-theme-gray #progress {
+    color: #333;
+}
+
+.ui-theme-gray .ui-app-logo > i {
+    background-position: 0 -60px;
+}
+
+.ui-theme-gray .ui-app-main {
+    background: #fff;
+}
+
+.ui-theme-gray .ui-app-header a {
+    color: #10c;
+}
+
+.ui-theme-gray .ui-app-header .ui-btn.ui-btn-flat {
+    color: #333;
+    text-shadow: 1px 1px 1px #fff;
+}

@@ -1,0 +1,108 @@
+﻿<script defer="defer" type="text/html" id="koPortalMenu">
+    <div role="group" class="ui-btn-group">
+        <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: !errors().length, click: saveAsync, clickBubble: false'>Mentés</button>
+        <button class="ui-btn" type="button" data-bind='click: discard, clickBubble: false'>Elvetés</button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalItem">
+    <form data-bind='submit: saveAsync'>
+        <div class="ui-box">
+            <div class="ui-box-group">
+                <div class="ui-form-hl">
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-portal-name">Portál neve</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <input id="ko-portal-name" name="name" type="text" data-bind='value: name, valueUpdate: "afterkeydown", hasFocus: true' />
+                        </div>
+                    </div>
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-portal-uri">Portál címe</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <input id="ko-portal-uri" class="ui-type-link" name="uri" type="text" data-bind='value: uri' />
+                        </div>
+                    </div>
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-portal-description">Portál leírása</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <textarea id="ko-portal-description" name="description" data-bind='value: description'></textarea>
+                        </div>
+                    </div>
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-portal-template">Sablon</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <select id="ko-portal-template" name="template" data-bind='value: template, options: templates' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-box-header">
+                <h3>Projekt<small class="ui-type-help ui-clearfix">Feliratkozók gyűjtéséhez és üzleti műveletek végrehajtásához.</small></h3>
+            </div>
+            <div class="ui-box-group">
+                <!-- ko ifnot: project -->
+                <button class="ui-btn ui-btn-primary" type="button" data-bind='click: function (d) { d.projectDialog(); }, clickBubble: false'>
+                    Projekt kiválasztása...
+                </button>
+                <!-- /ko -->
+                <!-- ko if: project -->
+                <button class="ui-btn ui-btn-success" type="button" data-bind='text: project().name, click: function (d) { d.projectDialog(); }, clickBubble: false'></button>
+                <button class="ui-btn ui-btn-danger" type="button" data-bind='click: function (d) { d.setProjectAsync(); }, clickBubble: false'>
+                    <i class="i delete"></i>
+                </button>
+                <!-- /ko -->
+            </div>
+            <div class="ui-box-header">
+                <h3>Google Analitikák<small class="ui-type-help ui-clearfix">Segít betekintést nyerni az oldal felhasználóinak/ügyfeleinek aktivitásaiba.</small></h3>
+            </div>
+            <div class="ui-box-group">
+                <input id="ko-portal-gatrackingid" name="gaTrackingId" type="text" placeholder="UA-XXXX-Y" data-bind='value: gaTrackingId' />
+            </div>
+            <div class="ui-box-group">
+                További részletek: <a href="https://www.google.com/analytics" target="_blank">https://www.google.com/analytics</a>
+            </div>
+            <div class="ui-box-group">
+                <ui-dataerrors params='errors: $data.errors'></ui-dataerrors>
+            </div>
+        </div>
+        <input class="ui-hidden" type="submit" />
+    </form>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalBinding">
+    <div class="ui-box">
+        <div class="ui-box-group">
+            Saját domain név beállítása előtt egy CNAME rekord megadása szükséges a domain szolgáltató vezérlő panelén a következő címre mutatva: phs.partnerinfo.tv (a módosítások életbe lépése 48 órát is igénybe vehet)
+        </div>
+        <!-- ko if: portal.domain -->
+        <div class="ui-box-group ui-clearfix">
+            <a class="ui-btn ui-btn-flat ui-pull-left" target="_blank" data-bind='attr: { href: "http://" + portal.domain() }'>
+                <span data-bind='text: "http://" + portal.domain()'></span>
+            </a>
+            <a class="ui-btn ui-btn-primary ui-pull-right" data-bind='click: remove, clickBubble: false'>
+                <span>Domain eltávolítása</span>
+            </a>
+        </div>
+        <!-- /ko -->
+        <!-- ko ifnot: portal.domain -->
+        <div class="ui-box-group">
+            <strong>Domain név</strong>
+            <form class="conVerS" data-bind='submit: update'>
+                <input type="text" required="required" data-bind='value: domain' />
+                <div class="conVerS">
+                    <button class="ui-btn ui-btn-primary" type="submit">Domain aktiválása</button>
+                </div>
+            </form>
+        </div>
+        <!-- /ko -->
+        <div data-bind='component: { name: "ui-dataerrors", params: { errors: portal.errors } }'></div>
+    </div>
+</script>

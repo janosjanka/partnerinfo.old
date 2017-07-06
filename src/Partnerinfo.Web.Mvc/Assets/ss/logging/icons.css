@@ -1,0 +1,41 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.i.log {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAgCAYAAABU1PscAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMHSURBVFhHzZXPaxNBFMcHK4FCjY2JAUUUAiWlh3qoSKqXimAViYJS9CASRYScevSiXkUPnsRDVSgVxVzir4MUiqi0BjwUPIigh8V/Ym9hnLd5b52dvNnZTTbgFz5N9n2/7828pbTCVH3pprSBkZGIO48D43ZxTQRGMhd3FgfGQ3G1oLh860EfbBhFB6TF7L2yfDfxS9JnRATFNAtQnQYmxexJc3mQPiciKKZdgDz67oLLQi2NrH36UBOMRGT6+jOHLQN1XUl9fOTlDCjRIH2gWSNcHonzAbQDcbU+OQNKNEiHq9uyBPgkzgfQDsTVYg8gMBqKywC6F5cjIEPifADtQFwtKOJXVpxPgwi9FgSUOM8kCKI4H0A7UFjTAyZ6kMP0XXnAloG6rqR+7IF6kCMyyJHV4bJQS6OwD37E/d1P4tNnGsyeNP/IIBvOgR+uC8b5IPg+CGZvkiX0ywOZLDCsYNYgOJuT+FmJmx8HtmUj7gATjLLi8iYYHY1cB7guAd7ZpRtzNlz9Q8s1nC5gy0EdLnr/8arkcPVH9XxPXrT2NsWrUlu0Sp3ep3qGukWuwfoFuCzUki7A9f8TXPJFcWX6yzHv3O9r/uU/zW79V8Of+jzvQd22RPzQ/gXMPDzrvzImZi+ArYZWi82pjZp3/mdDntq+FFL/cVVW1uc88DEZkX1gT+bhBNrhAuabp5rZR2C7pieF9snti37t0xl59OOiPPxhQU6/mZfV1zU5u77gg4/JiPhh8dJ74LttARv8mY92d058u9Ctvq/J8suqLKxVQva1ZrrgYzKiUS5g1qjOn/kw357ZOO4X3qlLG0y2Kz74mIwoqwXSwJ95b6K5a+2AV/6q3v6WujixWZG5ZyUPfExGlNUC3Js2a1Tnzzwt8uL2+Mr406KX3zrkF75XuvnNg35OPUM98BlltUAabGfmxKSYFYs77ojGzrfi+lgn+ITnojii/IleLKqsFuDeNkfcAmOKomI/Q1mRU/QpqwXSMMiZVmW1APe2Of7bBdKQ+QKDgO1D9AvxF6pHI4TpD64+AAAAAElFTkSuQmCC') /*logging-icons.png*/;
+}
+
+    .i.log.objecttype-action {
+        width: 16px;
+        height: 16px;
+        background-position: 0 0;
+    }
+
+    .i.log.objecttype-mailmessage {
+        width: 16px;
+        height: 16px;
+        background-position: -16px 0;
+    }
+
+    .i.log.objecttype-message {
+        width: 16px;
+        height: 16px;
+        background-position: 0 -16px;
+    }
+
+    .i.log.objecttype-page {
+        width: 16px;
+        height: 16px;
+        background-position: -16px -16px;
+    }
+
+    .i.log.objecttype-project {
+        width: 16px;
+        height: 16px;
+        background-position: -32px 0;
+    }
+
+    .i.log.objecttype-site {
+        width: 16px;
+        height: 16px;
+        background-position: -32px -16px;
+    }

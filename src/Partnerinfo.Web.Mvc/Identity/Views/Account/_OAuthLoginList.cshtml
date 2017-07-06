@@ -1,0 +1,32 @@
+﻿@model ICollection<OAuthProvider>
+@if (Model.Count > 0)
+{
+    <div class="ui-box ui-box-bordered">
+        <div class="ui-box-group">
+            <ul class="ui-navbar-vl">
+                @foreach (var externalLogin in Model)
+                {
+                    <li role="menuitem" class="ui-navbaritem">
+                        <div class="ui-clearfix">
+                            <div class="ui-pull-left">
+                                <i class="@externalLogin.ExtraData["logo"]" title="@externalLogin.ProviderDisplayName"></i>
+                            </div>
+                            <div class="ui-pull-right">
+                                @if (ViewBag.ShowRemoveButton)
+                                {
+                                    using (Html.BeginForm("Disassociate", "Account"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("provider", externalLogin.Provider)
+                                        @Html.Hidden("providerUserId", externalLogin.ProviderUserId)
+                                        <button class="ui-btn" type="submit"><span>Eltávolít</span></button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

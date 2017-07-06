@@ -1,0 +1,85 @@
+﻿<script defer="defer" type="text/html" id="koPageToolStyleClassListMenu">
+    <a class="ui-btn ui-btn-flat ui-btn-sm" data-bind='click: $list.deleteName.bind($list, $data)'><i class="i delete v1"></i></a>
+</script>
+
+<script defer="defer" type="text/html" id="koPageToolStyleInlineView">
+    <form class="ui-form-hl" data-bind='submit: classList.submit.bind(classList)'>
+        <table class="ui-table ui-table-xs">
+            <colgroup>
+                <col />
+                <col style="width: 50px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Téma osztály hozzadása..." data-bind='value: classList.reserved, typeahead: {
+    dataSource: {
+        limit: 25,
+        source: function (query, callback) {
+            query && callback($data.classList.getDocumentClasses(query));
+        }
+    } }' />
+                    </td>
+                    <td>
+                        <button class="ui-btn ui-btn-flat" type="submit" data-bind='enable: classList.reserved'>
+                            <i class="i add"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div data-bind='listView: {
+    items: classList,
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    columns: [
+        { binding: "text: $data", width: "*", cellClass: "ui-type-css" },
+        { cellTemplate: "#koPageToolStyleClassListMenu", width: "32px" }
+    ]
+}'></div>
+    <div data-bind='jQuery: "cssEditor", jQueryOptions: cssEditorOptions'></div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageToolStyleGlobalView">
+    <div role="group" class="ui-btn-group ui-btn-group-sm">
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: saveStyleCode, clickBubble: false'>
+            <i class="i refresh"></i>
+            <span>Oldal frissítése</span>
+        </button>
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: formatStyleCode, clickBubble: false'>
+            <span>Kódformázás</span>
+        </button>
+    </div>
+    <div class="ui-portal-toolwin-style-code">
+        <textarea spellcheck="false" data-bind='component: {
+    name: "ui-codemirror",
+    params: {
+        width: "100%",
+        height: "100%",
+        value: styleCode,
+        codemirror: {
+            theme: "visual-studio visual-studio-css",
+            mode: "text/css",
+            lineNumbers: true,
+            styleActiveLine: true,
+            autoCloseBrackets: true,
+            autoCloseTags: true,
+            matchBrackets: true,
+            indentUnit: 4
+        }
+    }
+}'></textarea>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageToolStyleMenu">
+    <div role="group" class="ui-btn-group ui-btn-group-sm">
+        <ui-toggle params='checked: view, option: viewType.inline, text: "Inline stílusok", css: { "ui-btn ui-btn-flat": true }, checkbox: false'></ui-toggle>
+        <ui-toggle params='checked: view, option: viewType.global, text: "Globális téma osztályok", css: { "ui-btn ui-btn-flat": true }, checkbox: false'></ui-toggle>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageToolStyleBody">
+    <div data-bind='template: { name: viewId }'></div>
+</script>

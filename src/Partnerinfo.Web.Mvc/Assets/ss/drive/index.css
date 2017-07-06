@@ -1,0 +1,9 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-listview .pi-drive-links {
+    display: none;
+}
+
+.ui-listview .ui-listview-selected .pi-drive-links {
+    display: block;
+}

@@ -1,0 +1,38 @@
+﻿<script defer="defer" type="text/html" id="koMailMessagePicker">
+    <div class="ui-box">
+        <div class="ui-box-group">
+            <table class="ui-table ui-table-xs">
+                <colgroup>
+                    <col />
+                    <col style="width: 150px;" />
+                    <col style="width: 150px;" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <ui-searchbox params='value: mailMessages.filter.subject,
+width: "150px",
+submit: mailMessages.filter.submit.bind(mailMessages.filter),
+cancel: mailMessages.filter.cancel.bind(mailMessages.filter)'></ui-searchbox>
+                        <td class="ui-text-right" data-bind='component: { name: "ui-datapager", params: { list: mailMessages, ctrls: "first prev next last" } }'></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    items: mailMessages,
+    synchronize: true,
+    selectionMode: "single",
+    columns: [
+        { binding: "text: subject", width: "*", minWidth: "150px" },
+        { binding: "text: modifiedDateFmt", width: "125px", cellClass: "ui-text-right ui-type-time" }
+    ] }'></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,157 @@
+﻿<script defer="defer" type="text/html" id="koPortalSearchModule">
+    <form class="ui-row">
+        <div class="ui-col-md-4">
+            <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.autoHideMenu, text: "Automatikusan rejtse el a menüt", hasFocus: true } }'></div>
+            <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.bannerEnabled, text: "Banner látható" } }'></div>
+            <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.loginVisible, text: "Bejelentkezés látható" } }'></div>
+            <div class="ui-form-group">
+                <select data-bind='value: module.editMode'>
+                    <option></option>
+                    <option value="readonly">Olvasási módban indul</option>
+                    <option value="editable">Szerkesztési módban indul</option>
+                </select>
+            </div>
+            <div class="ui-form-group">
+                <strong>Szolgáltatói listák</strong>
+                <hr />
+                <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.providerVisible, text: "Gomb látható" } }'></div>
+                <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.searchVisible, text: "Keresés látható" } }'></div>
+                <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.filterVisible, text: "Szűrés látható" } }'></div>
+                <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.pagerVisible, text: "Lapozás látható" } }'></div>
+            </div>
+            <strong>Lejátszási listák</strong>
+            <hr />
+            <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.playlistEnabled, text: "Lejátszási lista" } }'></div>
+            <div class="ui-form-group" data-bind='visible: module.playlistEnabled'>
+                <div class="ui-form-group" data-bind='component: { name: "ui-toggle", params: { checked: module.playlistVisible, text: "Azonnal látható" } }'></div>
+            </div>
+            <div class="ui-form-hl">
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-7">
+                        <label>Listák / oldal</label>
+                    </div>
+                    <div class="ui-col-sm-5">
+                        <select data-bind='value: module.playlistLimit'>
+                            <option></option>
+                            <option value="8">8</option>
+                            <option value="16">16</option>
+                            <option value="32">32</option>
+                            <option value="48">48</option>
+                            <option value="64">64</option>
+                            <option value="96">96</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ui-form-group">
+                    <div class="ui-col-sm-7">
+                        <label>Videók / oldal</label>
+                    </div>
+                    <div class="ui-col-sm-5">
+                        <select data-bind='value: module.playlistItemLimit'>
+                            <option></option>
+                            <option value="8">8</option>
+                            <option value="16">16</option>
+                            <option value="32">32</option>
+                            <option value="48">48</option>
+                            <option value="64">64</option>
+                            <option value="96">96</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-col-md-8">
+            <div class="ui-form-group">
+                <label for="psm-facebookappid" class="ui-type-default">Facebook alkalmazás azonosító - App ID (<a href="https://developers.facebook.com/apps" target="_blank">Regisztrálás itt</a>)</label>
+                <input id="psm-facebookappid" type="text" name="facebookAppId" data-bind='value: module.facebookAppId' />
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-googleapikey" class="ui-type-default">Google böngésző alkalmazás azonosító - Key (<a href="https://console.developers.google.com/apis/credentials" target="_blank">Regisztrálás itt</a>)</label>
+                <input id="psm-googleapikey" type="text" name="googleApiKey" data-bind='value: module.googleApiKey' />
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-log-actionurl" class="ui-type-default">Általános naplózáshoz használt akciólink</label>
+                <table class="ui-table ui-table-xs">
+                    <colgroup>
+                        <col />
+                        <col style="width: 48px;" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="psm-log-actionurl" type="url" name="logActionUrl" data-bind='value: module.logActionUrl' />
+                            </td>
+                            <td data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: portal.project, outputLink: module.logActionUrl, displayMode: "name" } } }'></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-login-actionurl" class="ui-type-default">Bejelentkezéshez használt akciólink</label>
+                <table class="ui-table ui-table-xs">
+                    <colgroup>
+                        <col />
+                        <col style="width: 48px;" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="psm-login-actionurl" type="url" name="loginActionUrl" data-bind='value: module.loginActionUrl' />
+                            </td>
+                            <td data-bind='component: { name: "project-actionlink-button", params: { actionlink: { project: portal.project, outputLink: module.loginActionUrl, displayMode: "name" } } }'></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-searchquery">Keresett kifejezés (pl. teljes filmek)</label>
+                <input id="psm-searchquery" type="text" name="searchQuery" data-bind='value: module.searchQuery' />
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-playlisturi">Lejátszási lista betöltése URI azonosító által</label>
+                <input id="psm-playlisturi" type="text" name="playlistUri" data-bind='value: module.playlistUri' />
+            </div>
+            <div class="ui-form-group" data-bind='if: portal.project'>
+                <label for="psm-playlistcontact">Lejátszási lista betöltése felhasználó beállítása által (*)</label>
+                <div id="psm-playlistcontact" data-bind='component: { name: "project-contact-input", params: { projectId: portal.project.id, contacts: contacts } }'></div>
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-playlistdropimgurl">Lejátszási lista kosár képe</label>
+                <table class="ui-table ui-table-xs">
+                    <colgroup>
+                        <col />
+                        <col style="width: 48px;" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="psm-playlistdropimgurl" type="url" name="playlistDropImgUrl" data-bind='value: module.playlistDropImgUrl' />
+                            </td>
+                            <td>
+                                <button class="ui-btn ui-btn-flat ui-pull-right" type="button" data-bind='click:
+function (d) {
+    PI.dialog({
+        name: "drive.filepicker",
+        mode: "single",
+        done: function (r) {
+            if (r.result === "ok") {
+                d.module.playlistDropImgUrl(r.items[0] && r.items[0].item.link);
+            }
+        }
+    });
+},
+clickBubble: false'>
+                                    <i class="i portal module-image"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-form-group">
+                <label for="psm-hashprefix">Böngésző címsorában megjelenő paraméter neve (search)</label>
+                <input id="psm-hashprefix" type="text" name="hashPrefix" data-bind='value: module.hashPrefix' />
+            </div>
+        </div>
+    </form>
+</script>

@@ -1,0 +1,32 @@
+﻿@using Partnerinfo.Identity
+<script defer="defer" type="text/html" id="koAppUserMenu">
+    <div data-bind='dropdown: { align: "right" }'>
+        <button class="ui-btn ui-btn-flat" type="button">
+            <span>@User.Identity.Name</span>
+        </button>
+        <ul role="menu" class="ui-menu">
+            <li role="menuitem">
+                <div class="conM ui-clearfix">
+                    <div class="ui-pull-left">
+                        <p><strong>@User.Identity.Name</strong></p>
+                        <div class="conS conHorZ">
+                            @Html.ActionLink(IdentityAppResources.Account_Settings, "settings", "account", new { id = User.Identity.Name }, new { @class = "button ui-pull-left", rel = "nofollow" })
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li role="separator"></li>
+            <li role="heading">
+                <div class="ui-clearfix">
+                    <form method="post" action="@Url.Action("logout", "account")">
+                        @Html.AntiForgeryToken()
+                        <button class="ui-btn ui-pull-right" type="submit">
+                            <i class="i off"></i>
+                            <span>@IdentityAppResources.Account_LogOut</span>
+                        </button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</script>

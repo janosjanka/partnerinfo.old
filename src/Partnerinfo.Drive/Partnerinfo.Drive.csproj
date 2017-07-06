@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="Settings">
+    <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.Settings.targets" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB39829E-158B-4254-9817-755BA9764755}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Partnerinfo.Drive</RootNamespace>
+    <AssemblyName>Partnerinfo.Drive</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\UriUtility.cs">
+      <Link>Common\UriUtility.cs</Link>
+    </Compile>
+    <Compile Include="Archives\PackageMetadata.cs" />
+    <Compile Include="Archives\Formats\ZipFileArchive.cs" />
+    <Compile Include="Archives\IPackageArchive.cs" />
+    <Compile Include="Archives\IPackageParser.cs" />
+    <Compile Include="Archives\PackageEntry.cs" />
+    <Compile Include="Archives\PackageFormat.cs" />
+    <Compile Include="Archives\PackageParser.cs" />
+    <Compile Include="DriveFile.cs" />
+    <Compile Include="DriveManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Partnerinfo.Data.EntityFramework\Partnerinfo.Data.EntityFramework.csproj">
+      <Project>{fcce93cf-b004-49a0-ab8e-c6f0b637303b}</Project>
+      <Name>Partnerinfo.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Data\Partnerinfo.Data.csproj">
+      <Project>{16734671-691d-4a23-85cc-6cf4d2d970f7}</Project>
+      <Name>Partnerinfo.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

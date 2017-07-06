@@ -1,0 +1,19 @@
+﻿Entity Framework - Code First
+
+-- UPDATE ---------------------------------------------------------------------------------------------------------------------
+
+Update-Database -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: Local
+Update-Database -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: LocalCreateNew
+Update-Database -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: Remote
+
+-- RESET ----------------------------------------------------------------------------------------------------------------------
+
+Delete __MigrationHistory
+
+Add-Migration initial -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: Local -IgnoreChanges
+Add-Migration initial -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: Remote -IgnoreChanges
+
+-- DOWNGRADE ------------------------------------------------------------------------------------------------------------------
+
+Update-Database -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: Local -TargetMigration: "ScriptName.cs"
+Update-Database -StartupProjectName "Partnerinfo.Data.Schema" -ConnectionStringName: Remote -TargetMigration: "ScriptName.cs"

@@ -1,0 +1,35 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.proActionNode {
+    position: relative;
+    margin: 16px 0 0 32px;
+    cursor: default;
+}
+
+.proActionTitle {
+    padding: 2px 8px;
+    background-color: #f8f8f8;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px 3px 3px 16px;
+    box-shadow: 1px 1px 2px #eee;
+}
+
+.proActionLevel {
+    position: relative;
+}
+
+.proActionTree > .proActionNode {
+    margin: 0;
+}
+
+    .proActionTree > .proActionNode:before {
+        border: none;
+    }
+
+.proActionPlaceholder {
+    position: relative;
+    margin: 16px 0 0 32px;
+    height: 32px;
+    background-color: #ffffcc;
+    border: 1px dashed #ddd;
+}

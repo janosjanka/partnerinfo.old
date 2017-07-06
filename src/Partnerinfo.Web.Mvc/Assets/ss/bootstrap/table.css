@@ -1,0 +1,52 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+table.ui-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+    table.ui-table > thead,
+    table.ui-table > tbody {
+        width: 100%;
+    }
+
+        table.ui-table > tbody > tr,
+        table.ui-table > tbody > tr > th,
+        table.ui-table > tbody > tr > td {
+            padding: 4px 8px;
+        }
+
+    table.ui-table.ui-table-xs > thead > tr > th,
+    table.ui-table.ui-table-xs > tbody > tr > td {
+        padding: 1px 2px;
+    }
+
+    table.ui-table.ui-table-sm > thead > tr > th,
+    table.ui-table.ui-table-sm > tbody > tr > td {
+        padding: 2px 4px;
+    }
+
+    table.ui-table.ui-table-lg > thead > tr > th,
+    table.ui-table.ui-table-lg > tbody > tr > td {
+        padding: 8px 16px;
+    }
+
+    table.ui-table .ui-table > thead > tr:first-child > th,
+    table.ui-table .ui-table > tbody > tr:first-child > td {
+        padding-top: 0;
+    }
+
+    table.ui-table .ui-table > thead > tr:last-child > th,
+    table.ui-table .ui-table > tbody > tr:last-child > td {
+        padding-bottom: 0;
+    }
+
+    table.ui-table .ui-table > thead > tr > th:first-child,
+    table.ui-table .ui-table > tbody > tr > td:first-child {
+        padding-left: 0;
+    }
+
+    table.ui-table .ui-table > thead > tr > th:last-child,
+    table.ui-table .ui-table > tbody > tr > td:last-child {
+        padding-right: 0;
+    }

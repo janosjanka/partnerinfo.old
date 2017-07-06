@@ -1,0 +1,171 @@
+﻿.ui-listview {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+    .ui-listview:focus {
+        outline: none;
+    }
+
+.ui-listview-inner {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-spacing: 0;
+    border-collapse: collapse;
+    empty-cells: show;
+}
+
+.ui-listview-head {
+    display: table-header-group;
+    background-color: #fafafa;
+}
+
+.ui-listview-body {
+    display: table-row-group;
+}
+
+/*-----------------------------------------------------------------------
+  Groups
+-----------------------------------------------------------------------*/
+
+.ui-listview-group {
+    display: table-row;
+}
+
+    .ui-listview-group:last-child > .ui-listview-row,
+    .ui-listview-group:last-child > .ui-listview-toggle,
+    .ui-listview-group:last-child > .ui-listview-item {
+        border-color: transparent;
+    }
+
+    .ui-listview-group:hover {
+        z-index: 2;
+    }
+
+.ui-listview-droptarget {
+    z-index: 2;
+    background-color: #ffd800;
+}
+
+/*-----------------------------------------------------------------------
+  Group Items
+-----------------------------------------------------------------------*/
+
+.ui-listview-row,
+.ui-listview-toggle,
+.ui-listview-item {
+    display: table-cell;
+    vertical-align: top;
+    overflow: hidden;
+    padding: 0 8px;
+    line-height: 1.69230769em;
+    cursor: default;
+    white-space: nowrap;
+    text-align: left;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    border-bottom: 1px solid rgba(0,0,0,0.032);
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+    .ui-listview-item > a,
+    .ui-listview-item > button {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        white-space: nowrap;
+        text-decoration: none;
+        color: #10c;
+        background: none;
+        border-width: 1px;
+        border-color: transparent;
+    }
+
+        .ui-listview-item > a:hover,
+        .ui-listview-item > button:hover {
+            text-decoration: underline;
+        }
+
+.ui-listview-row,
+.ui-listview-toggle {
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 1.2em;
+}
+
+.ui-listview-empty {
+    z-index: 1;
+    display: block;
+    text-align: center;
+}
+
+/*-----------------------------------------------------------------------
+  Controls
+-----------------------------------------------------------------------*/
+
+.ui-listview .ui-btn.ui-btn-checkbox {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding-top: 2px;
+    padding-bottom: 0;
+}
+
+/*-----------------------------------------------------------------------
+  Selected Group
+-----------------------------------------------------------------------*/
+
+.ui-listview-selected {
+    z-index: 1;
+    color: #fafafa;
+    background-color: #4285f4;
+}
+
+    .ui-listview-selected > .ui-listview-row,
+    .ui-listview-selected > .ui-listview-toggle,
+    .ui-listview-selected > .ui-listview-item {
+        color: inherit;
+        background: inherit;
+        border-color: rgba(0, 0, 0, 0.0627451);
+    }
+
+        .ui-listview-selected > .ui-listview-toggle .ui-checkbox,
+        .ui-listview-selected > .ui-listview-item .ui-checkbox,
+        .ui-listview-selected > .ui-listview-item a,
+        .ui-listview-selected > .ui-listview-item button,
+        .ui-listview-selected > .ui-listview-item i,
+        .ui-listview-selected > .ui-listview-item i:before,
+        .ui-listview-selected > .ui-listview-item span,
+        .ui-listview-selected > .ui-listview-item small {
+            color: #fafafa;
+            background: transparent;
+        }
+
+        .ui-listview-selected > .ui-listview-item .ui-open .ui-checkbox,
+        .ui-listview-selected > .ui-listview-item .ui-open a,
+        .ui-listview-selected > .ui-listview-item .ui-open button,
+        .ui-listview-selected > .ui-listview-item .ui-open i,
+        .ui-listview-selected > .ui-listview-item .ui-open i:before,
+        .ui-listview-selected > .ui-listview-item .ui-open span,
+        .ui-listview-selected > .ui-listview-item .ui-open small {
+            color: #333;
+        }
+
+/*-----------------------------------------------------------------------
+  Current
+-----------------------------------------------------------------------*/
+
+.ui-listview-current {
+    z-index: 2;
+}

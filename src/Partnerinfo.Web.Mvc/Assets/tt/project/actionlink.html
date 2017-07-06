@@ -1,0 +1,74 @@
+﻿<script defer="defer" type="text/html" id="koActionLink">
+    <table class="ui-table">
+        <colgroup>
+            <col />
+            <col style="width: 150px" />
+            <col style="width: 75px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <!-- ko if: displayMode === "link" -->
+                    <input name="url" type="url" autofocus="autofocus" placeholder="Akciólink beillesztése vagy generálása ide" onclick="this.select();" data-bind='value: outputLink, attr: { title: actionName }' />
+                    <!-- /ko -->
+                    <!-- ko if: displayMode === "name" -->
+                    <input name="name" type="text" readonly="readonly" autofocus="autofocus" placeholder="Akciólink" data-bind='value: actionName' />
+                    <!-- /ko -->
+                </td>
+                <td data-bind='component: { name: "project-action-picker", params: { action: action, filter: { project: project } } }'></td>
+            </tr>
+            <!-- ko if: action -->
+            <tr class="ui-valign-top">
+                <td data-bind='component: { name: "project-contact-input", params: { contacts: contacts, projectId: project && project.id, limit: 1 } }'></td>
+                <td colspan="2" class="ui-type-help">Akivel meg szeretné osztani a linket és naplózni azt.</td>
+            </tr>
+            <tr>
+                <td>
+                    <input name="salt" type="text" placeholder="Egyedi webcím" data-bind='value: customUri' />
+                </td>
+                <td colspan="2" class="ui-type-help">Barátságos cím a látogató számára, ami naplózásra kerül.</td>
+            </tr>
+            <!-- /ko -->
+            <tr class="validation-summary-errors">
+                <td data-bind='text: outputMessage'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionLinkElement">
+    <div class="ui-form-hl">
+        <div class="ui-form-group">
+            <div class="ui-col-sm-3">
+                <label for="pi-actionlink-text">Megjelenő szöveg</label>
+            </div>
+            <div class="ui-col-sm-9">
+                <input id="pi-actionlink-text" name="actionlink.text" type="text" data-bind='value: text' />
+            </div>
+        </div>
+        <div class="ui-form-group">
+            <div class="ui-col-sm-3">
+                <label for="pi-actionlink-title">Megjelenő tooltip</label>
+            </div>
+            <div class="ui-col-sm-9">
+                <input id="pi-actionlink-title" name="actionlink.title" type="text" data-bind='value: title' />
+            </div>
+        </div>
+        <div class="ui-form-group">
+            <div class="ui-col-sm-3">
+                <label for="pi-actionlink-class">Stílus</label>
+            </div>
+            <div class="ui-col-sm-9">
+                <div class="ui-btn-group">
+                    <ui-toggle params='checked: className, option: null, text: "Link"'></ui-toggle>
+                </div>
+                <div class="ui-btn-group ui-pull-right">
+                    <ui-toggle params='checked: className, option: "ui-btn", text: "Sima gomb", css: { "ui-btn": true }, checkbox: false'></ui-toggle>
+                    <ui-toggle params='checked: className, option: "ui-btn ui-btn-flat", text: "Lapos gomb", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+                    <ui-toggle params='checked: className, option: "ui-btn ui-btn-primary", text: "Elsődleges gomb", css: { "ui-btn-primary": true }, checkbox: false'></ui-toggle>
+                </div>
+            </div>
+        </div>
+        <div class="ui-form-group" data-bind='template: { name: "koActionLink", data: actionlink  }'></div>
+    </div>
+</script>

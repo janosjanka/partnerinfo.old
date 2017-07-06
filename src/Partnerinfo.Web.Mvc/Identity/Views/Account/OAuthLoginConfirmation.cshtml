@@ -1,0 +1,79 @@
+﻿@model SignupBindingModel
+@{
+    string providerDisplayName = ViewBag.ProviderDisplayName;
+}
+@section Script {
+    @Html.Partial("_SignupInfoScript")
+}
+<div class="ui-container-fluid ui-color-2">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-sm-5 ui-col-sm-offs-3">
+                <div class="ui-box ui-box-bordered">
+                    <div class="ui-box-header">
+                        <h2><i class="i @((providerDisplayName ?? "unknown").ToLowerInvariant())"></i> @IdentityAppResources.Account_CreateNew</h2>
+                    </div>
+                    <div class="ui-box-group">
+                        @Html.Raw(string.Format(IdentityAppResources.Account_OAuthLoginConfirmation, providerDisplayName))
+                    </div>
+                    <form method="post" action="@Url.Action("oauthloginconfirmation", "account", new RouteValueDictionary { { "area", null }, { "returnurl", ViewBag.ReturnUrl } })">
+                        <div class="ui-box-group">
+                            <div class="ui-form-hl">
+                                <div class="ui-form-group">
+                                    <div class="ui-col-sm-3">
+                                        @Html.LabelFor(m => m.Email, new { @for = "pi-signup-email" })
+                                    </div>
+                                    <div class="ui-col-sm-9">
+                                        @Html.TextBoxFor(m => m.Email, new { id = "pi-signup-email" })
+                                    </div>
+                                </div>
+                                <div class="ui-form-group">
+                                    <div class="ui-col-sm-3">
+                                        @Html.LabelFor(m => m.LastName, new { @for = "pi-signup-lastname" })
+                                    </div>
+                                    <div class="ui-col-sm-9">
+                                        @Html.TextBoxFor(m => m.LastName, new { id = "pi-signup-lastname" })
+                                    </div>
+                                </div>
+                                <div class="ui-form-group">
+                                    <div class="ui-col-sm-3">
+                                        @Html.LabelFor(m => m.FirstName, new { @for = "pi-signup-firstname" })
+                                    </div>
+                                    <div class="ui-col-sm-9">
+                                        @Html.TextBoxFor(m => m.FirstName, new { id = "pi-signup-firstname" })
+                                    </div>
+                                </div>
+                                <div class="ui-form-group">
+                                    <div class="ui-col-sm-3">
+                                        @Html.LabelFor(m => m.Gender, new { @for = "pi-signup-gender" })
+                                    </div>
+                                    <div class="ui-col-sm-9">
+                                        @Html.DropDownListFor(m => m.Gender, new[] { new SelectListItem(), new SelectListItem { Text = "Nő", Value = "Female" }, new SelectListItem { Text = "Férfi", Value = "Male" } }, new { id = "pi-signup-gender" })
+                                    </div>
+                                </div>
+                                <div class="ui-form-group">
+                                    <div class="ui-col-sm-3">
+                                        @Html.LabelFor(m => m.Birthday, new { @for = "pi-signup-birthday" })
+                                    </div>
+                                    <div class="ui-col-sm-9">
+                                        <div id="pi-signup-birthday-container"></div>
+                                        @Html.HiddenFor(m => m.Birthday, new { id = "pi-signup-birthday" })
+                                    </div>
+                                </div>
+                                @Html.ValidationSummary()
+                            </div>
+                        </div>
+                        <div class="ui-box-footer ui-text-center">
+                            <button class="ui-btn ui-btn-primary ui-btn-lg" type="submit">
+                                <i class="i wink"></i>
+                                <span>@IdentityAppResources.Account_Signup</span>
+                            </button>
+                        </div>
+                        @Html.HiddenFor(m => m.ExtraData)
+                        @Html.AntiForgeryToken()
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
