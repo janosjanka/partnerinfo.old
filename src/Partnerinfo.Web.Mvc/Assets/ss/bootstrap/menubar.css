@@ -1,0 +1,80 @@
+﻿/* Copyright (c) Partnerinfo Ltd. All rights reserved. */
+
+.ui-menu {
+    z-index: 1001;
+    padding-left: 0;
+    padding-bottom: 4px;
+    overflow: visible;
+    list-style: none;
+    text-align: left;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: normal;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+}
+
+    .ui-menu > li[role=heading] {
+        margin: 8px 24px;
+        text-transform: uppercase;
+        color: #ccc;
+    }
+
+    .ui-menu > li[role=separator] {
+        margin: 4px 0;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .ui-menu > li > a,
+    .ui-menu > li > a:hover {
+        display: block;
+        padding: 5px 16px;
+        cursor: pointer;
+        font-size: inherit;
+        font-weight: normal;
+        line-height: 1.23076923;
+        text-decoration: none;
+        white-space: nowrap;
+        color: inherit;
+        background: none;
+        border: none;
+    }
+
+        .ui-menu > li > a:hover {
+            text-decoration: none;
+            background-color: rgba(0,0,0,0.064);
+            background-image: none;
+        }
+
+        .ui-menu > li > a > i,
+        .ui-menu > li > a > span {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .ui-menu > li > a > img,
+        .ui-menu > li > a > svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        .ui-menu > li > a > i {
+            font-size: 1.23076923em;
+        }
+
+            .ui-menu > li > a > i + span,
+            .ui-menu > li > a > span + i,
+            .ui-menu > li > a > i + i,
+            .ui-menu > li > a > span + span {
+                margin-left: 8px;
+            }
+
+li.ui-footer {
+    margin-bottom: -4px;
+    padding: 4px 4px 5px 4px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e8e8e8;
+}

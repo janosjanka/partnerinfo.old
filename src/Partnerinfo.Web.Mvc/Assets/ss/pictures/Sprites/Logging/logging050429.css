@@ -1,0 +1,53 @@
+.i
+{
+	display: inline-block;
+	float: none;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	background-color: transparent;
+	background-image: url('logging050429.png');
+	background-repeat: no-repeat;
+}
+.i.log.objecttype-action
+{
+	width: 16px;
+	height: 16px;
+	background-position: 0 0;
+}
+
+.i.log.objecttype-mailmessage
+{
+	width: 16px;
+	height: 16px;
+	background-position: -16px 0;
+}
+
+.i.log.objecttype-message
+{
+	width: 16px;
+	height: 16px;
+	background-position: 0 -16px;
+}
+
+.i.log.objecttype-page
+{
+	width: 16px;
+	height: 16px;
+	background-position: -16px -16px;
+}
+
+.i.log.objecttype-project
+{
+	width: 16px;
+	height: 16px;
+	background-position: -32px 0;
+}
+
+.i.log.objecttype-site
+{
+	width: 16px;
+	height: 16px;
+	background-position: -32px -16px;
+}
+

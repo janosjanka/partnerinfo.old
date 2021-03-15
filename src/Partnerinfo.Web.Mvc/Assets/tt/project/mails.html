@@ -1,0 +1,50 @@
+﻿<script defer="defer" type="text/html" id="koMailMessageListNameCell">
+    <a data-bind='text: subject' data-command='selection.update'></a>
+</script>
+
+<script defer="defer" type="text/template" id="koMailMessageListEditTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("list.create"), clickBubble: false'>
+                <i class="i add"></i>
+            </button>
+            <!-- ko if: selection().length >= 1 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.update"), clickBubble: false'>
+                <i class="i edit"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.delete"), clickBubble: false'>
+                <i class="i delete"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koMailMessageListQueryTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: filter.name, attr: { placeholder: "Levél keresése..." }, submit: filter.submit.bind(filter), cancel: filter.cancel.bind(filter)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-datapager params='list: $data'></ui-datapager>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koMailMessageList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koMailMessageListEditTools" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koMailMessageListQueryTools" }'></div>
+        </div>
+        <div class="ui-data-content">
+            <div data-bind='listView: {
+        columns: [
+            { header: "Tárgy", cellTemplate: "#koMailMessageListNameCell", width: "*", minWidth: "150px" },
+            { binding: "text: modifiedDateFmt", cellClass: "ui-text-right ui-type-time", width: "125px" }
+        ]
+}'>
+            </div>
+        </div>
+    </div>
+</script>

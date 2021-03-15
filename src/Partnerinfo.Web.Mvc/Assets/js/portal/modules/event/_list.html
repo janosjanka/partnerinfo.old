@@ -1,0 +1,59 @@
+﻿<script defer="defer" type="text/html" id="koPageEventListAction">
+    <div class="conHorXL">
+        <i class="i action"></i>
+        <span class="conHorXS" data-bind='text: item.name'></span>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageEventListTrigger">
+    <div class="conHorXL">
+        <i class="i portal module-event"></i>
+        <span class="conHorXS" data-bind='text: event'></span>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageEventListNameCell">
+    <div data-bind='css: { disabled: !isEnabled() }, attr: { title: source }'>
+        <div>
+            <span data-bind='component: { name: "ui-toggle", params: { checked: isEnabled } }'></span>
+            <span data-bind='text: name, attr: { title: name }'></span>
+        </div>
+        <div data-bind='template: { if: action.item.id, name: "koPageEventListAction", data: action }'></div>
+        <div data-bind='template: { name: "koPageEventListTrigger", foreach: triggers }'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageEventListMenuCell"></script>
+
+<script defer="defer" type="text/html" id="koPageEventList">
+    <div class="ui-portal-toolwin-body-menu">
+        <ul class="ui-navbar navHor" role="menu">
+            <li role="menuitem">
+                <a class="ui-btn ui-btn-flat" role="button" data-bind='click: addNew, clickBubble: false'>
+                    <i class="i add"></i>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a class="ui-btn ui-btn-flat" role="button" title="Másolás" data-bind='click: copyToClipboard, clickBubble: false'>
+                    <i class="i copy"></i>
+                </a>
+            </li>
+            <li role="menuitem">
+                <a class="ui-btn ui-btn-flat" role="button" title="Beillesztés" data-bind='click: pasteFromClipboard, clickBubble: false'>
+                    <i class="i paste"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="ui-portal-toolwin-body" data-bind='listView: {
+    synchronize: true,
+    selectionMode: "multi",
+    displaySelectionCheckbox: false,
+    displayHeader: false,
+    displayRowIndex: true,
+    columns: [
+        { cellTemplate: "#koPageEventListNameCell", width: "*", cellClass: "ui-valign-top" }
+    ]
+}'>
+    </div>
+</script>

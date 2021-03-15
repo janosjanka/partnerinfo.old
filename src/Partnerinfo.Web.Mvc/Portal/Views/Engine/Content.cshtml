@@ -1,0 +1,54 @@
+﻿@using Newtonsoft.Json
+@using Partnerinfo
+@using Partnerinfo.Security
+@using Partnerinfo.Portal
+@using Partnerinfo.Portal.ViewModels
+@model EngineResultViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <title>@Model.Page.Name</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+@if (Model.Security.Visibility != AccessVisibility.Public)
+{
+    <meta name="robots" content="noindex, nofollow" />
+}
+@if (!string.IsNullOrEmpty(Model.Page.Description))
+{
+    <meta name="description" content="@Model.Page.Description" />
+}
+    <link type="image/ico" rel="shortcut icon" href="/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="@Styles.Url("~/assets/bootstrap.css")" />
+    <link type="text/css" rel="stylesheet" href="@Styles.Url("~/assets/portal/modules.css")" />
+@if (!string.IsNullOrEmpty(Model.Page.StyleContent))
+{
+    <style type="text/css">@Html.Raw(Model.Page.StyleContent)</style>
+}
+</head>
+<body>
+    @Html.Raw(Model.Page.HtmlContent)
+    @Html.ScriptConfig()
+    <script type="text/javascript" src="@Scripts.Url("~/assets/bootstrap.js")"></script>
+    @foreach (var reference in Model.Page.References)
+    {
+        if (MediaType.IsScript(reference.Type))
+        {
+            <script type="text/javascript" src="@reference.Uri"></script>
+        }
+        else if (MediaType.IsStyle(reference.Type))
+        {
+            <link type="text/css" rel="stylesheet" href="@reference.Uri" />
+        }
+    }
+    <script type="text/javascript">//<![CDATA[
+    require(["portal/modules"]).then(
+        function () {
+            PI.Portal.Engine.initialize(@Html.Raw(JsonConvert.SerializeObject(Model, JsonNetUtility.Settings)));
+        });
+    //]]></script>
+</body>
+</html>

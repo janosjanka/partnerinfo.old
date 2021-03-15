@@ -1,0 +1,46 @@
+﻿.ui-typeahead {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+}
+
+.ui-typeahead-menu {
+    min-width: 150px;
+    max-width: 300px;
+    min-height: 0;
+    max-height: 350px;
+    overflow: auto;
+    overflow-x: hidden;
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #ddd;
+    border-color: rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+}
+
+.ui-typeahead-suggestion {
+    padding: 0 16px;
+    white-space: nowrap;
+}
+
+    .ui-typeahead-suggestion:hover {
+        cursor: pointer;
+        color: #fff;
+        background-color: #4285f4;
+    }
+
+    .ui-typeahead-suggestion.ui-typeahead-selectable {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .ui-typeahead-suggestion.ui-typeahead-cursor {
+        color: #fff;
+        background-color: #4285f4;
+    }
+
+    .ui-typeahead-suggestion p {
+        margin: 0;
+    }

@@ -1,0 +1,27 @@
+﻿@model SignupBindingModel
+@{
+    string birthday;
+
+    if (Model == null || Model.Birthday == null)
+    {
+        birthday = "null";
+    }
+    else
+    {
+        birthday = "new Date(Date.parse('" + Model.Birthday.Value.ToString("o") + "'))";
+    }
+}
+<script defer="defer" id="koSignupInfoDate" type="text/html">
+    <table class="ui-table ui-table-xs">
+        <tbody>
+            <tr>
+                <td><select data-bind='options: years, value: year, optionsCaption: "@IdentityAppResources.Account_Birthday_Year"' /></td>
+                <td><select data-bind='options: months, value: month, optionsCaption: "@IdentityAppResources.Account_Birthday_Month"' /></td>
+                <td><select data-bind='options: days, value: day, optionsCaption: "@IdentityAppResources.Account_Birthday_Day"' /></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+<script defer="defer" type="text/javascript">
+//<![CDATA[
+    $(function(){function t(){$("#pi-signup-birthday").val(Globalize.format(this.toDate(),"d"))}var e=new PI.Date({date:@Html.Raw(birthday)});e.year.subscribe(t,e);e.month.subscribe(t,e);e.day.subscribe(t,e);PI.bind("#pi-signup-birthday-container",e,"koSignupInfoDate")});//]]></script>

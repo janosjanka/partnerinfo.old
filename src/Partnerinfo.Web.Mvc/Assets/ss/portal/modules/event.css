@@ -1,0 +1,32 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-module-event {
+    display: none !important;
+}
+
+.ui-portal-toolwin-event > .ui-portal-toolwin-body > .ui-toolbar {
+    margin-bottom: 8px;
+}
+
+.ui-portal-toolwin-event .ui-listview-item {
+    overflow: hidden;
+}
+
+    .ui-portal-toolwin-event .ui-listview-item > .ui-btn-group,
+    .ui-portal-toolwin-event .ui-listview-item > .ui-type-event {
+        float: right;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+.ui-portal-toolwin-event .ui-listview-group .ui-btn-group,
+.ui-portal-toolwin-event .ui-listview-group:hover .ui-type-event {
+    display: none;
+}
+
+.ui-portal-toolwin-event .ui-listview-group:hover .ui-btn-group,
+.ui-portal-toolwin-event .ui-listview-group .ui-type-event {
+    display: block;
+}

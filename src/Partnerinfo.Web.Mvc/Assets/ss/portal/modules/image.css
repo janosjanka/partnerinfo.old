@@ -1,0 +1,10 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-module-image img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

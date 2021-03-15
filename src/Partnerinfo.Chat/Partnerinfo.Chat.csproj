@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="Settings">
+    <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.Settings.targets" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2821CCD1-9A24-44DB-8424-C00012C3DA71}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Partnerinfo.Chat</RootNamespace>
+    <AssemblyName>Partnerinfo.Chat</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\GuidUtility.cs">
+      <Link>Common\GuidUtility.cs</Link>
+    </Compile>
+    <Compile Include="ChatHubConfig.cs" />
+    <Compile Include="ChatHub.cs" />
+    <Compile Include="ChatManager.cs" />
+    <Compile Include="ChatMessageInfo.cs" />
+    <Compile Include="ChatResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChatResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ChatRoomInfo.cs" />
+    <Compile Include="ChatUserInfo.cs" />
+    <Compile Include="ChatMemoryStore.cs" />
+    <Compile Include="IChatConnectionStore.cs" />
+    <Compile Include="IChatMessageStore.cs" />
+    <Compile Include="IChatStore.cs" />
+    <Compile Include="IChatUserStore.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ChatConnection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChatResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChatResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Partnerinfo.Data\Partnerinfo.Data.csproj">
+      <Project>{16734671-691d-4a23-85cc-6cf4d2d970f7}</Project>
+      <Name>Partnerinfo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Logging\Partnerinfo.Logging.csproj">
+      <Project>{c347aa46-9c77-4c61-8a81-3e75e63bf6c4}</Project>
+      <Name>Partnerinfo.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Portal\Partnerinfo.Portal.csproj">
+      <Project>{2dfa3a52-2704-4a79-84d7-3f776c08bd53}</Project>
+      <Name>Partnerinfo.Portal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Project\Partnerinfo.Project.csproj">
+      <Project>{1cdfebb1-9e61-4b62-a318-93e48c0576f1}</Project>
+      <Name>Partnerinfo.Project</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

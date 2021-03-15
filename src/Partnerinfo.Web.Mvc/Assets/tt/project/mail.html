@@ -1,0 +1,111 @@
+﻿<script defer="defer" type="text/html" id="koMailMessageMenu">
+    <div role="group" class="ui-btn-group">
+        <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: canSend, click: sendAsync, clickBubble: false'>
+            <span>Küldés</span>
+        </button>
+        <button class="ui-btn" type="button" data-bind='enable: canSave, click: saveAsync, clickBubble: false'>
+            <span>Mentés most</span>
+        </button>
+        <button class="ui-btn" type="reset" data-bind='click: discard, clickBubble: false'>
+            <span>Elvetés</span>
+        </button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koMailMessageHeadTagMenu">
+    <div data-bind='dropdown: {
+        autoClose: false,
+        render: function () {
+            PI.ui({
+                name: "project.businesstags",
+                element: $element.querySelector(".ui-menu .ui-container"),
+                params: {
+                    readonly: true,
+                    filter: { project: $data.project },
+                    onitemchecked: function (event) {
+                        $data.header.includeWithTags(event.detail.checked);
+                        $data.header.excludeWithTags(event.detail.unchecked);
+                        $data.header.tagExpression(event.detail.expression);
+                    }
+                }
+            });
+        }
+    }'>
+        <button class="ui-btn ui-btn-flat" type="button">
+            <i class="i dd"></i>
+            <span>További címzettek</span>
+        </button>
+        <ul role="menu" class="ui-menu" style="width: 250px;">
+            <li role="menuitem" class="ui-scroll-vl-sm">
+                <div class="ui-container"></div>
+            </li>
+        </ul>
+    </div>
+    <button class="ui-btn ui-btn-flat" type="button" data-bind='click: function () {
+    PI.dialog({
+        name: "project.contacts",
+        params: {
+            filter: {
+                project: $data.project,
+                includeWithTags: $data.header.includeWithTags(),
+                excludeWithTags: $data.header.excludeWithTags()
+            }
+        }
+    });
+}, clickBubble: false'>
+        <span data-bind='html: header.summary'></span>
+    </button>
+</script>
+
+<script defer="defer" type="text/html" id="koMailMessageHead">
+    <table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 85px;" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr class="ui-valign-top">
+                <td>Címzettek</td>
+                <td data-bind='component: {
+name: "project-contact-input",
+params: {
+    menu: { name: "koMailMessageHeadTagMenu", data: $data },
+    contacts: header.to,
+    projectId: project.id
+} }'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td data-bind='component: { name: "ui-dataerrors", params: { errors: header.errors } }'></td>
+            </tr>
+            <tr>
+                <td>Tárgy</td>
+                <td>
+                    <input name="subject" type="text" required="required" maxlength="256" data-bind='value: subject, hasFocus: true' />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td data-bind='component: { name: "ui-dataerrors", params: { errors: errors } }'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koMailMessage">
+    <div class="ui-box">
+        <div class="ui-box-group">
+            <div data-bind='template: { name: "koMailMessageHead" }'></div>
+            <div data-bind='component: { name: "pi-tinymce", params: {
+    id: "koMailMessageBody",
+    value: body,
+    options: {
+        project: $data.project,
+        container: $($element).parents(".ui-box:first").parent(),
+        relative_urls: false
+    }
+} }'></div>
+            <div data-bind='attr: { "aria-busy": busy }'></div>
+        </div>
+    </div>
+</script>

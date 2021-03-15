@@ -1,0 +1,148 @@
+﻿<script defer="defer" type="text/html" id="koDriveRename">
+    <input type="text" name="name" data-bind='value: item.name' />
+</script>
+
+<script defer="defer" type="text/html" id="koDriveMenu">
+    <div data-bind='dropdown: { autoClose: false }'>
+        <button class="ui-btn ui-btn-primary" type="button">
+            <i class="i upload"></i>
+        </button>
+        <div class="ui-menu" style="width: 350px;">
+            <form data-bind='submit: folder.create.bind(folder)'>
+                <table class="ui-table">
+                    <colgroup>
+                        <col style="width: 80px;" />
+                        <col />
+                        <col style="width: 120px;" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>Mappa</td>
+                            <td>
+                                <input name="folder" type="text" data-bind='value: folder.item.name' />
+                            </td>
+                            <td class="ui-text-right">
+                                <button class="ui-btn" type="submit">
+                                    <i class="i folder"></i>
+                                    <span>Létrehoz</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <div class="conXS">
+                <div role="button" class="fileinput-button">
+                    <div class="conVerS"><i class="i droparea"></i></div>
+                    <div class="conVerS">Fájlok feltöltése kattintással vagy behúzással</div>
+                    <input id="fileupload" type="file" name="files" multiple="multiple" data-bind='jQuery: "fileupload", jQueryOptions: {
+                        dataType: "json" ,
+                        dropZone: $($element).parent(),
+                        submit: function (e, d) { $(this).fileupload("option", "url" , $data.uploader.makeUrl()).fileupload("send", d); return false; },
+                        done: function () { $data.refresh(); },
+                        fail: function (e, d) { $.WinJS.dialog({ content: d.jqXHR.responseJSON && d.jqXHR.responseJSON.message || d.errorThrown }); }
+                    }' />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koDriveFilter">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 50px" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Fájl neve</td>
+                <td>
+                    <input name="name" type="text" data-bind='value: name' />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koDriveIconCell">
+    <a class="ui-btn ui-btn-flat ui-btn-xs" data-bind='attr: { href: item.privateLink, target: "_blank" }'>
+        <i data-bind='attr: { "class": "i " + item.type }'></i>
+    </a>
+</script>
+
+<script defer="defer" type="text/html" id="koDriveNameCell">
+    <a data-bind='text: item.name, click: $list.openFile.bind($list, $data), clickBubble: false'></a>
+    <div class="pi-drive-links ui-font-sm">
+        <a data-bind='text: item.privateLink, attr: { href: item.privateLink, target: "_blank" }'></a>
+        <br />
+        <a data-bind='text: item.publicLink, attr: { href: item.publicLink, target: "_blank" }'></a>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koDriveEditTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group" data-bind='template: { name: "koDriveMenu" }'></div>
+        <div role="group" class="ui-btn-group">
+            <!-- ko if: currentFolder -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: openFolder.bind($data, currentFolder().item.parentId), clickBubble: false'>
+                <i class="i previous"></i>
+            </button>
+            <!-- /ko -->
+            <!-- ko if: selection().length === 0 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: refresh, clickBubble: false'>
+                <i class="i refresh"></i>
+            </button>
+            <!-- /ko -->
+            <!-- ko if: selection().length === 1 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: dispatch.bind($data, "showRenameDialog"), clickBubble: false'>
+                <i class="i edit"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: dispatch.bind($data, "share"), clickBubble: false'>
+                <i class="i share"></i>
+            </button>
+            <!-- /ko -->
+            <!-- ko if: selection().length >= 1 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: deleteAll, clickBubble: false'>
+                <i class="i delete"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koDriveQueryTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: filter.name, attr: { placeholder: "Fájl keresése..." }, submit: filter.refresh.bind(filter), cancel: filter.clear.bind(filter)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-datapager params='list: $data'></ui-datapager>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koDriveList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koDriveEditTools" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koDriveQueryTools" }'></div>
+        </div>
+        <div class="ui-data-content">
+            <div data-bind='listView: {
+    selectionMode: "multi",
+    columns: [
+        { cellTemplate: "#koDriveIconCell", width: "18px" },
+        { header: "Név", cellTemplate: "#koDriveNameCell" },
+        { header: "Méret", binding: "text: lengthFmt", width: "75px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-number" },
+        { header: "Tulajdonos", binding: "component: { name: \"resource-owners\", params: $data }", headerClass: "ui-text-right", cellClass: "ui-text-right", cellStyle: "overflow: visible", width: "75px" },
+        { binding: "elapsed: item.modifiedDate", width: "100px", cellClass: "ui-text-right ui-type-time" }
+    ] }'>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koDriveDialog">
+    <div data-bind='template: { name: "koDriveList" }'></div>
+</script>

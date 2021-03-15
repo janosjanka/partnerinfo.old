@@ -1,0 +1,42 @@
+﻿<script defer="defer" type="text/html" id="koPageMenu">
+    <div role="group" class="ui-btn-group">
+        <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: !errors().length, click: saveAsync, clickBubble: false'>Mentés</button>
+        <button class="ui-btn" type="button" data-bind='click: discard, clickBubble: false'>Elvetés</button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageItem">
+    <form data-bind='submit: saveAsync'>
+        <div class="ui-box">
+            <div class="ui-box-group">
+                <div class="ui-form-hl">
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-page-name">Weboldal neve</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <input id="ko-page-name" name="name" type="text" data-bind='value: name, valueUpdate: "afterkeydown", hasFocus: true' />
+                        </div>
+                    </div>
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-page-uri">Weboldal címe</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <input id="ko-page-uri" class="ui-type-link" name="uri" type="text" data-bind='value: uri' />
+                        </div>
+                    </div>
+                    <div class="ui-form-group">
+                        <div class="ui-col-sm-3">
+                            <label for="ko-page-description">Weboldal leírása</label>
+                        </div>
+                        <div class="ui-col-sm-9">
+                            <textarea id="ko-page-description" name="description" data-bind='value: description'></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input class="ui-hidden" type="submit" />
+    </form>
+</script>

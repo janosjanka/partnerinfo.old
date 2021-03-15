@@ -1,0 +1,187 @@
+﻿/* Chat */
+
+.ui-module-chat {
+    position: fixed;
+    right: 24px;
+    bottom: 0;
+    width: 250px;
+    height: 0;
+    z-index: 1010;
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+}
+
+.ui-module-chat-head {
+    padding: 0 8px;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4e69a2;
+    background-color: rgba(78, 105, 162, 0.8);
+    border: solid #2e4588;
+    border-width: 1px 1px 0 1px;
+    border-radius: 3px 3px 0 0;
+}
+
+    .ui-module-chat-head .ui-module-chat-state {
+        line-height: 27px;
+    }
+
+    .ui-module-chat-head .ui-module-chat-collapse {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0 8px;
+        line-height: 27px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+        color: #fff;
+    }
+
+.ui-module-chat-body {
+    position: absolute;
+    top: 27px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    border: 1px solid #c8c8c8;
+    color: #333;
+}
+
+/* Chat User Box */
+
+.ui-module-chat-userbox-container {
+    display: none;
+}
+
+/* Chat Message Box */
+
+.ui-module-chat-msgbox-container,
+.ui-module-chat-msgbox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.ui-module-chat-msglist {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+    .ui-module-chat-msglist .ui-module-chat-msguser,
+    .ui-module-chat-msglist .ui-module-chat-msgtext {
+        white-space: normal;
+        border: none;
+    }
+
+.ui-module-chat-msg {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 4px 8px;
+    outline: none;
+    border: none;
+}
+
+.ui-module-chat-msguser {
+    display: inline;
+    margin: 0 8px 0 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.ui-module-chat-msgtext {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/* Chat Message State */
+
+.ui-module-chat-msgstate {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    padding: 4px 8px;
+    background-color: #e8e8e8;
+}
+
+    .ui-module-chat-msgstate.ui-module-chat-usertyping {
+        display: block;
+        visibility: visible;
+    }
+
+/* Chat Message Box Form */
+
+.ui-module-chat-msgform-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #c8c8c8;
+}
+
+.ui-module-chat-msginput {
+    margin: 0;
+    padding: 4px;
+    height: 40px;
+    border: none;
+    outline: none;
+}
+
+.ui-module-chat-msgsubmit {
+    display: none;
+}
+
+/* Chat State Flags */
+
+.ui-module-chat-state {
+    display: inline-block;
+    margin: 0 8px 0 0;
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.ui-module-chat-active {
+    visibility: visible;
+    height: 300px;
+}
+
+    .ui-module-chat-active .ui-module-chat-state {
+        background-color: #33cc33;
+    }
+
+.ui-module-chat-collapsed {
+    height: 28px !important;
+}

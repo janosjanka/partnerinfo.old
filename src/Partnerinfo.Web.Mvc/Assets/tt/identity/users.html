@@ -1,0 +1,39 @@
+﻿<script defer="defer" type="text/html" id="koUserLoginCell">
+    <button type="button" class="ui-btn ui-btn-flat ui-btn-sm" data-bind='click: authorize.bind($data, "/admin/analytics"), clickBubble: false'>
+        <span>Belépés</span>
+    </button>
+</script>
+
+<script defer="defer" type="text/html" id="koUserList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary">
+                <div role="toolbar" class="ui-toolbar">
+                    <div role="group" class="ui-btn-group">
+                        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: refresh, clickBubble: false'>
+                            <i class="i refresh"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-data-toolbar-secondary">
+                <ul role="menu" class="ui-navbar navHor">
+                    <li role="menuitem" data-bind='component: { name: "ui-datapager", params: { list: $data } }'></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ui-data-content">
+            <div data-bind='listView: {
+                 columns: [
+                    { binding: "text: item.email.name", header: "Név", width: "*", minWidth: "150px" },
+                    { binding: "text: item.email.address", header: "Email", width: "*", minWidth: "150px" },
+                    { binding: "elapsed: item.birthday", header: "Születésnap", width: "100px", cellClass: "ui-type-time" },
+                    { binding: "text: item.lastIPAddress", header: "IP cím", width: "100px", cellClass: "ui-type-host" },
+                    { binding: "elapsed: item.lastLoginDate", header: "Utolsó belépés", width: "128px", headerClass: "ui-text-right", cellClass: "ui-text-right ui-type-time" },
+                    { cellTemplate: "#koUserLoginCell", width: "100px", headerClass: "ui-text-right", cellClass: "ui-text-right" }
+                 ]
+            }'>
+            </div>
+        </div>
+    </div>
+</script>

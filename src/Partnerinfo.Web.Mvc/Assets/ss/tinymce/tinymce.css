@@ -1,0 +1,44 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.mce-panel,
+.mce-container {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.mce-toolbar {
+    background-color: #fafafa !important;
+}
+
+.mce-floatpanel,
+.mce-edit-area {
+    background-color: #fff !important;
+    border-color: #e8e8e8 !important;
+}
+
+.mce-edit-area {
+    border-width: 1px !important;
+}
+
+    .mce-edit-area > iframe {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        border: none !important;
+    }
+
+.mce-btn {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+    .mce-btn:hover,
+    .mce-btn.mce-active {
+        border-color: rgba(0,0,0,0.2) !important;
+        background-color: #fff !important;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1) !important;
+    }
+
+    .mce-btn.mce-primary {
+        background-color: #257cb6 !important;
+    }

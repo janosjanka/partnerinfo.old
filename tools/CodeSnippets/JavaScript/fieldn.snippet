@@ -1,0 +1,30 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Number field</Title>
+    <Author>Partnerinfo</Author>
+    <Shortcut>fieldn</Shortcut>
+    <Description>Code snippet for a number field XML comment</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>int</ID>
+        <ToolTip>Integer</ToolTip>
+        <Default>false</Default>
+      </Literal>
+      <Literal>
+        <ID>desc</ID>
+        <ToolTip>Description</ToolTip>
+        <Default>Description</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+      <![CDATA[/// <field type="Number" integer="$int$">
+/// $desc$
+/// </field>]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

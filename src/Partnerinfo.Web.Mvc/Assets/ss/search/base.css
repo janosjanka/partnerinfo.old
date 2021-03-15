@@ -1,0 +1,74 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.wsProvBanner {
+    height: 108px;
+    overflow: hidden;
+    background-color: #1b1b1b;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.wsProvContent {
+    margin: 0 auto;
+    width: 980px;
+}
+
+    .wsProvContent.wsVisible .wsMediaPane {
+        float: left;
+        width: 605px;
+    }
+
+    .wsProvContent.wsVisible .wsPlaylistPane {
+        display: block;
+    }
+
+    .wsProvContent.wsVisible .wsMediaDescription {
+        display: none;
+    }
+
+.wsProvMenuPart {
+    padding: 8px 0 0 0;
+    line-height: 2em;
+}
+
+.wsProvMediaPart {
+    position: relative;
+    padding: 8px 0 0 0;
+}
+
+/*-----------------------------------------------------------------------
+  Main Menu
+-----------------------------------------------------------------------*/
+
+.wsProvMenu {
+    position: relative;
+    white-space: nowrap;
+}
+
+.wsProvMenuItem {
+    display: inline-block;
+    margin: 0 4px 0 0;
+    border: 1px solid transparent;
+    vertical-align: middle;
+}
+
+    .wsProvMenuItem.selected {
+        border-color: #ccc;
+        background-color: #fafafa;
+    }
+
+    .wsProvMenuItem.pinned {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+/*-----------------------------------------------------------------------
+  Media
+-----------------------------------------------------------------------*/
+
+.wsMediaContent {
+    margin: 0;
+}

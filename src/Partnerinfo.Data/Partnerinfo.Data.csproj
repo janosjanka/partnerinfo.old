@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="Settings">
+    <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.Settings.targets" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16734671-691D-4A23-85CC-6CF4D2D970F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Partnerinfo</RootNamespace>
+    <AssemblyName>Partnerinfo.Data</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\UriUtility.cs">
+      <Link>Common\UriUtility.cs</Link>
+    </Compile>
+    <Compile Include="ColorInfo.cs" />
+    <Compile Include="ColorInfoConverter.cs" />
+    <Compile Include="Drive\FileItem.cs" />
+    <Compile Include="Drive\IFileStore.cs" />
+    <Compile Include="Identity\IUserValidator.cs" />
+    <Compile Include="Identity\UserSortOrder.cs" />
+    <Compile Include="ListResult.cs" />
+    <Compile Include="Portal\IMediaStreamStore.cs" />
+    <Compile Include="Portal\IPortalPageReferenceStore.cs" />
+    <Compile Include="Portal\MediaField.cs" />
+    <Compile Include="Portal\MediaItem.cs" />
+    <Compile Include="Portal\MediaSortOrder.cs" />
+    <Compile Include="Portal\MediaType.cs" />
+    <Compile Include="Portal\IPageValidator.cs" />
+    <Compile Include="Portal\IPortalCache.cs" />
+    <Compile Include="Portal\IPortalTemplateStore.cs" />
+    <Compile Include="Portal\MediaStreamStore.cs" />
+    <Compile Include="Portal\PortalResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\PortalTemplate.cs" />
+    <Compile Include="Portal\ReferenceItem.cs" />
+    <Compile Include="Project\IProjectValidator.cs" />
+    <Compile Include="Project\ProjectManager.cs" />
+    <Compile Include="Project\ProjectValidator.cs" />
+    <Compile Include="ResourceKeys.cs" />
+    <Compile Include="Identity\IUserStore.cs" />
+    <Compile Include="Identity\UserField.cs" />
+    <Compile Include="Identity\UserItem.cs" />
+    <Compile Include="Identity\UserManager.cs" />
+    <Compile Include="IServiceResolver.cs" />
+    <Compile Include="Input\CommandDefaultMailService.cs" />
+    <Compile Include="Input\CommandResult.cs" />
+    <Compile Include="Input\CommandStatusCode.cs" />
+    <Compile Include="Input\ICommandInvoker.cs" />
+    <Compile Include="Input\CommandItem.cs" />
+    <Compile Include="Input\CommandManager.cs" />
+    <Compile Include="Input\CommandDefaultUriProvider.cs" />
+    <Compile Include="Input\ICommandMailService.cs" />
+    <Compile Include="Input\ICommandStore.cs" />
+    <Compile Include="Input\CommandResources.Designer.cs">
+      <DependentUpon>CommandResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Input\ICommandUriProvider.cs" />
+    <Compile Include="Logging\CategoryField.cs" />
+    <Compile Include="Logging\CategoryItem.cs" />
+    <Compile Include="Logging\CategorySortOrder.cs" />
+    <Compile Include="Logging\EventItem.cs" />
+    <Compile Include="Logging\BrowserBrand.cs" />
+    <Compile Include="Logging\EventResult.cs" />
+    <Compile Include="Logging\EventResultBase.cs" />
+    <Compile Include="Logging\ICategoryStore.cs" />
+    <Compile Include="Logging\IEventBulkOperations.cs" />
+    <Compile Include="Logging\IEventCategoryStore.cs" />
+    <Compile Include="Logging\IEventStore.cs" />
+    <Compile Include="Logging\IRuleStore.cs" />
+    <Compile Include="Logging\MessageResult.cs" />
+    <Compile Include="Logging\RuleField.cs" />
+    <Compile Include="Logging\RuleItem.cs" />
+    <Compile Include="Logging\RuleActionItem.cs" />
+    <Compile Include="Logging\RuleConditionItem.cs" />
+    <Compile Include="Logging\RuleActionCode.cs" />
+    <Compile Include="Logging\RuleConditionCode.cs" />
+    <Compile Include="Logging\MobileDevice.cs" />
+    <Compile Include="Logging\ObjectType.cs" />
+    <Compile Include="Logging\ObjectState.cs" />
+    <Compile Include="DefaultUriNormalizer.cs" />
+    <Compile Include="Portal\PortalValidator.cs" />
+    <Compile Include="Portal\IPortalDomainStore.cs" />
+    <Compile Include="Portal\IPortalStore.cs" />
+    <Compile Include="Portal\IPortalPageStore.cs" />
+    <Compile Include="Portal\IPortalValidator.cs" />
+    <Compile Include="Portal\IPortalMediaStore.cs" />
+    <Compile Include="IUriNormalizer.cs" />
+    <Compile Include="Portal\PageField.cs" />
+    <Compile Include="Portal\PageItem.cs" />
+    <Compile Include="Portal\PageLayers.cs" />
+    <Compile Include="Portal\PortalManager.cs" />
+    <Compile Include="Portal\PortalSortOrder.cs" />
+    <Compile Include="Portal\PortalField.cs" />
+    <Compile Include="Portal\PortalItem.cs" />
+    <Compile Include="ResourceItem.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\ActionField.cs" />
+    <Compile Include="Project\ContactField.cs" />
+    <Compile Include="Project\ContactItem.cs" />
+    <Compile Include="Project\ContactSortOrder.cs" />
+    <Compile Include="Project\IProjectCache.cs" />
+    <Compile Include="Project\IProjectContactStore.cs" />
+    <Compile Include="Project\IProjectContactTagStore.cs" />
+    <Compile Include="Project\IProjectContactInvitation.cs" />
+    <Compile Include="Project\IProjectMailMessageStore.cs" />
+    <Compile Include="Project\MailMessageField.cs" />
+    <Compile Include="Project\MailMessageItem.cs" />
+    <Compile Include="Project\MailMessageHeader.cs" />
+    <Compile Include="Project\MailMessageSortOrder.cs" />
+    <Compile Include="Project\ProjectField.cs" />
+    <Compile Include="Project\ProjectInvitation.cs" />
+    <Compile Include="Security\AccessRuleItem.cs" />
+    <Compile Include="Project\ProjectSortOrder.cs" />
+    <Compile Include="Security\AccessRuleValidator.cs" />
+    <Compile Include="Security\IAccessRuleValidator.cs" />
+    <Compile Include="Security\SecurityResources.Designer.cs">
+      <DependentUpon>SecurityResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Security\SecurityManager.cs" />
+    <Compile Include="Security\IAccessRuleStore.cs" />
+    <Compile Include="Security\SecurityResult.cs" />
+    <Compile Include="Security\SharedResourceItem.cs" />
+    <Compile Include="UniqueItemEqualityComparer.cs" />
+    <Compile Include="AuthUtility.cs" />
+    <Compile Include="Project\ActionItem.cs" />
+    <Compile Include="Project\BusinessTagItem.cs" />
+    <Compile Include="Project\IProjectBusinessTagStore.cs" />
+    <Compile Include="Project\ProjectItem.cs" />
+    <Compile Include="PropertyDictionary.cs" />
+    <Compile Include="Security\AccessVisibility.cs" />
+    <Compile Include="ServerPaths.cs" />
+    <Compile Include="ListResult%271.cs" />
+    <Compile Include="AccountItem.cs" />
+    <Compile Include="ValidationResult.cs" />
+    <Compile Include="PhoneGroupItem.cs" />
+    <Compile Include="Project\IProjectActionStore.cs" />
+    <Compile Include="AuthTicket.cs" />
+    <Compile Include="Project\IProjectStore.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Drive\DriveResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DriveResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Drive\FileResult.cs" />
+    <Compile Include="Security\AccessObjectType.cs" />
+    <Compile Include="Security\AccessPermission.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\UriPartValidatorAttribute.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\UrlValidatorAttribute.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\YearRangeAttribute.cs" />
+    <Compile Include="UniqueItem.cs" />
+    <Compile Include="HypermediaLink.cs" />
+    <Compile Include="HypermediaLinkDictionary.cs" />
+    <Compile Include="Project\ActionType.cs" />
+    <Compile Include="Drive\FileType.cs" />
+    <Compile Include="MailAddressItem.cs" />
+    <Compile Include="FaultMessage.cs" />
+    <Compile Include="PersonGender.cs" />
+    <Compile Include="FaultMember.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\EmailAttribute.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\LocalizableString.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\TemplateFieldAttribute.cs" />
+    <Compile Include="System\ComponentModel\DataAnnotations\UnknownEnumAttribute.cs" />
+    <Compile Include="ValidationResultTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Input\CommandResources.hu.resx" />
+    <EmbeddedResource Include="Input\CommandResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommandResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portal\PortalResources.hu.resx" />
+    <EmbeddedResource Include="Portal\PortalResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PortalResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.hu.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drive\DriveResources.hu.resx" />
+    <EmbeddedResource Include="Drive\DriveResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DriveResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\SecurityResources.hu.resx" />
+    <EmbeddedResource Include="Security\SecurityResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SecurityResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Project\ActionSortOrder.cs" />
+    <Compile Include="JsonNetUtility.cs" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

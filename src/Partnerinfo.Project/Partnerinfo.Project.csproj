@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="Settings">
+    <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.Settings.targets" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1CDFEBB1-9E61-4B62-A318-93E48C0576F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Partnerinfo.Project</RootNamespace>
+    <AssemblyName>Partnerinfo.Project</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.6.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Hangfire.Core.1.6.8\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\UriUtility.cs">
+      <Link>Common\UriUtility.cs</Link>
+    </Compile>
+    <Compile Include="Actions\ActionActivityContext.cs" />
+    <Compile Include="Actions\ActionActivityResult.cs" />
+    <Compile Include="Actions\ActionActivityStatusCode.cs" />
+    <Compile Include="Actions\ActionEventArgs.cs" />
+    <Compile Include="Actions\ActionEventConverter.cs" />
+    <Compile Include="Actions\ActionLink.cs" />
+    <Compile Include="Actions\ActionLinkResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActionLinkResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\ActionLinkService.cs" />
+    <Compile Include="Actions\ActionDescriptor.cs" />
+    <Compile Include="Actions\ActionActivityMetadata.cs" />
+    <Compile Include="Actions\IActionActivity.cs" />
+    <Compile Include="Actions\IActionLinkService.cs" />
+    <Compile Include="Actions\WorkflowInvoker.cs" />
+    <Compile Include="Actions\ControlFlowActionActivity.cs" />
+    <Compile Include="Actions\ActionLinkHelper.cs" />
+    <Compile Include="ContactManager.cs" />
+    <Compile Include="Actions\Crc32.cs" />
+    <Compile Include="Mail\IMailClientService.cs" />
+    <Compile Include="Mail\IMailViewProvider.cs" />
+    <Compile Include="Mail\MailResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MailResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Mail\MailViewProvider.cs" />
+    <Compile Include="Mail\MailJobAddress.cs" />
+    <Compile Include="Mail\MailJobMessage.cs" />
+    <Compile Include="Mail\MailJobClient.cs" />
+    <Compile Include="Mail\MailClientService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Templating\ObjectDescriptor.cs" />
+    <Compile Include="Templating\StringTemplate.cs" />
+    <Compile Include="Templating\StringTemplateCache.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Partnerinfo.Data\Partnerinfo.Data.csproj">
+      <Project>{16734671-691d-4a23-85cc-6cf4d2d970f7}</Project>
+      <Name>Partnerinfo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Partnerinfo.Logging\Partnerinfo.Logging.csproj">
+      <Project>{c347aa46-9c77-4c61-8a81-3e75e63bf6c4}</Project>
+      <Name>Partnerinfo.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Partnerinfo.Properties</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Actions\ActionLinkResources.hu.resx" />
+    <EmbeddedResource Include="Actions\ActionLinkResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionLinkResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\MailResources.hu.resx" />
+    <EmbeddedResource Include="Mail\MailResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MailResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mail\MailMessage.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

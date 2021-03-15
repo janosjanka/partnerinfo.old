@@ -1,0 +1,42 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>winjs_class_define_options</Title>
+    <Author>Partnerinfo</Author>
+    <Shortcut>winjs_class_define_options</Shortcut>
+    <Description>Code snippet for creating a new class definition with an options parameter</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>class</ID>
+        <ToolTip>Class</ToolTip>
+        <Default>Class</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+      <![CDATA[WinJS.Class.define(function $class$_ctor(options) {
+    /// <signature>
+    /// <summary>Initializes a new instance of the $class$ class.</summary>
+    /// <param name="options" type="Object" optional="true">The set of options to be applied initially to the $class$.</param>
+    /// <returns type="$class$" />
+    /// </signature>
+    options = options || {};
+    this._disposed = false;
+    $selected$$end$
+}, {
+    dispose: function () {
+        /// <signature>
+        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+        /// </signature>
+        if (this._disposed) {
+            return;
+        }
+        this._disposed = true;
+    }
+})]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

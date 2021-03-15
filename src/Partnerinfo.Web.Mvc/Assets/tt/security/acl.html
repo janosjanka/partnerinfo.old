@@ -1,0 +1,66 @@
+﻿<script defer="defer" type="text/html" id="koAceItem">
+    <form data-bind='submit: setAsync'>
+        <div class="ui-box">
+            <div class="ui-box-group">
+                <div class="ui-container">
+                    <div class="ui-col-md-9">
+                        <div class="ui-form-hl">
+                            <div class="ui-form-group" data-bind='visible: !anyone()'>
+                                <div class="ui-col-sm-3">
+                                    <label for="ko-ace-email">Felhasználó</label>
+                                </div>
+                                <div class="ui-col-sm-9">
+                                    <identity-user-input params='value: email'></identity-user-input>
+                                </div>
+                            </div>
+                            <div class="ui-form-group" data-bind='visible: !anyone()'>
+                                <div class="ui-col-sm-3">
+                                    <label for="ko-ace-perms">Jogosultság</label>
+                                </div>
+                                <div class="ui-col-sm-9">
+                                    <select id="ko-ace-perms" data-bind='value: permission, options: permissionOptions, optionsText: "text", optionsValue: "value"' />
+                                </div>
+                            </div>
+                            <div class="ui-form-group" data-bind='visible: anyone'>
+                                <div class="ui-col-sm-3">
+                                    <label for="ko-ace-visibility">Láthatóság</label>
+                                </div>
+                                <div class="ui-col-sm-9">
+                                    <select id="ko-ace-visibility" data-bind='value: visibility, options: visibilityOptions, optionsText: "text", optionsValue: "value"' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-col-md-3">
+                        <button class="ui-btn ui-btn-primary ui-btn-lg" type="submit">Megosztás</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input class="ui-hidden" type="submit" />
+    </form>
+</script>
+
+<script defer="defer" type="text/html" id="koAclMenuCell">
+    <a role="button" class="ui-btn ui-btn-flat ui-btn-xs" data-bind='visible: !anyone' data-command='selection.delete'>
+        <i class="i delete"></i>
+    </a>
+</script>
+
+<script defer="defer" type="text/html" id="koAcl">
+    <div class="ui-box">
+        <div class="ui-box-group" style="height: 250px;" data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    columns: [
+        { binding: "text: userName" },
+        { binding: "text: userEmail", cellClass: "ui-type-mail" },
+        { binding: "text: permissionText", width: "100px" },
+        { binding: "text: visibilityText", width: "150px" },
+        { cellTemplate: "#koAclMenuCell", width: "32px" }
+    ]
+}'>
+        </div>
+        <div class="ui-box-group" data-bind='template: { name: "koAceItem", data: rule }'></div>
+    </div>
+</script>

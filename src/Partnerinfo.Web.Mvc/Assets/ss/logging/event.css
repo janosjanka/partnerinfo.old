@@ -1,0 +1,56 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.pi-event-project {
+    display: inline-block;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 0.9em;
+    background-color: #eef9ff;
+    border-radius: 8px;
+}
+
+/*-----------------------------------------------------------------------
+  Event Counter
+-----------------------------------------------------------------------*/
+
+.pi-event-counter {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1;
+}
+
+.pi-event-counter-box {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 32px solid rgba(255, 0, 0, 0.4);
+    border-radius: 32px;
+}
+
+.pi-event-counter-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.pi-event-counter-value {
+    margin: 4px;
+    font-size: 12em;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+/*-----------------------------------------------------------------------
+  Contact state flags
+-----------------------------------------------------------------------*/
+
+.pi-event-ostate-added .ui-checkbox {
+    background-color: #ff0000 !important;
+}
+
+.pi-event-ostate-modified .ui-checkbox {
+    background-color: #ffd800 !important;
+}
+
+.pi-event-ostate-deleted .ui-checkbox {
+    background-color: #009aff !important;
+}

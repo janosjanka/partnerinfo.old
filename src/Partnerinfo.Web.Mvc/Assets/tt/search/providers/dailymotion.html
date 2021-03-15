@@ -1,0 +1,49 @@
+﻿<script defer="defer" type="text/html" id="koDailymotionMenu">
+    <ul class="wsMediaMenu" role="menu">
+        <li role="menuitem" data-bind='visible: selection().length !== items().length'>
+            <a data-bind='click: function (list) { list.selectAll(); }, clickBubble: false'>Mindet kijelöli</a>
+        </li>
+        <li role="menuitem" data-bind='visible: selection().length'>
+            <a data-bind='click: function (list) { list.deselectAll(); }, clickBubble: false'>Kijelölés megszüntetése</a>
+        </li>
+        <li role="menuitem" data-bind='visible: selection().length'>
+            <a class="wsBtnAddToPlaylist" data-bind='click: function (list) { list.addToPlaylist(); }, clickBubble: false'>
+                <span data-bind='text: selection().length'></span>
+                <span> db hozzáadása</span>
+            </a>
+        </li>
+    </ul>
+</script>
+
+<script defer="defer" type="text/html" id="koDailymotionListEditable">
+    <div class="wsMediaMenuPane ui-clearfix" data-bind='template: { if: $data.engine.playlistEnabled, name: "koDailymotionMenu" }'></div>
+    <div class="wsMediaList wsMediaListV2 ui-clearfix" data-bind='css: { wsMediaListHasSelection: $data.selection().length }, listView: {
+        displayHeader: false,
+        displayIndicator: false,
+        displayRowIndex: false,
+        displaySelectionCheckbox: false,
+        synchronize: true,
+        selectionMode: $data.engine.playlistEnabled ? "multiple" : "none",
+        columns: [{ cellTemplate: "#koSearchMediaItemEditable" }],
+        onitemclick: onListViewItemClick
+    }' />
+</script>
+
+
+<script defer="defer" type="text/html" id="koDailymotionListReadonly">
+    <div class="wsMediaList wsMediaListV2 ui-clearfix" data-bind='listView: {
+        displayHeader: false,
+        displayIndicator: false,
+        displayRowIndex: false,
+        displaySelectionCheckbox: false,
+        synchronize: true,
+        selectionMode: "none",
+        columns: [{ cellTemplate: "#koSearchMediaItemReadonly" }],
+        onitemclick: onListViewItemClick
+    }' />
+</script>
+
+
+<script defer="defer" type="text/html" id="koDailymotionList">
+    <!-- ko template: { name: engine.canEdit ? "koDailymotionListEditable" : "koDailymotionListReadonly"  } --><!-- /ko -->
+</script>

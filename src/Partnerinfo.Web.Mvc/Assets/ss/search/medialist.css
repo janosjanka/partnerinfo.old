@@ -1,0 +1,381 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.wsMediaMenuPane {
+    margin: 4px 0 8px 0;
+}
+
+ul.wsMediaMenu {
+    margin: 0;
+    list-style: none;
+}
+
+    ul.wsMediaMenu > li {
+        float: left;
+        margin: 0;
+        padding: 0 12px 0 0;
+    }
+
+        ul.wsMediaMenu > li[role="separator"] {
+            margin: 0 12px 0 0;
+            padding: 8px 0;
+            border-left: 1px solid #ccc;
+        }
+
+    ul.wsMediaMenu a {
+        color: #777;
+    }
+
+    ul.wsMediaMenu > li.selected a {
+        color: #333;
+        text-shadow: 0 0 8px #004360;
+    }
+
+/*-----------------------------------------------------------------------
+  Media List
+-----------------------------------------------------------------------*/
+
+.wsMediaList {
+    margin: 0;
+    padding: 0;
+}
+
+.wsMediaItem {
+    display: block;
+    position: relative;
+    float: left;
+    margin: 0 1px 1px 0;
+    padding: 1px;
+    width: 120px;
+    height: 90px;
+}
+
+.wsMlsItePlay {
+    display: none;
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 1;
+}
+
+.wsMediaItem.wsActive {
+    z-index: 1;
+}
+
+    .wsMediaItem.wsActive > .wsMediaItemPic {
+        border-color: #fff;
+        box-shadow: 0 0 0 3px #0af512;
+    }
+
+    .wsMediaItem.wsActive .wsMlsItePlay {
+        display: block;
+    }
+
+.wsMediaItem:hover {
+    z-index: 2;
+}
+
+    .wsMediaItem:hover > .wsMediaItemMenu {
+        display: block;
+    }
+
+    .wsMediaItem:hover > .wsMediaItemPic {
+        border-color: #f2f2f2;
+    }
+
+.wsMediaItem.wsAnimation:hover > .wsMediaItemPic {
+    top: -12px;
+    left: -14px;
+    z-index: 1;
+    width: 144px;
+    height: 108px;
+    border-color: #f2f2f2;
+    -moz-animation: wsMediaItemZoom 0.1s ease-in forwards;
+    -o-animation: wsMediaItemZoom 0.1s ease-in forwards;
+    -webkit-animation: wsMediaItemZoom 0.1s ease-in forwards;
+    animation: wsMediaItemZoom 0.1s ease-in forwards;
+}
+
+.wsMediaItem:hover .wsMediaItemMenu,
+.wsMediaItem:hover > .wsMediaItemTip {
+    display: block;
+}
+
+.wsMediaItemMenu {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    margin: 0;
+    padding: 4px 8px;
+    text-align: right;
+}
+
+.wsMediaItemTip {
+    position: relative;
+    top: -4px;
+    bottom: 0;
+    left: -36px;
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 196px;
+    border: 1px solid #f2f2f2;
+    border-radius: 2px;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+    .wsMediaItemTip > p {
+        margin: 4px 8px;
+        padding: 0;
+    }
+
+.wsMediaItemPic {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    height: 90px;
+    border: 2px solid transparent;
+}
+
+    .wsMediaItemPic > img {
+        width: 100%;
+        height: 100%;
+    }
+
+@keyframes wsMediaItemZoom {
+    from {
+        top: -2px;
+        left: -2px;
+        width: 120px;
+        height: 90px;
+    }
+
+    to {
+        top: -12px;
+        left: -14px;
+        width: 144px;
+        height: 108px;
+    }
+}
+
+@-moz-keyframes wsMediaItemZoom {
+    from {
+        top: -2px;
+        left: -2px;
+        width: 120px;
+        height: 90px;
+    }
+
+    to {
+        top: -12px;
+        left: -14px;
+        width: 144px;
+        height: 108px;
+    }
+}
+
+@-webkit-keyframes wsMediaItemZoom {
+    from {
+        top: -2px;
+        left: -2px;
+        width: 120px;
+        height: 90px;
+    }
+
+    to {
+        top: -12px;
+        left: -14px;
+        width: 144px;
+        height: 108px;
+    }
+}
+
+/*-----------------------------------------------------------------------
+  Media List - ListView
+-----------------------------------------------------------------------*/
+
+.wsMediaList .ui-listview-inner {
+    display: block;
+}
+
+.wsMediaList .ui-listview-body {
+    display: block;
+    margin: 0 0 0 -8px;
+    padding: 0;
+}
+
+.wsMediaList .ui-listview-group {
+    display: block;
+    position: relative;
+    float: left;
+    overflow: visible;
+    width: 120px;
+    height: 90px;
+    margin: 0 1px 1px 0;
+    padding: 0;
+    background: none;
+    border: none;
+    -ms-zoom: 1;
+    zoom: 1;
+}
+
+    .wsMediaList .ui-listview-group .wsSelectionTab {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-width: 0 48px 48px 0;
+        border-style: solid;
+        border-color: transparent;
+    }
+
+    .wsMediaList .ui-listview-group:hover .ui-listview-toggle {
+        display: block;
+    }
+
+    .wsMediaList .ui-listview-group:hover .ui-btn-checkbox {
+        opacity: 1;
+    }
+
+    .wsMediaList .ui-listview-group.ui-listview-selected .wsSelectionTab {
+        border-right-color: #354c8c;
+    }
+
+    .wsMediaList .ui-listview-group.ui-listview-selected .wsMediaItemPic {
+        border-color: #354c8c;
+    }
+
+.wsMediaList .ui-listview-toggle {
+    position: absolute;
+    display: block;
+    top: 2px;
+    right: 8px;
+    width: auto;
+    z-index: 3;
+    margin: 0;
+    padding: 0;
+}
+
+    .wsMediaList .ui-listview-toggle .ui-checkbox {
+        border: none !important;
+    }
+
+.wsMediaList.wsMediaListHasSelection .ui-listview-toggle {
+    display: block;
+}
+
+.wsMediaList .ui-checkbox {
+    border-color: #ccc;
+}
+
+.wsMediaList .ui-btn-checkbox {
+    opacity: 0.5;
+}
+
+    .wsMediaList .ui-btn-checkbox[aria-checked=true] {
+        opacity: 1;
+    }
+
+.wsMediaList .ui-listview-group.ui-listview-current > .ui-listview-toggle {
+    border: none;
+}
+
+.wsMediaList .ui-listview-item {
+    overflow: visible;
+}
+
+/*-----------------------------------------------------------------------
+  Media List - ListView - Version: 2.0
+-----------------------------------------------------------------------*/
+
+.wsMediaList.wsMediaListV2 .ui-listview-group {
+    -moz-animation: wsMediaListV2 0.4s ease-in forwards;
+    -o-animation: wsMediaListV2 0.4s ease-in forwards;
+    -webkit-animation: wsMediaListV2 0.4s ease-in forwards;
+    -moz-animation-delay: 0.4s;
+    -o-animation-delay: 0.4s;
+    -webkit-animation-delay: 0.4s;
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -moz-transform-origin: center;
+    -ms-transform-origin: center;
+    -o-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    animation: wsMediaListV2 0.4s ease-in forwards;
+    animation-delay: 0.4s;
+}
+
+    .wsMediaList.wsMediaListV2 .ui-listview-group:nth-child(2n) {
+        -moz-animation-delay: 0.8s;
+        -o-animation-delay: 0.8s;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+
+    .wsMediaList.wsMediaListV2 .ui-listview-group:nth-child(3n) {
+        -moz-animation-delay: 1.2s;
+        -o-animation-delay: 1.2s;
+        -webkit-animation-delay: 1.2s;
+        animation-delay: 1.2s;
+    }
+
+/*-----------------------------------------------------------------------
+  Media List Menu
+-----------------------------------------------------------------------*/
+
+.wsMediaListMenu {
+    display: block;
+    clear: both;
+    margin: 0;
+    padding: 8px 4px;
+    width: auto;
+}
+
+@-webkit-keyframes wsMediaListV2 {
+    to {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes wsMediaListV2 {
+    to {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes wsMediaListV2 {
+    to {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}

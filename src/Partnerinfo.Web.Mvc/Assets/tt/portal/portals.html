@@ -1,0 +1,123 @@
+﻿<script defer="defer" type="text/html" id="koPortalListNameCell">
+    <a data-bind='text: name' data-command='edit'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalListLinkCell">
+    <a data-bind='text: domain || uri' data-command='view'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalListOwnersCell">
+    <div data-bind='dropdown'>
+        <button class="ui-btn ui-btn-flat ui-btn-sm" type="button">
+            <span data-bind='text: owners.length'></span>
+            <i class="i dd"></i>
+        </button>
+        <ul role="menu" class="ui-menu" data-bind='foreach: owners'>
+            <li role="menuitem">
+                <a data-bind='click: $list.command("share")'>
+                    <i class="i contact"></i>
+                    <span data-bind='text: email.name, attr: { title: email.address }'></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koPortalListEditTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("create"), clickBubble: false'>
+                <i class="i add"></i>
+            </button>
+            <!-- ko if: selection().length >= 1 -->
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("edit"), clickBubble: false'>
+                <i class="i edit"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("copy"), clickBubble: false'>
+                <i class="i copy"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("share"), clickBubble: false'>
+                <i class="i share"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("view"), clickBubble: false'>
+                <i class="i view"></i>
+            </button>
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("remove"), clickBubble: false'>
+                <i class="i delete"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koPortalListQueryTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: filter.name, attr: { placeholder: "Portál keresése..." }, submit: filter.submit.bind(filter), cancel: filter.cancel.bind(filter)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group ui-visible-sm ui-visible-md ui-visible-lg">
+            <ui-toggle params='checked: filter.orderBy, text: "Legfrissebb", option: "recent", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: filter.orderBy, text: "Névsorrend", option: "name", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+        </div>
+        <div role="group" class="ui-btn-group ui-visible-md ui-visible-lg">
+            <ui-datapager params='list: $data'></ui-datapager>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koPortalListEditTools" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koPortalListQueryTools" }'></div>
+        </div>
+        <div class="ui-data-content" data-bind='listView: {
+    synchronize: true,
+    columns: [
+        { header: "Weboldal neve", cellTemplate: "#koPortalListNameCell", width: "*", minWidth: "150px" },
+        { header: "Weboldal címe", cellTemplate: "#koPortalListLinkCell", width: "200px" },
+        { header: "Projekt", binding: "text: project && project.name", width: "200px" },
+        { header: "Tulajdonos", cellTemplate: "#koPortalListOwnersCell", width: "75px", headerClass: "ui-text-right", cellClass: "ui-text-right", cellStyle: "overflow: visible" },
+        { binding: "elapsed: modifiedDate", width: "100px", cellClass: "ui-text-right ui-type-time" }
+    ]
+}'>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalListMenuUriCell">
+    <button class="ui-btn ui-btn-flat ui-btn-sm" data-command='view'>
+        <i class="i view"></i>
+    </button>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalListMenu">
+    <li class="ui-scroll-vl-lg">
+        <div data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    columns: [
+        { binding: "text: name", width: "*" },
+        { cellTemplate: "#koPortalListMenuUriCell", cellClass: "ui-text-right", width: "32px" },
+        { binding: "elapsed: modifiedDate", cellClass: "ui-text-right ui-type-time", width: "100px" }
+    ],
+    onselectionchanged: function (event) { event.detail.list.command("edit")(); }
+}'>
+        </div>
+    </li>
+    <!-- ko if: !busy() && !items().length -->
+    <li class="ui-type-note ui-text-center">
+        Nincsenek weboldalak
+    </li>
+    <!-- /ko -->
+    <li class="ui-footer ui-clearfix">
+        <div class="ui-pull-left">
+            <a class="ui-btn ui-btn-flat" href="/admin/portals">Mutass minden weboldalt...</a>
+        </div>
+        <div class="ui-pull-right">
+            <span class="progress ui-pull-left" data-bind='visible: busy'></span>
+            <ui-searchbox class="ui-pull-left" params='value: filter.name, submit: filter.submit.bind(filter), cancel: filter.cancel.bind(filter)'></ui-searchbox>
+            <ui-datapager class="ui-pull-left" params='list: $data, ctrls: "prev next"'></ui-datapager>
+        </div>
+    </li>
+</script>

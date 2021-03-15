@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_AccountMessageType_ChangePasswordSuccess" xml:space="preserve">
+    <value>A jelszavad sikeresen módosításra került.</value>
+  </data>
+  <data name="Account_AccountMessageType_RemoveLoginSuccess" xml:space="preserve">
+    <value>A külső fiók társítást sikeresen eltávolítottuk.</value>
+  </data>
+  <data name="Account_AccountMessageType_SetPasswordSuccess" xml:space="preserve">
+    <value>A jelszót sikeresen beállítottuk.</value>
+  </data>
+  <data name="Account_AssociateWith" xml:space="preserve">
+    <value>Partnerinfo TV fiókod társítása külső fiókokkal</value>
+  </data>
+  <data name="Account_AssociateWithDescription" xml:space="preserve">
+    <value>Az alábbi logók valamelyikére kattintva lehetőséged van hozzá társítani a jelenlegi fiókodat a megfelelő külső fiókkal, melynek következtében a továbbiakban a külső fiókjaiddal is betudsz jelentkezni ugyanabba a Partnerinfo TV-s fiókodba.</value>
+  </data>
+  <data name="Account_Birthday_Day" xml:space="preserve">
+    <value>Nap</value>
+  </data>
+  <data name="Account_Birthday_Month" xml:space="preserve">
+    <value>Hónap</value>
+  </data>
+  <data name="Account_Birthday_Year" xml:space="preserve">
+    <value>Év</value>
+  </data>
+  <data name="Account_ChangePassword" xml:space="preserve">
+    <value>Jelszó módosítása</value>
+  </data>
+  <data name="Account_CreateNew" xml:space="preserve">
+    <value>Fiók létrehozása</value>
+  </data>
+  <data name="Account_ForgottenPassword" xml:space="preserve">
+    <value>Elfelejtettem a jelszavamat</value>
+  </data>
+  <data name="Account_LogIn" xml:space="preserve">
+    <value>Belépek</value>
+  </data>
+  <data name="Account_LoginWithOAuth" xml:space="preserve">
+    <value>Bejelentkezés külső fiókkal</value>
+  </data>
+  <data name="Account_LogOut" xml:space="preserve">
+    <value>Kilépek</value>
+  </data>
+  <data name="Account_OAuthLoginConfirmation" xml:space="preserve">
+    <value>A &lt;strong&gt;{0}&lt;/strong&gt; fiókoddal történő csatlakozás befejezéséhez kérjük ellenőrizd mégegyszer az adataidat, majd klikk a "Csatlakozok" gombra.</value>
+  </data>
+  <data name="Account_PasswordError" xml:space="preserve">
+    <value>A jelenlegi jelszó hibás vagy az új jelszó érvénytelen.</value>
+  </data>
+  <data name="Account_PasswordSettings" xml:space="preserve">
+    <value>Jelszó beállítások</value>
+  </data>
+  <data name="Account_ProvidersDescription" xml:space="preserve">
+    <value>Webes fiókjaid egyikével is beléphetsz a Partnerinfo TV-be. Katt az alábbi gombok egyikére és készen is vagyunk:</value>
+  </data>
+  <data name="Account_SetPassword" xml:space="preserve">
+    <value>Jelszó beállítása</value>
+  </data>
+  <data name="Account_SetPasswordDescription" xml:space="preserve">
+    <value>Még nincs Partnerinfo TV jelszavad az aktuális fiókodhoz. Állíts be egy Partnerinfo TV-s jelszót, hogy betudj jelentkezni külső fiókok nélkül is</value>
+  </data>
+  <data name="Account_Settings" xml:space="preserve">
+    <value>Fiók beállítások</value>
+  </data>
+  <data name="Account_SigninWithFacebook" xml:space="preserve">
+    <value>Bejelentkezés Facebook-al</value>
+  </data>
+  <data name="Account_Signup" xml:space="preserve">
+    <value>Csatlakozok</value>
+  </data>
+  <data name="MembershipCreateStatus_DuplicateEmail" xml:space="preserve">
+    <value>Egy felhasználó ezzel az email címmel már regisztrálva van nálunk. Kérjük válassz másik email címet!</value>
+  </data>
+  <data name="MembershipCreateStatus_DuplicateProviderUserKey" xml:space="preserve">
+    <value>A szolgáltatói felhasználó azonosító már létezik.</value>
+  </data>
+  <data name="MembershipCreateStatus_DuplicateUserName" xml:space="preserve">
+    <value>Egy felhasználó ezzel az email címmel már regisztrálva van nálunk. Kérjük válassz másik email címet!</value>
+  </data>
+  <data name="MembershipCreateStatus_InvalidAnswer" xml:space="preserve">
+    <value>A jelszóra adott válasz helytelen.</value>
+  </data>
+  <data name="MembershipCreateStatus_InvalidEmail" xml:space="preserve">
+    <value>Az email cím helytelen. Kérjük ügyelj a helyesírási hibákra!</value>
+  </data>
+  <data name="MembershipCreateStatus_InvalidPassword" xml:space="preserve">
+    <value>A jelszó helytelen.</value>
+  </data>
+  <data name="MembershipCreateStatus_InvalidProviderUserKey" xml:space="preserve">
+    <value>A szolgáltatói azonosító érvénytelen típusú vagy formátumú.</value>
+  </data>
+  <data name="MembershipCreateStatus_InvalidQuestion" xml:space="preserve">
+    <value>A jelszóra adott kérdés helytelen.</value>
+  </data>
+  <data name="MembershipCreateStatus_InvalidUserName" xml:space="preserve">
+    <value>A felhasználónevet nem sikerült megtalálni az adatbázisban.</value>
+  </data>
+  <data name="MembershipCreateStatus_ProviderError" xml:space="preserve">
+    <value>A szolgáltató által visszaadott hiba nem határolható be pontosan. Kérjük jelentse az esetet!</value>
+  </data>
+  <data name="MembershipCreateStatus_Success" xml:space="preserve">
+    <value>Gratulálunk! A felhasználói fiók sikeresen létrejött.</value>
+  </data>
+  <data name="MembershipCreateStatus_UserRejected" xml:space="preserve">
+    <value>A felhasználói fiók nem jött létre valamilyen szolgáltatói okból kifolyólag.</value>
+  </data>
+  <data name="MembershipLogInStatus_InvalidUserNameOrPassword" xml:space="preserve">
+    <value>Helytelen email cím vagy jelszó. Kérjük ellenőrizd!</value>
+  </data>
+  <data name="Account_OAuthLoginFailure" xml:space="preserve">
+    <value>Sajnáljuk, hogy meggondoltad magad, de a későbbiekben szeretettel visszavárunk.</value>
+  </data>
+  <data name="Account_ProfileData" xml:space="preserve">
+    <value>Profil adatok üzleti szolgáltatásokhoz (opcionális)</value>
+  </data>
+  <data name="LoginInfo" xml:space="preserve">
+    <value>Bejelentkezés</value>
+  </data>
+  <data name="LoginInfo_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LoginInfo_Email_RegularExpression" xml:space="preserve">
+    <value>Az email cím helytelen.</value>
+  </data>
+  <data name="LoginInfo_Email_Required" xml:space="preserve">
+    <value>Email címre szükség van.</value>
+  </data>
+  <data name="LoginInfo_Email_StringLength" xml:space="preserve">
+    <value>Az email cím nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="LoginInfo_Password" xml:space="preserve">
+    <value>Jelszó</value>
+  </data>
+  <data name="LoginInfo_Password_Required" xml:space="preserve">
+    <value>A jelszóra szükség van, hogy betudj lépni a rendszerbe.</value>
+  </data>
+  <data name="LoginInfo_Password_StringLength" xml:space="preserve">
+    <value>Ügyelj arra, hogy a jelszó legalább {2} karakter hosszúságú kell legyen.</value>
+  </data>
+  <data name="LoginInfo_RememberMe" xml:space="preserve">
+    <value>Emlékezzen rám</value>
+  </data>
+  <data name="SignupInfo_Birthday" xml:space="preserve">
+    <value>Születésnap</value>
+  </data>
+  <data name="SignupInfo_Birthday_YearRange" xml:space="preserve">
+    <value>A születésnap nem korrekt.</value>
+  </data>
+  <data name="SignupInfo_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SignupInfo_Email_RegularExpression" xml:space="preserve">
+    <value>Az email cím helytelen. Esetleg egy elütött karakter?</value>
+  </data>
+  <data name="SignupInfo_Email_Required" xml:space="preserve">
+    <value>Email címre szükség van a későbbi bejelentkezéshez.</value>
+  </data>
+  <data name="SignupInfo_Email_StringLength" xml:space="preserve">
+    <value>Az email cím túl hosszú. Maximum {1} karakter lehet.</value>
+  </data>
+  <data name="SignupInfo_FirstName" xml:space="preserve">
+    <value>Keresztnév</value>
+  </data>
+  <data name="SignupInfo_FirstName_StringLength" xml:space="preserve">
+    <value>A keresztnév túl hosszú. Maximum {1} karakter lehet.</value>
+  </data>
+  <data name="SignupInfo_Gender" xml:space="preserve">
+    <value>Neme</value>
+  </data>
+  <data name="SignupInfo_LastName" xml:space="preserve">
+    <value>Vezetéknév</value>
+  </data>
+  <data name="SignupInfo_LastName_StringLength" xml:space="preserve">
+    <value>A vezetéknév túl hosszú. Maximum {1} karakter lehet.</value>
+  </data>
+  <data name="SignupInfo_Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="SignupInfo_Password" xml:space="preserve">
+    <value>Jelszó</value>
+  </data>
+  <data name="SignupInfo_Password_Required" xml:space="preserve">
+    <value>Jelszóra szükség van a későbbi bejelentkezéshez.</value>
+  </data>
+  <data name="SignupInfo_Password_StringLength" xml:space="preserve">
+    <value>A jelszó túl rövid. Legalább {2} karakter szükséges.</value>
+  </data>
+  <data name="AccountPassword_ConfirmPassword" xml:space="preserve">
+    <value>Jelszó megerősítése</value>
+  </data>
+  <data name="AccountPassword_ConfirmPassword_Compare" xml:space="preserve">
+    <value>Az új és a megerősítési jelszó nem egyezik meg.</value>
+  </data>
+  <data name="AccountPassword_NewPassword" xml:space="preserve">
+    <value>Új jelszó</value>
+  </data>
+  <data name="AccountPassword_NewPassword_StringLength" xml:space="preserve">
+    <value>Ügyelj arra, hogy a jelszó legalább {2} karakter hosszúságú kell legyen.</value>
+  </data>
+  <data name="AccountPassword_OldPassword" xml:space="preserve">
+    <value>Régi jelszó</value>
+  </data>
+  <data name="AccountPassword_OldPassword_Required" xml:space="preserve">
+    <value>A régi jelszóra szükség van.</value>
+  </data>
+</root>

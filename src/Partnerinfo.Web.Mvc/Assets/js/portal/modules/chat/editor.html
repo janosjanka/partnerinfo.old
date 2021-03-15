@@ -1,0 +1,113 @@
+﻿<script defer="defer" type="text/html" id="koPortalChatModuleSound">
+    <td data-bind='component: { name: "ui-toggle", params: { checked: soundEnabled, text: soundText } }'></td>
+    <td colspan="4">
+        <input type="text" placeholder="Alapértelmezett hang cseréje..." data-bind='visible: soundEnabled, value: soundUrl' />
+    </td>
+    <td>
+        <button class="ui-btn" type="button" data-bind='visible: soundEnabled, click: function () {
+    PI.dialog({
+        name: "drive.filepicker",
+        mode: "single",
+        done: function (res) {
+            if (res.result === "ok") {
+                var it = res.items && res.items[0];
+                it && $data.soundUrl(it.item.link);
+            }
+        }
+    });
+}, clickBubble: false'>
+            <i class="i drive"></i>
+        </button>
+    </td>
+</script>
+
+<script defer="defer" type="text/html" id="koPortalChatModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 150px;" />
+            <col />
+            <col style="width: 50px;" />
+            <col style="width: 150px;" />
+            <col />
+            <col style="width: 50px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Téma</td>
+                <td colspan="2">
+                    <select data-bind='value: module.chatTheme'>
+                        <option>Saját téma</option>
+                        <option value="customer">Ügyfél</option>
+                        <option value="customerservice">Ügyfélszolgálat</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Felhasználó neve (Én)</td>
+                <td colspan="5">
+                    <input type="text" name="adminNickName" data-bind='value: module.userNickName' />
+                </td>
+            </tr>
+            <tr>
+                <td>Ügyfélszolgálatos neve</td>
+                <td colspan="5">
+                    <input type="text" name="adminNickName" data-bind='value: module.adminNickName' />
+                </td>
+            </tr>
+            <tr>
+                <td>Ügyfélszolgálatos kép</td>
+                <td colspan="4">
+                    <input type="text" data-bind='value: module.adminAvatarUrl' />
+                </td>
+                <td>
+                    <button class="ui-btn" type="button" data-bind='click: function () {
+    PI.dialog({
+        name: "drive.filepicker",
+        mode: "single",
+        done: function (res) {
+            if (res.result === "ok") {
+                var it = res.items && res.items[0];
+                it && $data.module.adminAvatarUrl(it.item.link);
+            }
+        }
+    });
+}, clickBubble: false'>
+                        <i class="i drive"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr data-bind='template: { name: "koPortalChatModuleSound", data: { soundText: "Belépési hang", soundEnabled: module.loginSoundEnabled, soundUrl: module.loginSoundUrl } }'></tr>
+            <tr data-bind='template: { name: "koPortalChatModuleSound", data: { soundText: "Üzenet hang", soundEnabled: module.messageSoundEnabled, soundUrl: module.messageSoundUrl } }'></tr>
+            <tr>
+                <td>Üzenet beviteli mező</td>
+                <td colspan="5">
+                    <input type="text" name="messageInputText" data-bind='value: module.messageInputText' />
+                </td>
+            </tr>
+            <tr>
+                <td>Üzenet küldés gomb</td>
+                <td colspan="5">
+                    <input type="text" name="messageSubmitText" data-bind='value: module.messageSubmitText' />
+                </td>
+            </tr>
+            <tr>
+                <td>Gépelési üzenet</td>
+                <td colspan="5">
+                    <input type="text" name="typingMessage" data-bind='value: module.typingMessage' />
+                </td>
+            </tr>
+            <tr>
+                <td>Gépelési jel küldése</td>
+                <td>
+                    <input type="number" name="typingSignalTimeOffs" min="1000" data-bind='value: module.typingSignalTimeOffs' />
+                </td>
+                <td>ms</td>
+                <td>Láthatás időtartama</td>
+                <td>
+                    <input type="number" name="typingSignalDuration" min="1000" data-bind='value: module.typingSignalDuration' />
+                </td>
+                <td>ms</td>
+            </tr>
+        </tbody>
+    </table>
+</script>

@@ -1,0 +1,32 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-datapager {
+    float: right;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    line-height: normal;
+}
+
+    .ui-datapager > .ui-btn,
+    .ui-datapager > .ui-datapager-info,
+    .ui-datapager > .ui-datapager-input,
+    .ui-datapager > .ui-datapager-input > span {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: auto;
+    }
+
+        .ui-datapager > .ui-datapager-input > span > input {
+            display: inline-block;
+            vertical-align: middle;
+            width: 50px;
+        }
+
+    .ui-datapager > .ui-datapager-info,
+    .ui-datapager > .ui-datapager-input {
+        margin-left: 8px;
+        margin-right: 8px;
+    }

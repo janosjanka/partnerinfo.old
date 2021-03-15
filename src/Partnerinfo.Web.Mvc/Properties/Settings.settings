@@ -1,0 +1,63 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Partnerinfo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2.3.5</Value>
+    </Setting>
+    <Setting Name="AppHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost-partnerinfo.tv</Value>
+    </Setting>
+    <Setting Name="AppTitle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Partnerinfo TV</Value>
+    </Setting>
+    <Setting Name="AppLogo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;i class="i logo"&gt;&lt;/i&gt;</Value>
+    </Setting>
+    <Setting Name="OAuthFacebookAppId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1743049802643243</Value>
+    </Setting>
+    <Setting Name="OAuthFacebookAppSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1313310f79821c3176668e3e73c59075</Value>
+    </Setting>
+    <Setting Name="OAuthGoogleAppId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">753439819819.apps.googleusercontent.com</Value>
+    </Setting>
+    <Setting Name="OAuthGoogleConsumerSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bogNOa0bTIxs1D7nlmdGzIfR</Value>
+    </Setting>
+    <Setting Name="OAuthMicrosoftAppId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">00000000440D5838</Value>
+    </Setting>
+    <Setting Name="OAuthMicrosoftAppSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">qNXQueD-td2Nhz9RcYwuTg2mGvPbdN9p</Value>
+    </Setting>
+    <Setting Name="CmdPop3Mail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">partnerinfotvtest@gmail.com</Value>
+    </Setting>
+    <Setting Name="CmdPop3HostName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pop.gmail.com</Value>
+    </Setting>
+    <Setting Name="CmdPop3Port" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">995</Value>
+    </Setting>
+    <Setting Name="CmdPop3EnableSsl" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CmdPop3UserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">recent:partnerinfotvtest@gmail.com</Value>
+    </Setting>
+    <Setting Name="CmdPop3Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">siker4268</Value>
+    </Setting>
+    <Setting Name="PortalPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\WebApps.New\Partnerinfo\Partnerinfo.TV</Value>
+    </Setting>
+    <Setting Name="PortalName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">partnerinfo.tv.sites.{0}</Value>
+    </Setting>
+    <Setting Name="DrivePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/files</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

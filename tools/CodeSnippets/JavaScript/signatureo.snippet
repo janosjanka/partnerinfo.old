@@ -1,0 +1,31 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>signature_options</Title>
+    <Author>Partnerinfo</Author>
+    <Shortcut>signatureo</Shortcut>
+    <Description>Code snippet for a signature XML comment</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>desc</ID>
+        <ToolTip>Description</ToolTip>
+        <Default>Description</Default>
+      </Literal>
+    <Literal>
+        <ID>options</ID>
+        <ToolTip>Description</ToolTip>
+        <Default>Description</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+      <![CDATA[/// <signature>
+/// <summary>$desc$</summary>$end$
+/// <param name="options" type="Object" optional="true">The set of options that are specified declaratively.</param>
+/// </signature>]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

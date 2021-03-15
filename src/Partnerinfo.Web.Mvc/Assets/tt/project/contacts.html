@@ -1,0 +1,184 @@
+﻿<script defer="defer" type="text/html" id="koContactListMenu">
+    <div class="ui-box">
+        <div class="ui-box-group">
+            <div role="group" class="ui-btn-group">
+                <button class="ui-btn ui-btn-primary" type="button" data-bind='click: command("list.create"), clickBubble: false'>
+                    <span>Új felhasználó</span>
+                </button>
+                <div data-bind='dropdown: { autoClose: false }'>
+                    <button class="ui-btn" type="button">
+                        <i class="i upload"></i>
+                    </button>
+                    <ul class="ui-menu" style="width: 175px;" role="menu">
+                        <li role="menuitem" class="ui-scroll-vl-sm">
+                            <div class="conS">
+                                <div role="button" class="fileinput-button">
+                                    <div class="conVerS"><i class="i droparea"></i></div>
+                                    <div class="conVerS">Feltöltés fájlból</div>
+                                    <input id="fileupload" type="file" name="files" multiple="multiple" data-bind='jQuery: "fileupload", jQueryOptions: {
+        dataType: "json",
+        dropZone: $($element).parent(),
+        submit: function (e, d) {
+            var url = PI.api.action("projects/{projectId}/contacts/upload", { projectId: ko.unwrap($data.options.filter.projectId) });
+            $(this).fileupload("option", "url", url).fileupload("send", d);
+            return false;
+        },
+        done: function () { $data.refresh(); },
+        fail: function (e, d) { $.WinJS.dialog({ content: d.jqXHR.responseJSON && d.jqXHR.responseJSON.message || d.errorThrown }); }
+    }' />
+                                </div>
+                                <div class="conS">
+                                    <a class="ui-btn" type="button" href="/assets/static/project/contacts.xlsx" target="_blank">
+                                        Excel sablon letöltése
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ui-box-group" data-bind='ui: {
+         name: "project.businesstags",
+         params: {
+            filter: {
+                project: filter.project
+            },
+            onitemchecked: function (event) {
+                $data.filter.includeWithTags(event.detail.checked);
+                $data.filter.excludeWithTags(event.detail.unchecked);
+                $data.filter.tagExpression(event.detail.expression);
+                $data.filter.submit();
+            }
+         }
+    }'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koContactNameCell">
+    <button class="ui-btn ui-btn-flat ui-btn-sm" type="button" data-bind='click: $data.shareWith.bind($data), clickBubble: false'>
+        <i class="i share"></i>
+    </button>
+    <!-- ko if: facebookId -->
+    <span data-bind='attr: { title: facebookId }'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" style="width: 16px; height: 16px;">
+            <path fill="#000" d="M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9 11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1 11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2 15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3 11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path>
+        </svg>
+    </span>
+    <!-- /ko -->
+    <a data-command='selection.update' data-bind='text: email.name'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koContactInfoCell">
+    <a data-command='selection.update' data-bind='text: displayName'></a>
+</script>
+
+<script defer="defer" type="text/html" id="koContactSponsorCell">
+    <a data-bind='attr: { title: email.address, href: "#/contacts/" + id }'>
+        <span data-bind='text: email.name || email.address'></span>
+    </a>
+</script>
+
+<script defer="defer" type="text/html" id="koContacTagsCell">
+    <!-- ko foreach: businessTagsView -->
+    <div class="ui-btn ui-btn-checkbox ui-btn-sm">
+        <span class="ui-checkbox" data-bind='style: { background: color }'></span>
+        <span>
+            <span data-bind='text: shortName, attr: { title: name }'></span>
+            <small class="ui-type-time" data-bind='elapsed: createdDate, attr: { title: createdDateText }'></small>
+        </span>
+    </div>
+    <!-- /ko -->
+</script>
+
+<script defer="defer" type="text/template" id="koContactListEditTools">
+    <div role="toolbar" class="ui-toolbar">
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("list.create"), clickBubble: false'>
+            <i class="i add"></i>
+        </button>
+        <!-- ko if: selection().length >= 1 -->
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.update"), clickBubble: false'>
+            <i class="i edit"></i>
+        </button>
+        <button class="ui-btn ui-btn-flat" type="button" data-bind='click: command("selection.delete"), clickBubble: false'>
+            <i class="i delete"></i>
+        </button>
+        <!-- /ko -->
+        <div data-bind='visible: selection().length, dropdown: {
+    autoClose: false,
+    render: function (event) {
+        var listening = true;
+        PI.ui({
+            element: $element.querySelector(".ui-menu .ui-box-group"),
+            name: "project.businesstags",
+            params: {
+                filter: {
+                    project: filter.project
+                },
+                onloaded: function(event) {
+                    function selectionChanged(selection) {
+                        listening = false;
+                        event.target.forEach(function (t) { t.checked(selection.every(function (c) { return c.hasBusinessTagId(ko.unwrap(t.id)); }) || null); });
+                        listening = true;
+                    }
+                    $data.selection.subscribe(selectionChanged);
+                    async(function () {
+                        selectionChanged($data.selection.peek());
+                    });
+                },
+                onitemchecked: function (event) {
+                    listening && $data.command("selection.setBusinessTags", event.detail.checked, event.detail.unchecked)();
+                }
+            }
+        });
+    }
+}'>
+            <button class="ui-btn ui-btn-flat" type="button">
+                <i class="i tag"></i>
+                <i class="i dd"></i>
+            </button>
+            <ul class="ui-menu">
+                <li class="ui-scroll-vl-sm" style="width: 300px;">
+                    <div class="ui-box">
+                        <div class="ui-box-group"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div data-bind='html: filter.tagExpression'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/template" id="koContactListQueryTools">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group">
+            <ui-searchbox params='value: filter.name, attr: { placeholder: "Felhasználó keresése..." }, submit: filter.submit.bind(filter), cancel: filter.cancel.bind(filter)'></ui-searchbox>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-toggle params='checked: filter.orderBy, text: "Legfrissebb", option: "recent", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: filter.orderBy, text: "Névsorrend", option: "name", css: { "ui-btn-flat": true }, checkbox: false'></ui-toggle>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-datapager params='list: $data'></ui-datapager>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koContactList">
+    <div class="ui-data-container">
+        <div class="ui-data-toolbar">
+            <div class="ui-data-toolbar-primary" data-bind='template: { name: "koContactListEditTools" }'></div>
+            <div class="ui-data-toolbar-secondary" data-bind='template: { name: "koContactListQueryTools" }'></div>
+        </div>
+        <div class="ui-data-content" data-bind='listView: {
+    selectionMode: "multi",
+    columns: [
+        { header: "Név", cellTemplate: "#koContactNameCell", width: "200px" },
+        { header: "Elérhetőség", cellTemplate: "#koContactInfoCell", width: "175px", cellClass: "ui-type-mail" },
+        { header: "Szponzor", binding: "template: { if: sponsor, name: \"koContactSponsorCell\", data: sponsor }", width: "175px" },
+        { header: "Címkék", cellTemplate: "#koContacTagsCell", width: "*" },
+        { binding: "elapsed: modifiedDate", width: "100px", cellClass: "ui-text-right ui-type-time" }
+    ]
+}'></div>
+    </div>
+</script>

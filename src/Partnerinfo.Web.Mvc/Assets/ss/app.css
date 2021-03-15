@@ -1,0 +1,287 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+#progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 12;
+    display: none;
+    overflow: hidden;
+    width: 100%;
+    height: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+    #progress > span {
+        position: relative;
+        -moz-animation: fsProgress 3s ease-in-out infinite;
+        -o-animation: fsProgress 3s ease-in-out infinite;
+        -webkit-animation: fsProgress 3s ease-in-out infinite;
+        animation: fsProgress 3s ease-in-out infinite;
+    }
+
+        #progress > span:nth-child(2n) {
+            -moz-animation-delay: 0.1s;
+            -o-animation-delay: 0.1s;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        #progress > span:nth-child(3n) {
+            -moz-animation-delay: 0.2s;
+            -o-animation-delay: 0.2s;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+@-webkit-keyframes fsProgress {
+    0% {
+        left: 0;
+    }
+
+    40% {
+        left: 50%;
+    }
+
+    80% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@-moz-keyframes fsProgress {
+    0% {
+        left: 0;
+    }
+
+    40% {
+        left: 50%;
+    }
+
+    80% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes fsProgress {
+    0% {
+        left: 0;
+    }
+
+    40% {
+        left: 50%;
+    }
+
+    80% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/*-----------------------------------------------------------------------
+  Containers
+-----------------------------------------------------------------------*/
+
+.conZ {
+    position: relative;
+    padding: 0;
+}
+
+.con2XS {
+    position: relative;
+    padding: 2px;
+}
+
+.conXS {
+    position: relative;
+    padding: 4px;
+}
+
+.conS {
+    position: relative;
+    padding: 8px;
+}
+
+.conM {
+    position: relative;
+    padding: 16px;
+}
+
+.conL {
+    position: relative;
+    padding: 24px;
+}
+
+.conXL {
+    position: relative;
+    padding: 32px;
+}
+
+.con2XL {
+    position: relative;
+    padding: 48px;
+}
+
+/* Horizontal */
+
+.conHorZ {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.conHor2XS {
+    position: relative;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.conHorXS {
+    position: relative;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.conHorS {
+    position: relative;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.conHorM {
+    position: relative;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.conHorL {
+    position: relative;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.conHorXL {
+    position: relative;
+    padding-right: 32px;
+    padding-left: 32px;
+}
+
+.conHor2XL {
+    position: relative;
+    padding-right: 48px;
+    padding-left: 48px;
+}
+
+/* Vertical */
+
+.conVerZ {
+    position: relative;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.conVer2XS {
+    position: relative;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.conVerXS {
+    position: relative;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.conVerS {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.conVerM {
+    position: relative;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.conVerL {
+    position: relative;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.conVerXL {
+    position: relative;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.conVer2XL {
+    position: relative;
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+/*-----------------------------------------------------------------------
+  Data List UI
+-----------------------------------------------------------------------*/
+
+.ui-data-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.ui-data-toolbar {
+    position: relative;
+    height: 42px;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px 0;
+}
+
+    .ui-data-toolbar:before,
+    .ui-data-toolbar:after {
+        display: table;
+        content: " ";
+    }
+
+    .ui-data-toolbar:after {
+        clear: both;
+    }
+
+.ui-data-toolbar-primary {
+    position: relative;
+    top: 8px;
+    left: 16px;
+}
+
+.ui-data-toolbar-secondary {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+.ui-data-content {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 4px;
+    overflow: auto;
+    background-color: #fff;
+}

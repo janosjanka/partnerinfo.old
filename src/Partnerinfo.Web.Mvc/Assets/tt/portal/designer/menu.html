@@ -1,0 +1,93 @@
+﻿<script type="text/html" id="koPortalDesignerToolbar1">
+    <div role="group" class="ui-btn-group">
+        <div data-bind='dropdown, visible: options.menu.mode() === PI.Portal.ModuleState.edit'>
+            <button class="ui-btn ui-btn-flat" type="button">
+                <span>Új modul</span>
+                <i class="i dd"></i>
+            </button>
+            <ul role="menu" class="ui-menu" style="width: 250px" data-bind='foreach: PI.Portal.ModuleTypes.filter(function (t) { return (t.menu & PI.Portal.MenuType.main) === PI.Portal.MenuType.main; })'>
+                <li role="menuitem">
+                    <a data-bind='click: $parent.options.module.addAsync.bind($parent.options.module, { className: className })'>
+                        <i data-bind='attr: { "class": icon }'></i>
+                        <span data-bind='text: name'></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div data-bind='dropdown: {
+    render: function () {
+        ($element.ownerDocument.defaultView || $element.ownerDocument.parentWindow).PI.ui({
+            element: $(".ui-menu>li:first", $element),
+            name: "portal.pages",
+            params: { portal: $data.options.engine.portal }
+        });
+    }
+}'>
+            <button class="ui-btn ui-btn-flat" type="button">
+                <span>Weboldalak</span>
+                <i class="i dd"></i>
+            </button>
+            <ul role="menu" class="ui-menu" style="width: 800px">
+                <li role="menuitem"></li>
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="koPortalDesignerToolbar2">
+    <div role="toolbar" class="ui-toolbar ui-pull-right" data-bind='visible: options.menu.mode() === PI.Portal.ModuleState.active'>
+        <div role="group" class="ui-btn-group">
+            <div data-bind='dropdown'>
+                <button class="ui-btn" type="button">
+                    <span>További beállítások</span>
+                    <i class="i dd"></i>
+                </button>
+                <ul role="menu" class="ui-menu" style="width: 215px">
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { d.navigate("pagelist"); }'>
+                            <i class="i option"></i>
+                            <span>Portál admin felület</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { d.navigate("settings"); }'>
+                            <i class="i option"></i>
+                            <span>Weboldal beállítások</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a data-bind='click: function (d) { d.navigate("sharing"); }'>
+                            <i class="i share"></i>
+                            <span>Weboldal megosztás</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn" data-bind='click: function (d) { d.editAsync(); }, clickBubble: false'>
+                <i class="i edit"></i>
+            </button>
+            <button class="ui-btn" data-bind='click: function (d) { d.navigate("pageview"); }, clickBubble: false'>
+                <i class="i view"></i>
+            </button>
+        </div>
+    </div>
+    <div role="toolbar" class="ui-toolbar ui-pull-right" data-bind='visible: options.menu.mode() === PI.Portal.ModuleState.edit'>
+        <div role="group" class="ui-btn-group">
+            <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: !options.menu.editing(), click: saveAsync, clickBubble: false'>
+                <span>Mentés</span>
+            </button>
+            <button class="ui-btn" type="reset" data-bind='enable: !options.menu.editing(), click: cancelAsync, clickBubble: false'>
+                <span>Mégse</span>
+            </button>
+        </div>
+        <div role="group" class="ui-btn-group">
+            <ui-toggle params='checked: options.menu.renderMaster, icon: "i portal module-content", attr: { title: "Mester oldal(ak) aktiválása" }, css: { "ui-btn ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <ui-toggle params='checked: options.menu.hiddenVisible, icon: "i portal module-visibility", attr: { title: "Rejtett modulok megjelenítése" }, css: { "ui-btn ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <!-- ko foreach: options.toolWin.toolWins -->
+            <ui-toggle params='checked: state.enabled, icon: icon, attr: { title: resources.name }, css: { "ui-btn ui-btn-flat": true }, checkbox: false'></ui-toggle>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>

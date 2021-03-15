@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Partnerinfo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PortalPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\WebApps.New\Partnerinfo\Partnerinfo.TV</Value>
+    </Setting>
+    <Setting Name="PortalName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">partnerinfo.tv.sites.{0}</Value>
+    </Setting>
+    <Setting Name="PortalHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">phs.partnerinfo.tv</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

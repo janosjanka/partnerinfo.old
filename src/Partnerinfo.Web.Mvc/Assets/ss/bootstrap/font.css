@@ -1,0 +1,136 @@
+﻿/* Copyright (c) Partnerinfo Ltd. All rights reserved. */
+
+@font-face {
+    font-family: Roboto;
+    src: url(/assets/ss/bootstrap/fonts/Roboto-Regular.ttf) format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(/assets/ss/bootstrap/fonts/Roboto-Italic.ttf) format('truetype');
+    font-style: italic;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(/assets/ss/bootstrap/fonts/Roboto-Bold.ttf) format('truetype');
+    font-style: normal;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(/assets/ss/bootstrap/fonts/Roboto-BoldItalic.ttf) format('truetype');
+    font-style: italic;
+    font-weight: bold;
+}
+
+/*-----------------------------------------------------------------------
+  Font Size (Small)
+-----------------------------------------------------------------------*/
+
+.ui-font-sm {
+    font-size: 0.85em !important;
+}
+
+h1.ui-font-sm {
+    font-size: 2.00em !important;
+}
+
+h2.ui-font-sm {
+    font-size: 1.70em !important;
+}
+
+h3.ui-font-sm {
+    font-size: 1.40em !important;
+}
+
+h4.ui-font-sm {
+    font-size: 1.20em !important;
+}
+
+h5.ui-font-sm {
+    font-size: 1.05em !important;
+}
+
+h6.ui-font-sm {
+    font-size: 1.00em !important;
+}
+
+/*-----------------------------------------------------------------------
+  Font Size (Large)
+-----------------------------------------------------------------------*/
+
+.ui-font-lg {
+    font-size: 1.15em !important;
+}
+
+h1.ui-font-lg {
+    font-size: 2.30em !important;
+}
+
+h2.ui-font-lg {
+    font-size: 2.00em !important;
+}
+
+h3.ui-font-lg {
+    font-size: 1.70em !important;
+}
+
+h4.ui-font-lg {
+    font-size: 1.50em !important;
+}
+
+h5.ui-font-lg {
+    font-size: 1.40em !important;
+}
+
+h6.ui-font-lg {
+    font-size: 1.30em !important;
+}
+
+/*-----------------------------------------------------------------------
+  Icons
+-----------------------------------------------------------------------*/
+
+@font-face {
+    font-family: ui-icons;
+    src: url('/assets/ss/bootstrap/fonts/icons.eot');
+    src: url('/assets/ss/bootstrap/fonts/icons.eot') format('embedded-opentype'), url('/assets/ss/bootstrap/fonts/icons.ttf') format('truetype'), url('/assets/ss/bootstrap/fonts/icons.woff') format('woff'), url('/assets/ss/bootstrap/fonts/icons.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ui-ico {
+    font-family: ui-icons;
+    speak: none;
+    line-height: 1;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+    .ui-ico.check:before {
+        content: "\e904";
+    }
+
+    .ui-ico.prev:before {
+        content: "\e900";
+    }
+
+    .ui-ico.first:before {
+        content: "\e901";
+    }
+
+    .ui-ico.next:before {
+        content: "\e902";
+    }
+
+    .ui-ico.last:before {
+        content: "\e903";
+    }

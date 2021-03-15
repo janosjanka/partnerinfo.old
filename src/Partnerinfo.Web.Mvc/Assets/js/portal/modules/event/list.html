@@ -1,0 +1,72 @@
+﻿<script defer="defer" type="text/html" id="koPageEventListNameCell">
+    <div data-bind='css: { disabled: !isEnabled }, attr: { title: $data.source }'>
+        <span class="ui-btn ui-btn-checkbox" role="checkbox" data-bind='attr: { "aria-checked": String(isEnabled) },
+    click: function (d, e) {
+        d.isEnabled = !d.isEnabled;
+        $list.valueHasMutated();
+        e.currentTarget.setAttribute("aria-checked", d.isEnabled);
+        e.currentTarget.parentNode.className = d.isEnabled ? "" : "disabled";
+    }, clickBubble: false'>
+            <span class="ui-checkbox"><i></i></span>
+        </span>
+        <span class="conHorXS">
+            <button class="ui-btn ui-btn-flat ui-btn-sm" type="button" data-bind='click: $listContext.editEvent.bind($listContext, $data), clickBubble: false'>
+                <span data-bind='text: $data.name, attr: { title: $data.name }'></span>
+            </button>
+        </span>
+        <!-- ko foreach: $data.triggers -->
+        <div class="conHorXL ui-type-tip">
+            <i class="i portal module-event"></i>
+            <span class="conHorXS" data-bind='text: event'></span>
+        </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageEventListMenuCell">
+    <span class="ui-type-event" data-bind='text: $listContext.eventNames[$data.event.name]'></span>
+    <span role="group" class="ui-btn-group ui-btn-group-sm">
+        <button class="ui-btn ui-btn-flat" data-bind='click: $listContext.moveUpEvent.bind($listContext, $data)'>
+            <i class="i back"></i>
+        </button>
+        <button class="ui-btn ui-btn-flat" data-bind='click: $listContext.editEvent.bind($listContext, $data)'>
+            <i class="i edit"></i>
+        </button>
+        <button class="ui-btn ui-btn-flat" data-bind='click: $listContext.removeEvent.bind($listContext, $data)'>
+            <i class="i delete"></i>
+        </button>
+    </span>
+</script>
+
+<script defer="defer" type="text/html" id="koPageEventMenu">
+    <div role="toolbar" class="ui-toolbar">
+        <div role="group" class="ui-btn-group ui-btn-group-sm">
+            <button class="ui-btn ui-btn-flat" type="button" data-bind='click: addNewEvent, clickBubble: false'>
+                <i class="i add"></i>
+            </button>
+            <!-- ko if: selection().length -->
+            <button class="ui-btn ui-btn-flat" type="button" title="Másolás" data-bind='click: copyToClipboard, clickBubble: false'>
+                <i class="i copy"></i>
+            </button>
+            <!-- /ko -->
+            <button class="ui-btn ui-btn-flat" type="button" title="Beillesztés" data-bind='click: pasteFromClipboard, clickBubble: false'>
+                <i class="i paste"></i>
+            </button>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koPageEventList">
+    <div data-bind='listView: {
+    displayHeader: false,
+    displaySelectionCheckbox: false,
+    selectionMode: "multi",
+    items: events,
+    selection: selection,
+    columns: [
+        { cellTemplate: "#koPageEventListNameCell", width: "*" },
+        { cellTemplate: "#koPageEventListMenuCell", width: "100px", cellClass: "ui-font-sm" }
+    ]
+}'>
+    </div>
+</script>

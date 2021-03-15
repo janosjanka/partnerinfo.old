@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.AppClass.Enqueue("ui-theme-wide");
+    ViewBag.AppClass.Enqueue("ui-theme-menu");
+    ViewBag.AppClass.Enqueue("ui-theme-red");
+    ViewBag.AppTitle.Enqueue("Meghajtók");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ui-canvas" data-bind='ui: { name: "drive", menu: "#driveMenu", embed: "#driveCode" }'></div>

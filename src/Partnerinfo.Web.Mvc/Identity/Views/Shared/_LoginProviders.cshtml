@@ -1,0 +1,12 @@
+﻿@model ICollection<AuthenticationClientData>
+<form method="post" action="@Url.Action("oauthlogin", "account", new RouteValueDictionary { { "area", null }, { "returnurl", ViewBag.ReturnUrl } })">
+    <div role="group" class="ui-btn-group">
+        @foreach (var p in Model)
+        {
+            <button class="ui-btn ui-btn-flat" type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="@p.DisplayName">
+                <i class="@p.ExtraData["logo"]"></i>
+            </button>
+        }
+    </div>
+    @Html.AntiForgeryToken()
+</form>

@@ -1,0 +1,50 @@
+﻿/* Copyright (c) Partnerinfo Ltd. All rights reserved. */
+
+.ui-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    background-color: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.ui-embed {
+    position: relative;
+    display: block;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+    .ui-embed .ui-embed-content,
+    .ui-embed iframe,
+    .ui-embed embed,
+    .ui-embed object,
+    .ui-embed video,
+    .ui-embed img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        background: none;
+        border: 0;
+    }
+
+.ui-embed-16by9 {
+    padding-bottom: 56.25%;
+}
+
+.ui-embed-4by3 {
+    padding-bottom: 75%;
+}

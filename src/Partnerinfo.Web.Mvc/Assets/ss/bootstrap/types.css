@@ -1,0 +1,64 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-type-link {
+    color: #10c;
+    text-decoration: underline;
+}
+
+.ui-type-mail {
+    color: #3b0090;
+}
+
+.ui-type-host {
+    color: #909090;
+}
+
+.ui-type-number {
+    color: #00650d;
+}
+
+.ui-type-time {
+    color: #009a9a;
+}
+
+.ui-type-duration {
+    color: #005555;
+}
+
+.ui-type-css {
+    color: #900000;
+}
+
+.ui-type-query {
+    color: #900000;
+}
+
+.ui-type-note {
+    color: #909090;
+}
+
+.ui-type-tip {
+    font-size: 0.85em;
+    color: #777;
+}
+
+.ui-type-help {
+    color: #0a5e01;
+}
+
+.ui-type-event {
+    color: #900000;
+}
+
+.ui-type-default {
+    font-weight: bold;
+}
+
+/*-----------------------------------------------------------------------
+  Input Styles
+-----------------------------------------------------------------------*/
+
+.ui-input-default {
+    font-style: italic;
+    color: #c5c5c5;
+}

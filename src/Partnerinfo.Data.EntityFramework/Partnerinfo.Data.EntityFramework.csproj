@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="Settings">
+    <Import Project="$(SolutionDir)\build\Targets\Partnerinfo.Settings.targets" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FCCE93CF-B004-49A0-AB8E-C6F0B637303B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Partnerinfo</RootNamespace>
+    <AssemblyName>Partnerinfo.Data.EntityFramework</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations.cs" />
+    <Compile Include="DateTime2Convention.cs" />
+    <Compile Include="DbContextExtensions.cs" />
+    <Compile Include="DbMetadataExtensions.cs" />
+    <Compile Include="DbParameters.cs" />
+    <Compile Include="DbSchema.cs" />
+    <Compile Include="Drive\Configurations.cs" />
+    <Compile Include="Drive\DriveQueries.cs" />
+    <Compile Include="Drive\FileStore.cs" />
+    <Compile Include="Identity\Configurations.cs" />
+    <Compile Include="Media\MediaPlaylistResult.cs" />
+    <Compile Include="Media\PlaylistEditMode.cs" />
+    <Compile Include="Media\MediaPlaylistItemResult.cs" />
+    <Compile Include="Portal\PortalMedia.cs" />
+    <Compile Include="Portal\ReferenceSerializer.cs" />
+    <Compile Include="Security\SecurityStore.cs" />
+    <Compile Include="Security\SecurityAccessRule.cs" />
+    <Compile Include="Identity\IdentityUser.cs" />
+    <Compile Include="Identity\IdentityResources.Designer.cs">
+      <DependentUpon>IdentityResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Identity\UserQueries.cs" />
+    <Compile Include="Identity\UserStore.cs" />
+    <Compile Include="Input\CommandEntity.cs" />
+    <Compile Include="Input\CommandStore.cs" />
+    <Compile Include="Input\Configurations.cs" />
+    <Compile Include="LinqExtensions.cs" />
+    <Compile Include="Logging\CategoryStore.cs" />
+    <Compile Include="Logging\Configurations.cs" />
+    <Compile Include="Logging\LoggingCategory.cs" />
+    <Compile Include="Logging\LoggingQueries.cs" />
+    <Compile Include="Logging\LoggingEvent.cs" />
+    <Compile Include="Logging\LoggingEventResultMapper.cs" />
+    <Compile Include="Logging\LoggingEventSharing.cs" />
+    <Compile Include="Logging\EventStore.cs" />
+    <Compile Include="Logging\LoggingResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggingResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Logging\LoggingRule.cs" />
+    <Compile Include="Logging\LoggingRuleOptions.cs" />
+    <Compile Include="Logging\LoggingRuleOptionsHelpers.cs" />
+    <Compile Include="Logging\RuleStore.cs" />
+    <Compile Include="MappingExpressions.cs" />
+    <Compile Include="Media\Configurations.cs" />
+    <Compile Include="Media\IMediaStore.cs" />
+    <Compile Include="Media\MediaType.cs" />
+    <Compile Include="Media\MediaPlaylist.cs" />
+    <Compile Include="Media\MediaPlaylistItem.cs" />
+    <Compile Include="Media\MediaQueries.cs" />
+    <Compile Include="Media\MediaStore.cs" />
+    <Compile Include="PartnerDbContext.cs" />
+    <Compile Include="PartnerDbContextExtensions.cs" />
+    <Compile Include="Portal\Configurations.cs" />
+    <Compile Include="Portal\Mapper.cs" />
+    <Compile Include="Portal\PortalFunctionsConvention.cs" />
+    <Compile Include="Portal\PortalEntity.cs" />
+    <Compile Include="Portal\PortalFunctions.cs" />
+    <Compile Include="Portal\PortalPage.cs" />
+    <Compile Include="Portal\PortalQueries.cs" />
+    <Compile Include="Portal\PortalResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\PortalStore.cs" />
+    <Compile Include="Project\Configurations.cs" />
+    <Compile Include="Project\ProjectAction.cs" />
+    <Compile Include="Project\ProjectQueries.cs" />
+    <Compile Include="Project\ProjectBusinessTag.cs" />
+    <Compile Include="Project\ProjectContact.cs" />
+    <Compile Include="Project\ProjectContactTag.cs" />
+    <Compile Include="Project\ProjectEntity.cs" />
+    <Compile Include="Project\ProjectMailMessage.cs" />
+    <Compile Include="Project\ProjectResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Project\ProjectStore.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Configurations.cs" />
+    <Compile Include="Security\SecurityQueries.cs" />
+    <Compile Include="TreeUtility.cs" />
+    <Compile Include="IPersistenceServices.cs" />
+    <Compile Include="PersistenceServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Partnerinfo.Data\Partnerinfo.Data.csproj">
+      <Project>{16734671-691d-4a23-85cc-6cf4d2d970f7}</Project>
+      <Name>Partnerinfo.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Identity\IdentityResources.hu.resx">
+      <CustomToolNamespace>Partnerinfo.Project.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Identity\IdentityResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IdentityResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Partnerinfo.Identity.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logging\LoggingResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoggingResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Partnerinfo.Logging.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portal\PortalResources.hu.resx">
+      <CustomToolNamespace>Partnerinfo.Portal.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portal\PortalResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PortalResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Partnerinfo.Portal.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project\ProjectResources.hu.resx">
+      <CustomToolNamespace>Partnerinfo.Project.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project\ProjectResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProjectResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Partnerinfo.Project.EntityFramework</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

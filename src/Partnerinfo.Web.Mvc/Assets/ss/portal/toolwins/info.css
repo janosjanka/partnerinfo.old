@@ -1,0 +1,35 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-portal-toolwin-info-title {
+    line-height: 1.5em;
+    color: #900000;
+}
+
+.ui-portal-toolwin-info-item {
+    line-height: 1.5em;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+    .ui-portal-toolwin-info-item > .ui-portal-toolwin-info-item {
+        padding-left: 24px;
+    }
+
+.ui-portal-toolwin-info-item-dead {
+    background-color: #f00;
+    text-decoration: line-through;
+}
+
+.ui-portal-toolwin-info-css-prop {
+    display: inline-block;
+    vertical-align: middle;
+    width: 125px;
+    overflow: hidden;
+    color: #ff0000;
+}
+
+.ui-portal-toolwin-info-css-val {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+    color: #219;
+}

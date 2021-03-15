@@ -1,0 +1,18 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.ui-portal-toolwin-tree .ui-fancytree {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ui-portal-toolwin-tree-node-class {
+    color: #900000;
+}
+
+.ui-portal-toolwin-tree-node-noname {
+    font-style: italic;
+    color: #b7b7b7;
+}

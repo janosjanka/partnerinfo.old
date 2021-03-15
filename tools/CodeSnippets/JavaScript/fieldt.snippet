@@ -1,0 +1,30 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Typed Field</Title>
+    <Author>Partnerinfo</Author>
+    <Shortcut>fieldt</Shortcut>
+    <Description>Code snippet for a field XML comment</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>type</ID>
+        <ToolTip>Type</ToolTip>
+        <Default>Object</Default>
+      </Literal>
+      <Literal>
+        <ID>desc</ID>
+        <ToolTip>Description</ToolTip>
+        <Default>Description</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="JavaScript">
+      <![CDATA[/// <field type="$type$">
+/// $desc$
+/// </field>]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

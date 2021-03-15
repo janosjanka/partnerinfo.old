@@ -1,0 +1,35 @@
+﻿@{
+    bool admin = User.IsInRole("Admin");
+}
+@helper MenuItem(string icon, string text, string routeName, string controller, string action = null, object id = null)
+{
+    <li role="menuitem">
+        <a href="@Url.RouteUrl(routeName, new { controller = controller, action = action, id = id })" target="_blank">
+            <i class="i @icon"></i>
+            <span>@text</span>
+        </a>
+    </li>
+}
+<script defer="defer" type="text/html" id="koAppAreaMenu">
+    <div data-bind='dropdown: { align: "right" }'>
+        <button class="ui-btn ui-btn-flat" type="button">
+            <i class="i menu start"></i>
+        </button>
+        <ul role="menu" class="ui-menu" style="width: 150px">
+            @if (admin)
+            {
+                @MenuItem("contact", "Fiókok", "Account", "account")
+                <li role="separator"></li>
+            }
+            @MenuItem("project", "Projektek", "Admin", "projects")
+            @MenuItem("page", "Portálok", "Admin", "portals")
+            @MenuItem("drive", "Meghajtó", "Admin", "drive")
+            @MenuItem("chart", "Analitikák", "Admin", "analytics")
+            @if (admin)
+            {
+                <li role="separator"></li>
+                @MenuItem("task", "Háttérfeladatok", "Admin", "jobs")
+            }
+        </ul>
+    </div>
+</script>

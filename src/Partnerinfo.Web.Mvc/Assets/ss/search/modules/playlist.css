@@ -1,0 +1,402 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+
+.wsPlaylistPane {
+    display: none;
+    float: right;
+    width: 360px;
+    margin: 0 0 0 8px;
+    padding: 0;
+}
+
+/*-----------------------------------------------------------------------
+  Playlist Save Info Dialog
+-----------------------------------------------------------------------*/
+
+.wsPlsSaveInfo {
+    position: absolute;
+    top: 32px;
+    right: 10px;
+    width: 350px;
+    z-index: 2;
+    padding: 8px 16px;
+    overflow: hidden;
+    color: #808080;
+    background-color: #fff;
+    border: 3px solid #354c8c;
+    border-radius: 3px;
+    opacity: 0;
+    -moz-animation: wsPlsSaveInfoVisible 0.3s ease-out forwards;
+    -o-animation: wsPlsSaveInfoVisible 0.3s ease-out forwards;
+    -webkit-animation: wsPlsSaveInfoVisible 0.3s ease-out forwards;
+    animation: wsPlsSaveInfoVisible 0.3s ease-out forwards;
+}
+
+@-webkit-keyframes wsPlsSaveInfoVisible {
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes wsPlsSaveInfoVisible {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes wsPlsSaveInfoVisible {
+    to {
+        opacity: 1;
+    }
+}
+
+/*-----------------------------------------------------------------------
+  Playlist Menu & List Parts
+-----------------------------------------------------------------------*/
+
+.wsPlsMenuPart {
+    position: relative;
+    z-index: 1;
+}
+
+.wsPlsListPart {
+    position: relative;
+    z-index: 0;
+}
+
+.wsPlsListPartMenu {
+    margin: 8px 0;
+    padding: 8px;
+    white-space: nowrap;
+    border-radius: 4px;
+    -moz-animation: wsPlsListPartMenuActive 0.8s step-end 3;
+    -o-animation: wsPlsListPartMenuActive 0.8s step-end 3;
+    -webkit-animation: wsPlsListPartMenuActive 0.8s step-end 3;
+    animation: wsPlsListPartMenuActive 0.8s step-end 3;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+    .wsPlsListPartMenu > input {
+        float: right;
+        width: 200px;
+    }
+
+.wsPlsListPartWarn {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJPSURBVDjLpZPLS5RhFMYfv9QJlelTQZwRb2OKlKuINuHGLlBEBEOLxAu46oL0F0QQFdWizUCrWnjBaDHgThCMoiKkhUONTqmjmDp2GZ0UnWbmfc/ztrC+GbM2dXbv4ZzfeQ7vefKMMfifyP89IbevNNCYdkN2kawkCZKfSPZTOGTf6Y/m1uflKlC3LvsNTWArr9BT2LAf+W73dn5jHclIBFZyfYWU3or7T4K7AJmbl/yG7EtX1BQXNTVCYgtgbAEAYHlqYHlrsTEVQWr63RZFuqsfDAcdQPrGRR/JF5nKGm9xUxMyr0YBAEXXHgIANq/3ADQobD2J9fAkNiMTMSFb9z8ambMAQER3JC1XttkYGGZXoyZEGyTHRuBuPgBTUu7VSnUAgAUAWutOV2MjZGkehgYUA6O5A0AlkAyRnotiX3MLlFKduYCqAtuGXpyH0XQmOj+TIURt51OzURTYZdBKV2UBSsOIcRp/TVTT4ewK6idECAihtUKOArWcjq/B8tQ6UkUR31+OYXP4sTOdisivrkMyHodWejlXwcC38Fvs8dY5xaIId89VlJy7ACpCNCFCuOp8+BJ6A631gANQSg1mVmOxxGQYRW2nHMha4B5WA3chsv22T5/B13AIicWZmNZ6cMchTXUe81Okzz54pLi0uQWp+TmkZqMwxsBV74Or3od4OISPr0e3SHa3PX0f3HXKofNH/UIG9pZ5PeUth+CyS2EMkEqs4fPEOBJLsyske48/+xD8oxcAYPzs4QaS7RR2kbLTTOTQieczfzfTv8QPldGvTGoF6/8AAAAASUVORK5CYII=) no-repeat;
+}
+
+@-webkit-keyframes wsPlsListPartMenuActive {
+    0% {
+        background-color: transparent;
+    }
+
+    50% {
+        background-color: #900000;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+@-moz-keyframes wsPlsListPartMenuActive {
+    0% {
+        background-color: transparent;
+    }
+
+    50% {
+        background-color: #900000;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+@keyframes wsPlsListPartMenuActive {
+    0% {
+        background-color: transparent;
+    }
+
+    50% {
+        background-color: #900000;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+/*-----------------------------------------------------------------------
+  Playlist YouTube Link List Editor
+-----------------------------------------------------------------------*/
+
+textarea.wsPlsLinks {
+    white-space: pre;
+}
+
+    textarea.wsPlsLinks::-webkit-input-placeholder {
+        padding-top: 116px;
+        font-size: 1.4em;
+        text-align: center;
+    }
+
+    textarea.wsPlsLinks:-moz-placeholder {
+        padding-top: 116px;
+        font-size: 1.4em;
+        text-align: center;
+    }
+
+    textarea.wsPlsLinks::-moz-placeholder {
+        padding-top: 116px;
+        font-size: 1.4em;
+        text-align: center;
+    }
+
+    textarea.wsPlsLinks:-ms-input-placeholder {
+        padding-top: 116px;
+        font-size: 1.4em;
+        text-align: center;
+    }
+
+/*-----------------------------------------------------------------------
+  Playlist Item
+-----------------------------------------------------------------------*/
+
+.wsPlsIte {
+    position: relative;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+    .wsPlsIte:hover .wsPlsIteLogo {
+        -moz-animation: wsPlsIteLogoHover 0.7s linear infinite alternate-reverse;
+        -o-animation: wsPlsIteLogoHover 0.7s linear infinite alternate-reverse;
+        -webkit-animation: wsPlsIteLogoHover 0.7s linear infinite alternate-reverse;
+        animation: wsPlsIteLogoHover 0.7s linear infinite alternate-reverse;
+    }
+
+    .wsPlsIte.wsActive .wsPlsIteLogo {
+        -moz-animation: none;
+        -o-animation: none;
+        -webkit-animation: none;
+        animation: none;
+    }
+
+    .wsPlsIte.wsActive .wsPlsItePicture {
+        border-color: #0af512;
+    }
+
+.wsPlsItePlay {
+    position: relative;
+    width: 64px;
+    height: 48px;
+}
+
+.wsPlsIteLogo {
+    position: absolute;
+    top: -4px;
+    left: -16px;
+    bottom: 0;
+    width: 32px;
+    height: 32px;
+    -moz-transform-origin: center;
+    -ms-transform-origin: center;
+    -o-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+}
+
+.wsPlsItePicture {
+    width: 64px;
+    height: 48px;
+    border: 2px solid #333;
+}
+
+.wsPlsIteTime {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    padding: 1px 8px;
+    background-color: rgba(0,0,0,0.5);
+    color: #f8f8f8;
+    line-height: normal;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.wsPlsIteContent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 68px;
+    overflow: hidden;
+    margin: 0 0 0 8px;
+}
+
+.wsPlsIteName {
+    display: inline-block;
+    overflow: hidden;
+    max-height: 32px;
+    vertical-align: middle;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.wsPlsIteDate {
+    color: #00ac82;
+}
+
+.wsPlsIteMenu {
+    position: absolute;
+    right: 2px;
+    bottom: 4px;
+    z-index: 1;
+}
+
+.wsPlsItePlaceholder {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 52px;
+    z-index: 64;
+    background-color: #333;
+    border: 2px solid #333;
+}
+
+@-moz-keyframes wsPlsIteLogoHover {
+    from {
+        -moz-transform: scale(0.7);
+        -ms-transform: scale(0.7);
+        -o-transform: scale(0.7);
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+    }
+
+    to {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes wsPlsIteLogoHover {
+    from {
+        -moz-transform: scale(0.7);
+        -ms-transform: scale(0.7);
+        -o-transform: scale(0.7);
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+    }
+
+    to {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes wsPlsIteLogoHover {
+    from {
+        -moz-transform: scale(0.7);
+        -ms-transform: scale(0.7);
+        -o-transform: scale(0.7);
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+    }
+
+    to {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+/*-----------------------------------------------------------------------
+  Playlist Drop Target
+-----------------------------------------------------------------------*/
+
+.wsPlsDropCon {
+    display: block;
+}
+
+.wsPlsDropImg {
+    z-index: 4 !important;
+    border: 2px dashed #354c8c;
+    border-radius: 8px;
+}
+
+/*-----------------------------------------------------------------------
+  Playlist
+-----------------------------------------------------------------------*/
+
+.wsPlaylist.ui-listview {
+    margin: 8px 0 0 0;
+    padding: 0;
+    overflow: visible;
+    background: none;
+    font-size: 0.9em;
+}
+
+    .wsPlaylist.ui-listview .ui-listview-group {
+        margin: 0;
+        padding: 4px 0;
+        border: none;
+    }
+
+        .wsPlaylist.ui-listview .ui-listview-group:hover {
+            background-color: #ccc;
+        }
+
+        .wsPlaylist.ui-listview .ui-listview-group.ui-listview-selected {
+            background-color: transparent;
+        }
+
+        .wsPlaylist.ui-listview .ui-listview-group.ui-listview-current {
+            background-color: #1b1b1b;
+            color: #f2f2f2;
+        }
+
+    .wsPlaylist.ui-listview .ui-listview-item {
+        width: 320px;
+        overflow: visible;
+    }
+
+.wsPlaylist .ui-listview-current > .ui-listview-indicator {
+    background-color: #0af512 !important;
+}
+
+.wsPlaylist .ui-listview-empty {
+    margin: 8px 0 0 0;
+    padding: 8px;
+    font-size: 2em;
+    text-align: center;
+    border: 2px dashed #354c8c;
+    border-radius: 8px;
+    color: #354c8c;
+}
+
+/*-----------------------------------------------------------------------
+  Playlist Buttons
+-----------------------------------------------------------------------*/
+
+a.wsBtnAddToPlaylist {
+    font-weight: bold !important;
+    color: #354c8c !important;
+}

@@ -1,0 +1,126 @@
+﻿<script defer="defer" type="text/html" id="koContactMenu">
+    <div role="group" class="ui-btn-group">
+        <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: !errors().length, click: saveAsync, clickBubble: false'>
+            <span>Mentés</span>
+        </button>
+        <button class="ui-btn" type="reset" data-bind='click: discard, clickBubble: false'>
+            <span>Elvetés</span>
+        </button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koContactItem">
+    <form data-bind='submit: saveAsync'>
+        <div class="ui-box">
+            <div class="ui-box-group">
+                <table class="ui-table">
+                    <colgroup>
+                        <col style="width: 100px;" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>Szponzor</td>
+                            <td data-bind='component: { name: "project-contact-input", params: { contacts: sponsors, projectId: project.id, limit: 1 } }'></td>
+                        </tr>
+                        <tr>
+                            <td>Facebook ID</td>
+                            <td>
+                                <input name="facebookId" type="number" data-bind='value: facebookId' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>
+                                <input name="email.address" type="email" maxlength="128" data-bind='value: email.address, hasFocus: true' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Név</td>
+                            <td>
+                                <input name="email.name" type="text" maxlength="128" data-bind='value: email.name' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vezetéknév</td>
+                            <td>
+                                <input name="lastName" type="text" maxlength="64" data-bind='value: lastName' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Keresztnév</td>
+                            <td>
+                                <input name="firstName" type="text" maxlength="64" data-bind='value: firstName' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Benecév</td>
+                            <td>
+                                <input name="nickName" type="text" maxlength="128" data-bind='value: nickName' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Neme</td>
+                            <td>
+                                <select nme="gender" data-bind='value: gender'>
+                                    <option value="unknown"></option>
+                                    <option value="male">Férfi</option>
+                                    <option value="female">Nő</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Születésnap</td>
+                            <td data-bind='component: { name: "ui-datetime", params: { value: birthday, mode: "date", text: { year: "Év", month: "Hónap", day: "Nap" } } }'></td>
+                        </tr>
+                        <tr>
+                            <td>Magán telefon</td>
+                            <td>
+                                <input name="phones.personal" type="tel" maxlength="16" data-bind='value: phones.personal' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Üzleti telefon</td>
+                            <td>
+                                <input name="phones.business" type="tel" maxlength="16" data-bind='value: phones.business' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mobil telefon</td>
+                            <td>
+                                <input name="phones.mobile" type="tel" maxlength="16" data-bind='value: phones.mobile' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Egyéb telefon</td>
+                            <td>
+                                <input name="phones.other" type="tel" maxlength="16" data-bind='value: phones.other' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea rows="5" maxlength="512" data-bind='value: comment'></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-box-group" data-bind='component: { name: "ui-dataerrors", params: { errors: errors } }'></div>
+            <div class="ui-box-group" data-bind='visible: exists'>
+                <ul role="menu" class="ui-navbar-vl navVerXL" data-bind='foreach: businessTagsView'>
+                    <li role="menuitem">
+                        <div class="ui-btn ui-btn-checkbox">
+                            <span class="ui-checkbox" data-bind='style: { backgroundColor: color }'></span>
+                            <span>
+                                <span data-bind='text: name'></span>
+                                <span class="conHorM ui-type-time" data-bind='text: createdDateText'></span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input class="ui-hidden" type="submit" />
+    </form>
+    <div class="ajax-loader" data-bind='visible: busy'></div>
+</script>

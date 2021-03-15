@@ -1,0 +1,60 @@
+﻿/* Copyright (c) Partnerinfo. All rights reserved. */
+/*
+.ui-dlg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    z-index: 1100;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ui-dlg-hdr {
+    padding: 8px 16px;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.2);
+}
+
+.ui-dlg-bdy {
+    position: relative;
+    padding: 8px 16px;
+}
+
+.ui-dlg-ftr {
+    position: relative;
+    padding: 8px 16px;
+    border-top: 1px solid transparent;
+    color: #333;
+    background-color: rgba(242, 242, 242, 0.7);
+    border-color: #e8e8e8;
+}
+
+@media (min-width: 768px) {
+    .ui-dlg {
+        width: 600px;
+        margin: 32px auto;
+    }
+
+    .ui-dlg-bdy {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
+
+    .ui-dlg-sm {
+        width: 300px;
+    }
+}
+
+@media (min-width: 992px) {
+    .ui-dlg-lg {
+        width: 900px;
+    }
+}
+*/

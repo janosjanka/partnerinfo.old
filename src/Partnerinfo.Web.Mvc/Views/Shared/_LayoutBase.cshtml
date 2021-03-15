@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName" class="@string.Join(" ", (IEnumerable<string>)ViewBag.AppClass)">
+<head>
+    <title>@string.Join(" - ", (IEnumerable<string>)ViewBag.AppTitle)</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="image/ico" rel="shortcut icon" href="/favicon.ico" />
+    <link id="pi-bootstrap-css" type="text/css" rel="stylesheet" href="@Styles.Url("~/assets/bootstrap.css")" />
+</head>
+<body>
+    @RenderBody()
+    @Html.ScriptConfig()
+    <script id="pi-bootstrap-js" type="text/javascript" src="@Scripts.Url("~/assets/bootstrap.js")"></script>
+    @RenderSection("Script", false)
+</body>
+</html>

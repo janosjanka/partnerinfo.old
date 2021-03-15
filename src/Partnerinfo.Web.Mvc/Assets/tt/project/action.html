@@ -1,0 +1,341 @@
+﻿<script defer="defer" type="text/html" id="koActionItemView">
+    <table class="ui-table ui-table-sm">
+        <colgroup>
+            <col style="width: 30px" />
+            <col />
+            <col style="width: 100px" />
+            <col style="width: 150px" />
+        </colgroup>
+        <tr>
+            <td>
+                <div class="ui-btn ui-btn-xs ui-btn-checkbox" role="radio" aria-checked="false">
+                    <span class="ui-checkbox" data-bind='style: { backgroundColor: typeInfo().color }'><i></i></span>
+                </div>
+            </td>
+            <td data-bind='attr: { title: name }, css: { disabled: !enabled() }, with: info'>
+                <div>
+                    <span class="ui-type-number" data-bind='text: $parent.getPath($index() + 1)'></span>
+                    <!-- ko if: link -->
+                    <a class="ui-type-link conHorXS" href="#" target="_blank" data-bind='text: link || name, attr: { href: link }'></a>
+                    <!-- /ko -->
+                    <!-- ko ifnot: link -->
+                    <span class="conHorXS" data-bind='text: name'></span>
+                    <!-- /ko -->
+                </div>
+                <div class="ui-type-help" data-bind='text: help'></div>
+            </td>
+            <td class="ui-text-right ui-type-time ui-font-sm" data-bind='elapsed: modifiedDate'></td>
+            <td class="ui-text-right">
+                <div role="group" class="ui-btn-group ui-btn-group-xs">
+                    <button type="button" class="ui-btn ui-btn-flat" title="Akció hozzáadása" data-bind='visible: canAddNew, click: function (d) { d.addNew(); }, clickBubble: false'>
+                        <i class="i add"></i>
+                    </button>
+                    <button type="button" class="ui-btn ui-btn-flat" title="Szerkesztés" data-bind='click: function (d) { d.beginEdit(); }, clickBubble: false'>
+                        <i class="i edit"></i>
+                    </button>
+                    <button type="button" class="ui-btn ui-btn-flat" title="Tesztelés" data-bind='visible: link, click: function (d) { window.open(d.link(), "_blank"); }, clickBubble: false'>
+                        <i class="i page"></i>
+                    </button>
+                    <button type="button" class="ui-btn ui-btn-flat" title="Másolás" data-bind='visible: parent, click: function (d) { d.copyBeforeAsync(d.parent && d.parent.childrenView()[$index() + 1]); }, clickBubble: false'>
+                        <i class="i copy"></i>
+                    </button>
+                    <button type="button" class="ui-btn ui-btn-flat" title="Törlés" data-bind='visible: canRemove, click: function (d) { d.deleteAsync(); }, clickBubble: false'>
+                        <i class="i delete"></i>
+                    </button>
+                    <button type="button" class="ui-btn ui-btn-flat" title="Akció be/ki kapcsolása" data-bind='click: function (d) { d.toggleAsync(); }, clickBubble: false'>
+                        <span class="ui-text-right" data-bind='text: enabled() ? "KI" : "BE"'></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeItem">
+    <li role="menuitem">
+        <a data-bind='attr: { "data-type": name }'>
+            <span class="ui-checkbox" data-bind='style: { backgroundColor: color }'></span>
+            <span data-bind='text: displayName'></span>
+        </a>
+    </li>
+</script>
+
+<script defer="defer" type="text/html" id="koActionItemEdit">
+    <form data-bind='submit: endEdit'>
+        <table class="ui-table">
+            <colgroup>
+                <col />
+                <col style="width: 50px" />
+                <col style="width: 150px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: canSave'>
+                            <span>Mentés</span>
+                        </button>
+                        <button class="ui-btn" type="button" data-bind='enable: canCancel, click: cancelEdit, clickBubble: false'>
+                            <span>Mégse</span>
+                        </button>
+                        <div data-bind='dropdown'>
+                            <button class="ui-btn ui-btn-flat" type="button" title="Művelet kiválasztása" data-bind='with: typeInfo'>
+                                <i class="i dd"></i>
+                                <span class="ui-checkbox" data-bind='style: { backgroundColor: color }'></span>
+                                <span data-bind='text: displayName'></span>
+                            </button>
+                            <ul role="menu" class="ui-menu" style="width: 275px" data-bind='template: { name: "koActionTypeItem", foreach: types.types.slice(1) }, click: function (d, e) { var type = $(e.target).closest("a").attr("data-type"); type && d.type(type); }'></ul>
+                        </div>
+                    </td>
+                    <td class="ui-text-right">
+                        <div class="progress" data-bind='visible: busy'></div>
+                    </td>
+                    <td class="ui-text-right">
+                        <div data-bind='component: { name: "ui-toggle", params: { checked: enabled, text: PI.Project.ActionResources.actionEnabled() } }'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ui-type-help" colspan="3" data-bind='text: typeInfo().description'></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input name="name" type="text" data-bind='value: name, attr: { placeholder: PI.Project.ActionResources.actionName(!!parent) }' />
+                        <div data-bind='component: { name: "ui-dataerrors", params: { errors: errors } }'></div>
+                    </td>
+                </tr>
+                <tr data-bind='if: typeInfo'>
+                    <td colspan="3" data-bind='with: optionsView'>
+                        <div data-bind='template: { name: "koActionType" + $parent.typeInfo().normalizedName }'></div>
+                        <div data-bind='component: { name: "ui-dataerrors", params: { errors: errors } }'></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</script>
+
+<script defer="defer" type="text/html" id="koActionNode">
+    <div class="proActionNode">
+        <div class="proActionTitle" data-bind='template: { name: editing() ? "koActionItemEdit" : "koActionItemView" }'></div>
+        <div class="proActionLevel" data-bind='template: { if: enabled, name: "koActionNode", foreach: childrenView }'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionItem">
+    <div class="ui-box">
+        <div class="ui-box-group">
+            <div class="proActionTree" data-bind='template: { name: "koActionNode", foreach: [$data] },
+jQuery: "sortable",
+jQueryOptions: {
+    axis: "y",
+    cursor: "move",
+    distance: 10,
+    placeholder: "proActionPlaceholder",
+    items: ".proActionLevel>.proActionNode",
+    update: function (event, ui) {
+        var action = ko.dataFor(ui.item[0]);
+        var referenceActionNode = ui.item.next()[0];
+        var referenceAction = referenceActionNode && ko.dataFor(referenceActionNode);
+        ui.item.remove();
+        action.moveBeforeAsync(referenceAction);
+    }
+}'></div>
+        </div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeRedirect">
+    <table class="ui-table">
+        <colgroup>
+            <col />
+            <col style="width: 75px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="url" name="url" placeholder="http://www.example.com" data-bind='value: url' />
+                </td>
+                <td class="ui-text-right">
+                    <a class="ui-btn" data-bind='attr: { href: url }'>
+                        <i class="i view"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeSchedule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 125px;" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Kezdés időpontja</td>
+                <td data-bind='component: { name: "ui-datetime", params: { value: startDate, mode: "datetime", text: { year: "Év", month: "Hónap", day: "Nap", hour: "Óra", minute: "Perc" } } }'></td>
+            </tr>
+            <tr>
+                <td>Relatív időeltolás</td>
+                <td data-bind='component: { name: "ui-timespan", params: { value: offsetTime, text: { days: "Nap", hours: "Óra", minutes: "Perc", seconds: "Mp" } } }'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeCondition">
+    <table class="ui-table">
+        <tbody>
+            <tr>
+                <td>
+                    <div data-bind='dropdown'>
+                        <button class="ui-btn" type="button">
+                            <i class="i add v1"></i>
+                            <span>Feltétel hozzáadása</span>
+                            <i class="i dd v1"></i>
+                        </button>
+                        <ul role="menu" class="ui-menu" style="width: 275px" data-bind='foreach: types, click: function (d, e) { var name = $(e.target).closest("a").attr("data-name"); name && d.addCondition(name); }'>
+                            <li role="menuitem">
+                                <a data-bind='text: displayName, attr: { "data-name": name }'></a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="ui-table ui-table-sm">
+                        <colgroup>
+                            <col style="width: 75px;" />
+                            <col style="width: 200px;" />
+                            <col />
+                        </colgroup>
+                        <tbody data-bind='foreach: conditions'>
+                            <tr>
+                                <td>
+                                    <button type="button" class="ui-btn ui-btn-flat ui-btn-xs" title="Feltétel előrébb" data-bind='enable: $index, click: function (d) { $parent.moveCondition($index(), $index() - 1); }, clickBubble: false'>
+                                        <span data-bind='text: $index() + 1'></span>
+                                        <i class="i du"></i>
+                                    </button>
+                                    <button type="button" class="ui-btn ui-btn-flat ui-btn-xs" title="Feltétel törlése" data-bind='click: function (d) { $parent.conditions.remove(d); }, clickBubble: false'>
+                                        <i class="i delete"></i>
+                                    </button>
+                                </td>
+                                <td data-bind='text: type.displayName'></td>
+                                <td data-bind='template: { name: "koActionTypeCondition" + type.normalizedName }'></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionDateGreaterThanOrEqualTo">
+    <div data-bind='component: { name: "ui-datetime", params: { value: value.datetime, mode: "datetime", text: { year: "Év", month: "Hónap", day: "Nap", hour: "Óra", minute: "Perc" } } }'></div>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionDateLessThanOrEqualTo">
+    <div data-bind='component: { name: "ui-datetime", params: { value: value.datetime, mode: "datetime", text: { year: "Év", month: "Hónap", day: "Nap", hour: "Óra", minute: "Perc" } } }'></div>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionAuthenticated">
+    <div data-bind='component: { name: "ui-toggle", params: { checked: value.checked, text: "Igen / Nem" } }'></div>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionContactExists">
+    <div data-bind='component: { name: "ui-toggle", params: { checked: value.checked, text: "Igen / Nem" } }'></div>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionContactWithTag">
+    <div data-bind='template: { name: "koActionTypeConditionTagItem", data: value }'></div>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionContactWithoutTag">
+    <div data-bind='template: { name: "koActionTypeConditionTagItem", data: value }'></div>
+</script>
+<script defer="defer" type="text/html" id="koActionTypeConditionTagItem">
+    <div data-bind='dropdown'>
+        <button class="ui-btn ui-btn-flat" type="button" title="Művelet kiválasztása" data-bind='with: item()'>
+            <i class="i dd"></i>
+            <span class="ui-checkbox" data-bind='style: { backgroundColor: color }'></span>
+            <span data-bind='text: name'></span>
+        </button>
+        <ul role="menu" class="ui-menu" style="width: 300px" data-bind='foreach: list.items,
+click: function (d, e) {
+    var menuItem = $(e.target).closest("a");
+    var clickedItem = ko.dataFor(menuItem[0]);
+    clickedItem && d.item(clickedItem);
+}'>
+            <li role="menuitem">
+                <a>
+                    <span class="ui-checkbox" data-bind='style: { backgroundColor: color }'></span>
+                    <span data-bind='text: name'></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeAuthenticate">
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeSendMail">
+    <table class="ui-table">
+        <colgroup>
+            <col />
+            <col style="width: 75px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" readonly="readonly" placeholder="Levél tárgya" data-bind='value: mailMessage() && mailMessage().subject' />
+                </td>
+                <td class="ui-text-right" data-bind='component: { name: "project-mail-picker", params: { project: action.project, mailMessage: mailMessage } }'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeSetTags">
+    <table class="ui-table">
+        <colgroup>
+            <col />
+            <col style="width: 150px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="ui-valign-top" data-bind='ui: {
+         name: "project.businesstags",
+         params: {
+            filter: {
+                project: action.project
+            },
+            oniteminit: function (event) {
+                var item = event.detail.item;
+                item && (event.detail.options.checked =
+                    $data.includeWithTags.some(function (t) { return t.id === item.id; })
+                        ? true : $data.excludeWithTags.some(function (t) { return t.id === item.id; })
+                            ? "false" : null);
+            },
+            onitemchecked: function (event) {
+                $data.update(event.detail.checked, event.detail.unchecked);
+            }
+         }
+    }'></td>
+                <td class="ui-valign-top">
+                    <ul class="ui-navbar-vl" role="menu">
+                        <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { nullable: true, checked: true, text: "Címke hozzáadása" } }'></li>
+                        <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { nullable: true, checked: false, text: "Címke törlése" } }'></li>
+                        <li role="menuitem" data-bind='component: { name: "ui-toggle", params: { nullable: true, checked: null, text: "Nincs módosítás" } }'></li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionTypeLog">
+    <table class="ui-table">
+        <tbody>
+            <tr>
+                <td data-bind='component: { name: "ui-toggle", params: { text: "Névtelen események naplózása", checked: anonymous } }'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>

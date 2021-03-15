@@ -1,0 +1,88 @@
+.i
+{
+	display: inline-block;
+	float: none;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	background-color: transparent;
+	background-image: url('icons.png');
+	background-repeat: no-repeat;
+}
+.i.isearch.addlist
+{
+	width: 30px;
+	height: 16px;
+	background-position: 0 0;
+}
+
+.i.isearch.close
+{
+	width: 16px;
+	height: 16px;
+	background-position: 0 -16px;
+}
+
+.i.isearch.dailymotion
+{
+	width: 18px;
+	height: 18px;
+	background-position: -30px 0;
+}
+
+.i.isearch.newlist
+{
+	width: 16px;
+	height: 16px;
+	background-position: -48px 0;
+}
+
+.i.isearch.play
+{
+	width: 16px;
+	height: 16px;
+	background-position: -48px -16px;
+}
+
+.i.isearch.playitem.active
+{
+	width: 32px;
+	height: 32px;
+	background-position: 0 -32px;
+}
+
+.i.isearch.playitem
+{
+	width: 32px;
+	height: 32px;
+	background-position: -32px -32px;
+}
+
+.i.isearch.playlist
+{
+	width: 16px;
+	height: 16px;
+	background-position: -64px 0;
+}
+
+.i.isearch.share
+{
+	width: 16px;
+	height: 16px;
+	background-position: -64px -16px;
+}
+
+.i.isearch.signup
+{
+	width: 16px;
+	height: 16px;
+	background-position: -80px 0;
+}
+
+.i.isearch.youtube
+{
+	width: 20px;
+	height: 18px;
+	background-position: -64px -32px;
+}
+

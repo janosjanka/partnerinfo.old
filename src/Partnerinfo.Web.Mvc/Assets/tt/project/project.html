@@ -1,0 +1,49 @@
+﻿<script defer="defer" type="text/html" id="koProjectMenu">
+    <div role="group" class="ui-btn-group">
+        <button class="ui-btn ui-btn-primary" type="submit" data-bind='enable: !errors().length, click: saveAsync, clickBubble: false'>Mentés</button>
+        <button class="ui-btn" type="button" data-bind='click: discard, clickBubble: false'>Elvetés</button>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koProjectSender">
+    <tr>
+        <td>Feladó neve</td>
+        <td>
+            <input name="sender.name" type="text" data-bind='value: name' />
+        </td>
+    </tr>
+    <tr>
+        <td>Feladó email</td>
+        <td>
+            <input name="sender.address" type="email" data-bind='value: address' />
+        </td>
+    </tr>
+</script>
+
+<script defer="defer" type="text/html" id="koProjectItem">
+    <div class="ui-box">
+        <div class="ui-box-group">
+            <form data-bind='submit: saveAsync'>
+                <table class="ui-table">
+                    <colgroup>
+                        <col style="width: 100px;" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>Projekt neve</td>
+                            <td>
+                                <input name="name" type="text" data-bind='value: name, hasFocus: true' />
+                            </td>
+                        </tr>
+                        <!-- ko template: { name: "koProjectSender", data: sender } --><!-- /ko -->
+                        <tr>
+                            <td colspan="2" data-bind='component: { name: "ui-dataerrors", params: { errors: errors } }'></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input class="ui-hidden" type="submit" />
+            </form>
+        </div>
+    </div>
+</script>

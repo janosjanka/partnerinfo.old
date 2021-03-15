@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.AppClass.Enqueue("ui-theme-wide");
+    ViewBag.AppClass.Enqueue("ui-theme-navy");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ui-canvas">
+    <div class="ui-container">
+        <div data-bind='ui: { name: "identity.users" }'></div>
+    </div>
+</div>

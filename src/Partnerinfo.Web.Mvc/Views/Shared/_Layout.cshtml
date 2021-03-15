@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+@section Script {
+    @RenderSection("Script", false)
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("_AppAreaMenu")
+        @Html.Partial("_AppUserMenu")
+    }
+}
+<header role="banner" class="ui-app-header ui-fixed">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-sm-4">
+                <a class="ui-app-logo" rel="nofollow" href="/">
+                    @Html.Raw(ViewBag.AppLogo)
+                </a>
+            </div>
+            <div class="ui-col-sm-8">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div role="toolbar" class="ui-toolbar ui-pull-right">
+                    <div role="group" class="ui-btn-group" data-bind='component: { name: "notification-menu" }'></div>
+                    <div role="group" class="ui-btn-group" data-bind='template: { name: "koAppAreaMenu" }'></div>
+                    <div role="group" class="ui-btn-group" data-bind='template: { name: "koAppUserMenu" }'></div>
+                </div>
+            }
+            </div>
+        </div>
+        <div id="progress" role="progressbar">
+            <span>&#9679;</span>
+            <span>&#9679;</span>
+            <span>&#9679;</span>
+        </div>
+    </div>
+</header>
+<div role="main" class="ui-app-main">
+    @RenderBody()
+</div>
+<footer class="ui-app-footer">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-sm-4">
+                <i class="i logo pi-dark"></i>
+            </div>
+            <div class="ui-col-sm-8 ui-text-right">
+                Copyright (c) 2016 Partnerinfo TV - All rights reserved.
+            </div>
+        </div>
+    </div>
+</footer>

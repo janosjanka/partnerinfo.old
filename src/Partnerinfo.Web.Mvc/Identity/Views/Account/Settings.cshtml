@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.AppTitle.Enqueue(IdentityAppResources.Account_Settings);
+}
+@if (!string.IsNullOrEmpty(ViewBag.StatusMessage))
+{
+    <div class="ui-type-help">
+        @ViewBag.StatusMessage
+    </div>
+}
+<div class="ui-container-fluid ui-color-2">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-sm-6">
+                @if (ViewBag.HasLocalPassword)
+                {
+                    @Html.Partial("_ChangePassword")
+                }
+                else
+                {
+                    @Html.Partial("_SetPassword")
+                }
+            </div>
+            <div class="ui-col-sm-6">
+                <div class="ui-box ui-box-bordered">
+                    <div class="ui-box-group">
+                        <h3>@User.Identity.Name</h3>
+                    </div>
+                </div>
+                @if (OAuthWebSecurity.RegisteredClientData.Count > 0)
+                {
+                    <div class="ui-box ui-box-bordered">
+                        <div class="ui-box-header">
+                            <h2 class="ui-font-sm">@IdentityAppResources.Account_AssociateWith</h2>
+                        </div>
+                        <div class="ui-box-group">
+                            @IdentityAppResources.Account_AssociateWithDescription
+                        </div>
+                        <div class="ui-box-group">
+                            @Html.Partial("_LoginProviders", OAuthWebSecurity.RegisteredClientData, new ViewDataDictionary { { "returnurl", ViewBag.ReturnUrl } })
+                        </div>
+                    </div>
+                    @Html.Action("OAuthLoginList")
+                }
+            </div>
+        </div>
+    </div>
+</div>

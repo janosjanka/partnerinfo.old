@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Command_CreateNewDocument" xml:space="preserve">
+    <value>Új dokumentum</value>
+  </data>
+  <data name="Command_CreateNewFolder" xml:space="preserve">
+    <value>Új mappa</value>
+  </data>
+  <data name="Command_ExtractDocumentFile" xml:space="preserve">
+    <value>Tartalom kicsomagolása (Zip archívum)</value>
+  </data>
+  <data name="Command_SelectDocumentFile" xml:space="preserve">
+    <value>Válaszd ki a fájlt, amit megszeretnél osztani...</value>
+  </data>
+  <data name="Command_UploadDocumentFile" xml:space="preserve">
+    <value>Tallózz vagy húzd be a feltöltendő fájlokat ide</value>
+  </data>
+  <data name="Form" xml:space="preserve">
+    <value>Űrlap</value>
+  </data>
+  <data name="FormFields" xml:space="preserve">
+    <value>Űrlap elemek</value>
+  </data>
+  <data name="FormField" xml:space="preserve">
+    <value>Űrlap elem</value>
+  </data>
+  <data name="FormFieldType_HtmlSection" xml:space="preserve">
+    <value>Html szekció</value>
+  </data>
+  <data name="FormFieldType_PageBreak" xml:space="preserve">
+    <value>Oldaltörés</value>
+  </data>
+  <data name="FormFieldType_SectionHeader" xml:space="preserve">
+    <value>Szekció fejléc</value>
+  </data>
+  <data name="FormFieldType_TextArea" xml:space="preserve">
+    <value>Szövegterület</value>
+  </data>
+  <data name="FormFieldType_TextBox" xml:space="preserve">
+    <value>Szövegdoboz</value>
+  </data>
+  <data name="FormFieldType_Unknown" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormField_Help" xml:space="preserve">
+    <value>Súgó</value>
+  </data>
+  <data name="FormField_Help_StringLength" xml:space="preserve">
+    <value>A súgó szöveg nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="FormField_Id" xml:space="preserve">
+    <value>Egyedi azonosító</value>
+  </data>
+  <data name="FormField_Id_XmlTagName" xml:space="preserve">
+    <value>Helytelen űrlapelem azonosító.</value>
+  </data>
+  <data name="FormField_IsRequired" xml:space="preserve">
+    <value>Kötelező kitölteni</value>
+  </data>
+  <data name="FormField_Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="FormField_Name_StringLength" xml:space="preserve">
+    <value>A név nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="FormField_Type" xml:space="preserve">
+    <value>Típus</value>
+  </data>
+  <data name="FormField_Type_Required" xml:space="preserve">
+    <value>Típus szükséges.</value>
+  </data>
+  <data name="FormField_Value" xml:space="preserve">
+    <value>Alap. érték</value>
+  </data>
+  <data name="FormField_Value_StringLength" xml:space="preserve">
+    <value>Az alap. érték nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="Forms" xml:space="preserve">
+    <value>Űrlapok</value>
+  </data>
+  <data name="FormFieldType_Checkboxes" xml:space="preserve">
+    <value>Jelölőnégyzetek</value>
+  </data>
+  <data name="FormFieldType_RadioButtons" xml:space="preserve">
+    <value>Feleletválasztós</value>
+  </data>
+  <data name="FormFieldOptionType_Text" xml:space="preserve">
+    <value>Szöveg</value>
+  </data>
+  <data name="FormFieldOptionType_Image" xml:space="preserve">
+    <value>Kép</value>
+  </data>
+  <data name="FormFieldOptionType_Unknown" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormFieldOptionType_Video" xml:space="preserve">
+    <value>Videó</value>
+  </data>
+  <data name="FormFieldOption_Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="FormFieldOption_Name_StringLength" xml:space="preserve">
+    <value>Az opció neve nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="FormFieldOption_Type" xml:space="preserve">
+    <value>Típus</value>
+  </data>
+  <data name="FormFieldOption_Value" xml:space="preserve">
+    <value>Tartalom</value>
+  </data>
+  <data name="FormFieldOption_Value_StringLength" xml:space="preserve">
+    <value>Az opció tartalma nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Dokumentum</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Dokumentumok</value>
+  </data>
+  <data name="DocumentType_File" xml:space="preserve">
+    <value>Fájl</value>
+  </data>
+  <data name="DocumentType_Folder" xml:space="preserve">
+    <value>Mappa</value>
+  </data>
+  <data name="DocumentType_Form" xml:space="preserve">
+    <value>Űrlap</value>
+  </data>
+  <data name="DocumentType_Unknown" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Document_Length" xml:space="preserve">
+    <value>Méret</value>
+  </data>
+  <data name="Document_Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="Document_Name_Required" xml:space="preserve">
+    <value>A dokumentum nevére szükség van.</value>
+  </data>
+  <data name="Document_Name_StringLength" xml:space="preserve">
+    <value>A dokumentum neve nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="Document_Owner" xml:space="preserve">
+    <value>Tulaj</value>
+  </data>
+  <data name="Document_PhysicalPath" xml:space="preserve">
+    <value>Fizikai útvonal</value>
+  </data>
+  <data name="Document_Slug" xml:space="preserve">
+    <value>Webazonosító</value>
+  </data>
+  <data name="Document_Slug_Required" xml:space="preserve">
+    <value>A dokumentum egyedi webazonosítójára szükség van.</value>
+  </data>
+  <data name="Document_Slug_StringLength" xml:space="preserve">
+    <value>A dokumentum egyedi webazonosítója nem lehet hosszabb {1} karakternél.</value>
+  </data>
+  <data name="Document_Type" xml:space="preserve">
+    <value>Típus</value>
+  </data>
+  <data name="Document_Type_Invalid" xml:space="preserve">
+    <value>Helytelen dokumentum típus.</value>
+  </data>
+  <data name="Command_Form_MoveToNext" xml:space="preserve">
+    <value>Következő</value>
+  </data>
+  <data name="Command_Form_MoveToPrevious" xml:space="preserve">
+    <value>Előző</value>
+  </data>
+  <data name="Command_Form_Submit" xml:space="preserve">
+    <value>Küldés</value>
+  </data>
+  <data name="Command_Form_AddNewOption" xml:space="preserve">
+    <value>Új opció hozzáadása</value>
+  </data>
+  <data name="FormFieldOption_Height" xml:space="preserve">
+    <value>Magasság</value>
+  </data>
+  <data name="FormFieldOption_Width" xml:space="preserve">
+    <value>Szélesség</value>
+  </data>
+  <data name="FormFieldType_DropDownList" xml:space="preserve">
+    <value>Lenyíló lista</value>
+  </data>
+</root>

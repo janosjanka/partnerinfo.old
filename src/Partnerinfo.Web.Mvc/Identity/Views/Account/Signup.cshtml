@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.AppTitle.Enqueue(IdentityAppResources.Account_Signup);
+}
+@section Script {
+    @Html.Partial("_SignupInfoScript")
+}
+<div class="ui-container-fluid ui-color-2">
+    <div class="ui-container">
+        <div class="ui-row">
+            <div class="ui-col-sm-5 ui-col-sm-offs-3">
+                <div role="article" class="ui-box">
+                    <div role="group" class="ui-box-group">
+                        @Html.Partial("_SignupInfo")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets"
+          Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+
+  <PropertyGroup>
+    <OutDir Condition="'$(OutDir)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\..\bin\$(Configuration)'))\</OutDir>
+    <WebOutDir Condition="'$(WebOutDir)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\..\bin\wwwroot'))\</WebOutDir>
+    <OutputPath>$(OutDir)</OutputPath>
+    <FileAlignment>512</FileAlignment>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\..\bin\Obj\$(MSBuildProjectName)'))\</BaseIntermediateOutputPath>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,65 @@
+﻿<script defer="defer" type="text/html" id="koPortalTimerModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 125px;" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="ui-valign-top" data-bind='component: { name: "ui-toggle", params: { checked: module.relative, text: "Relatív" } }'></td>
+                <td class="ui-valign-top">
+                    <table class="ui-table ui-table-sm" data-bind='visible: module.relative'>
+                        <tbody>
+                            <tr>
+                                <td>Napok</td>
+                                <td>Órák</td>
+                                <td>Percek</td>
+                                <td>Másodpercek</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input name="days" type="number" data-bind='value: module.days' />
+                                </td>
+                                <td>
+                                    <input name="hours" type="number" data-bind='value: module.hours' />
+                                </td>
+                                <td>
+                                    <input name="minutes" type="number" data-bind='value: module.minutes' />
+                                </td>
+                                <td>
+                                    <input name="seconds" type="number" data-bind='value: module.seconds' />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div data-bind='visible: !module.relative(),
+    component: {
+        name: "ui-datetime",
+        params: {
+            value: module.expireDate,
+            text: { year: "Év", month: "Hónap", day: "Nap", hour: "Óra", minute: "Perc" }
+        }
+    }'></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Formátum</td>
+                <td>
+                    <input name="format" type="text" data-bind='value: module.format' />
+                </td>
+            </tr>
+            <tr>
+                <td>Lejárt szöveg</td>
+                <td>
+                    <input name="expireText" type="text" data-bind='value: module.expireText' />
+                </td>
+            </tr>
+            <tr>
+                <td>Kész esemény</td>
+                <td>
+                    <select name="event" data-bind='value: module.event, options: events, optionsText: "name", optionsValue: "name"' />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>

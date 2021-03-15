@@ -1,0 +1,216 @@
+﻿<script defer="defer" type="text/html" id="koActionRedirect">
+    <table class="list listM">
+        <colgroup>
+            <col style="width: 100px" />
+            <col />
+            <col style="width: 50px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Weboldal címe</td>
+                <td>
+                    <input type="url" name="url" required="required" maxlength="512" data-bind='value: url' />
+                </td>
+                <td>
+                    <a class="button" data-bind='enable: url, attr: { href: url }'>
+                        <i class="i view only"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionAuthenticate">
+    <!--
+    <table class="list listM">
+        <colgroup>
+            <col style="width: 100px" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td></td>
+                <td data-bind='component: { name: "ui-checkbox", params: { text: "Jelszó ellenőrzése", checked: item.checkPassword } }'></td>
+            </tr>
+        </tbody>
+    </table>
+    -->
+</script>
+
+<script defer="defer" type="text/html" id="koActionSetTags">
+    <table class="list listM">
+        <colgroup>
+            <col style="width: 100px" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr class="tpHelp">
+                <td>
+                    Jelmagyarázat
+                </td>
+                <td>
+                    <ul class="navMenu navHorL" role="menu">
+                        <li role="menuitem" data-bind='component: { name: "ui-checkbox", params: { nullable: true, checked: true, text: "Címke hozzáadása" } }'></li>
+                        <li role="menuitem" data-bind='component: { name: "ui-checkbox", params: { nullable: true, checked: false, text: "Címke törlése" } }'></li>
+                        <li role="menuitem" data-bind='component: { name: "ui-checkbox", params: { nullable: true, checked: null, text: "Nincs módosítás" } }'></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div data-bind='ui: { name: "project.contacttag-picker", model: tagList() }'></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionLog">
+    <table class="list listM">
+        <colgroup>
+            <col style="width: 100px" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td></td>
+                <td data-bind='component: { name: "ui-checkbox", params: { text: "Névtelen események naplózása", checked: item.anonymous } }'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionSendMail">
+    <table class="list listM">
+        <colgroup>
+            <col style="width: 100px" />
+            <col />
+            <col style="width: 100px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Levél tárgya</td>
+                <td class="tpMail">
+                    <span data-bind='text: mailMessage() ? mailMessage().subject: "-"'></span>
+                </td>
+                <td class="alRight" data-bind='component: { name: "project-mail-picker",
+    params: {
+        project: { id: ko.unwrap(action.item.projectId) },
+        mailMessage: mailMessage
+    }
+}'></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionItemView">
+    <table class="list listS">
+        <colgroup>
+            <col style="width: 20px" />
+            <col style="width: 20px" />
+            <col />
+            <col />
+            <col style="width: 75px" />
+        </colgroup>
+        <tr>
+            <td data-bind='if: canAddChild'>
+                <a class="button btn2XSi bv0" data-bind='click: addNewChild, clickBubble: false'>
+                    <i class="i add v1 only"></i>
+                </a>
+            </td>
+            <td>
+                <div class="ui-checkbox" role="radio" aria-checked="false">
+                    <div class="ui-checkframe" data-bind='style: { backgroundColor: PI.Project.ActionComponents[item.type() || "unknown"].color }'>
+                        <i class="ui-checkicon"></i>
+                    </div>
+                </div>
+            </td>
+            <td colspan="2" data-bind='attr: { title: item.name }, css: { disabled: !item.isEnabled() }'>
+                <span data-bind='with: displayName'>
+                    <!-- ko ifnot: link -->
+                    <span data-bind='text: name'></span>
+                    <!-- /ko -->
+                    <!-- ko if: link -->
+                    <a href="#" target="_blank" data-bind='text: link, attr: { href: link }'></a>
+                    <!-- /ko -->
+                </span>
+            </td>
+            <td class="alRight">
+                <a class="button btn2XSi bv0" data-bind='click: beginEdit, clickBubble: false'>
+                    <i class="i edit v1 only"></i>
+                </a>
+                <!-- ko if: canDelete -->
+                <a class="button btn2XSi bv0" data-bind='click: deleteAsync, clickBubble: false'>
+                    <i class="i delete v1 only"></i>
+                </a>
+                <!-- /ko -->
+            </td>
+        </tr>
+    </table>
+</script>
+
+<script defer="defer" type="text/html" id="koActionItemEdit">
+    <form data-bind='submit: saveAsync'>
+        <div class="conS clearfix">
+            <div class="lfloat">
+                <input class="button bv3" type="submit" value="Mentés" />
+                <!-- ko if: item.id() || item._parent -->
+                <input class="button" type="button" value="Mégse" data-bind='click: cancelEdit, clickBubble: false' />
+                <!-- /ko -->
+            </div>
+            <div class="rfloat">
+                <div class="progress" data-bind='visible: busy'></div>
+                <div data-bind='component: { name: "ui-checkbox", params: { checked: item.isEnabled, text: "Bekapcsolva" } }'></div>
+            </div>
+        </div>
+        <div class="conS" data-bind='css: { "disabled": !item.isEnabled() }'>
+            <table class="list listM">
+                <colgroup>
+                    <col style="width: 100px" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>Művelet típusa</td>
+                        <td>
+                            <select required="required" data-bind='value: item.type, options: PI.Project.Action.actionTypeOptions(), optionsValue: "value", optionsText: "text"'></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Művelet neve</td>
+                        <td>
+                            <input name="name" type="text" data-bind='value: item.name, attr: { required: !item._parent  }' />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div data-bind='with: editor'>
+                <div data-bind='template: { if: template, name: template, data: viewModel }'></div>
+            </div>
+            <!--
+            <div data-bind='with: item.options'>
+                <div data-bind='template: { if: $data.item && $data.action, name: PI.Project.ActionComponents[$parent.item.type()].template }'></div>
+            </div>
+            -->
+        </div>
+        <div class="conS" data-bind='component: { name: "ui-dataerrors", params: { errors: $data.errors } }'></div>
+    </form>
+</script>
+
+<script defer="defer" type="text/html" id="koActionNode">
+    <div class="menuNode">
+        <div class="menuTitle" data-bind='template: { name: isEditing() ? "koActionItemEdit" : "koActionItemView" }'></div>
+        <div class="menuLevel" data-bind='template: { if: item.isEnabled, name: "koActionNode", foreach: item.children }'></div>
+    </div>
+</script>
+
+<script defer="defer" type="text/html" id="koActionItem">
+    <div class="box">
+        <div class="boxGroup">
+            <div class="menuTree" data-bind='template: { if: $data.item, name: "koActionNode", foreach: [$data] }'></div>
+        </div>
+    </div>
+</script>

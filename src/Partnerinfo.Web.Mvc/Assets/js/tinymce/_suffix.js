@@ -1,0 +1,1 @@
+﻿})(jQuery, tinymce, ko, WinJS, PI);

@@ -1,0 +1,49 @@
+﻿<script defer="defer" type="text/html" id="koPortalFrameModule">
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 150px;" />
+            <col />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>Beágyazandó weboldal címe</td>
+                <td class="ui-text-right" data-bind='component: { name: "ui-toggle", params: { checked: module.allowTransparency, text: "Áttetszőség engedélyezése" } }'></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input name="url" type="url" data-bind='value: module.url' />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="ui-table">
+        <colgroup>
+            <col style="width: 125px;" />
+            <col style="width: 125px;" />
+            <col />
+            <col style="width: 80px;" />
+            <col style="width: 80px;" />
+            <col style="width: 80px;" />
+            <col style="width: 80px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    Görgetősáv látszik
+                </td>
+                <td>
+                    <select name="scrolling" data-bind='value: module.scrolling'>
+                        <option></option>
+                        <option value="yes">Bekapcsolva</option>
+                        <option value="no">Kikapcsolva</option>
+                    </select>
+                </td>
+                <td></td>
+                <td>Szélesség</td>
+                <td><input type="text" name="width" data-bind='value: module.width' /></td>
+                <td>Magasság</td>
+                <td><input type="text" name="height" data-bind='value: module.height' /></td>
+            </tr>
+        </tbody>
+    </table>
+</script>
